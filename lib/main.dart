@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/screenutil_init.dart';
 import 'package:summer_project/route_generator.dart';
 
 void main() {
@@ -8,15 +9,19 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Summer Project',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+    return ScreenUtilInit(
+      designSize: Size(1080, 2280),
+      allowFontScaling: false,
+      builder: () => MaterialApp(
+        title: 'Summer Project',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        initialRoute: '/',
+        onGenerateRoute: RouteGenerator.generateRoute,
       ),
-      initialRoute: '/',
-      onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }
