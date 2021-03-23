@@ -1,11 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:summer_project/widgets/app_action_chip.dart';
 import 'package:summer_project/widgets/app_app_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:summer_project/widgets/app_button.dart';
+import 'package:summer_project/widgets/app_table_components.dart';
 import 'package:summer_project/widgets/customer_name.dart';
 import 'package:summer_project/widgets/order_no.dart';
 import 'package:summer_project/widgets/sub_titles.dart';
+import 'package:summer_project/widgets/table_no.dart';
 
 import 'local_widgets/payment_details.dart';
 
@@ -20,12 +22,7 @@ class OrderDetailsScreen extends StatelessWidget {
         margin: EdgeInsets.symmetric(horizontal: 25.w),
         child: ListView(
           children: [
-            Text(
-              "#Table_no.",
-              style: TextStyle(
-                fontSize: 100.ssp,
-              ),
-            ),
+            TableNumber(tableNumber: 12),
             OrderNumber(
               orderNumber: 23,
             ),
@@ -38,50 +35,57 @@ class OrderDetailsScreen extends StatelessWidget {
               string: '98********',
             ),
             Divider(),
-            Subtitles(
-              string: 'ORDERS',
-            ),
-            Table(
-              border: TableBorder.symmetric(
-                outside: BorderSide(color: Colors.black),
-                inside: BorderSide(color: Colors.grey),
-              ),
-              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+            Subtitles(string: 'ORDERS'),
+            AppTable(
               columnWidths: {
-                0: FractionColumnWidth(0.1),
-                1: FractionColumnWidth(0.4),
-                2: FractionColumnWidth(0.1),
-                3: FractionColumnWidth(0.3),
+                0: FractionColumnWidth(0.15),
+                1: FractionColumnWidth(0.35),
+                2: FractionColumnWidth(0.15),
+                3: FractionColumnWidth(0.1),
+                4: FractionColumnWidth(0.25),
               },
-              children: [
+              headerChildren: [
+                AppHeaderCell(string: 'S.N'),
+                AppHeaderCell(string: 'NAME'),
+                AppHeaderCell(string: 'PRICE'),
+                AppHeaderCell(string: 'QTY'),
+                AppHeaderCell(string: 'TOTAL'),
+              ],
+              dataChildren: [
                 TableRow(
+                  decoration: BoxDecoration(
+                    color: Colors.grey[100],
+                  ),
                   children: [
-                    Text('S.N.', textAlign: TextAlign.center),
-                    Text('Name', textAlign: TextAlign.center),
-                    Text('Qty', textAlign: TextAlign.center),
-                    Text('Status', textAlign: TextAlign.center),
+                    AppDataCell(string: '1'),
+                    AppDataCell(string: 'Food 1'),
+                    AppDataCell(string: '2000'),
+                    AppDataCell(string: '2'),
+                    AppDataCell(string: '400'),
                   ],
                 ),
                 TableRow(
+                  decoration: BoxDecoration(
+                    color: Colors.grey[100],
+                  ),
                   children: [
-                    Text('1'),
-                    Text('Food 1'),
-                    Text('2'),
-                    AppActionChip(
-                      string: 'status',
-                      onPressed: () {},
-                    ),
+                    AppDataCell(string: '1'),
+                    AppDataCell(string: 'Food 1'),
+                    AppDataCell(string: '2000'),
+                    AppDataCell(string: '2'),
+                    AppDataCell(string: '400'),
                   ],
                 ),
                 TableRow(
+                  decoration: BoxDecoration(
+                    color: Colors.grey[100],
+                  ),
                   children: [
-                    Text('2'),
-                    Text('Food 2'),
-                    Text('20'),
-                    AppActionChip(
-                      string: 'status',
-                      onPressed: () {},
-                    ),
+                    AppDataCell(string: '1'),
+                    AppDataCell(string: 'Food 1'),
+                    AppDataCell(string: '2000'),
+                    AppDataCell(string: '2'),
+                    AppDataCell(string: '400'),
                   ],
                 ),
               ],
