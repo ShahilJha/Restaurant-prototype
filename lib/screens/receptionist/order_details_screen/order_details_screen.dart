@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:summer_project/widgets/app_app_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:summer_project/widgets/app_button.dart';
 
 class OrderDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('this '),
+      appBar: KAppBar(
+        title: 'ORDER DETAILS',
       ),
-      body: Container(),
+      body: ListView(
+        children: [],
+      ),
     );
   }
 }

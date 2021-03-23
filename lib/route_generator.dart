@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:summer_project/screens/common/login/login_screen.dart';
+import 'screens/common/login/login_screen.dart';
+import 'screens/receptionist/order_details_screen/order_details_screen.dart';
 
 /*
   To Navigate to another screen:
@@ -16,6 +17,8 @@ class RouteGenerator {
     switch (settings.name) {
       case '/':
         return MaterialPageRoute(builder: (_) => LoginScreen());
+      case '/receptionist_order_detail':
+        return MaterialPageRoute(builder: (_) => OrderDetailsScreen());
       default:
         //If there is no route that has been redirected to.
         return _errorRoute();
