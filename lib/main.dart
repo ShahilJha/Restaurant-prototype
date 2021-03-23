@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_screenutil/screenutil_init.dart';
 import 'package:summer_project/route_generator.dart';
 
@@ -18,10 +19,21 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
+          dividerTheme: _getDividerThemeData(),
         ),
         initialRoute: '/receptionist_order_detail',
         onGenerateRoute: RouteGenerator.generateRoute,
       ),
     );
   }
+}
+
+DividerThemeData _getDividerThemeData() {
+  return DividerThemeData().copyWith(
+    space: 50.w,
+    thickness: 1.5,
+    indent: 100.w,
+    endIndent: 100.w,
+    color: Colors.grey,
+  );
 }

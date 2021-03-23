@@ -21,7 +21,7 @@ class LoginScreen extends StatelessWidget {
           AppTextField(),
           AppTextField(),
           OccupationChips(),
-          AppButton()
+          AppButton(text: 'Log-in'),
         ],
       ),
     );
