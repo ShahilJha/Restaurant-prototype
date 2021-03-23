@@ -67,7 +67,10 @@ class OrderDetailsScreen extends StatelessWidget {
                     Text('1'),
                     Text('Food 1'),
                     Text('2'),
-                    AppActionChip(string: 'status'),
+                    AppActionChip(
+                      string: 'status',
+                      onPressed: () {},
+                    ),
                   ],
                 ),
                 TableRow(
@@ -75,7 +78,10 @@ class OrderDetailsScreen extends StatelessWidget {
                     Text('2'),
                     Text('Food 2'),
                     Text('20'),
-                    AppActionChip(string: 'status'),
+                    AppActionChip(
+                      string: 'status',
+                      onPressed: () {},
+                    ),
                   ],
                 ),
               ],
