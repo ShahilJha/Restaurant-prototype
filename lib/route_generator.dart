@@ -4,6 +4,7 @@ import 'screens/kitchen/order_details_screen/kitchen_order_details_screen.dart';
 import 'screens/kitchen/running_order_screen/kitchen_running_order_screen.dart';
 import 'screens/receptionist/order_details_screen/receptionist_order_details_screen.dart';
 import 'screens/receptionist/order_list_screen/receptionist_order_list_screen.dart';
+import 'screens/waiter/receptionist_running_order_screen/receptionist_running_order_screen.dart';
 
 /*
   To Navigate to another screen:
@@ -36,6 +37,11 @@ class RouteGenerator {
 
       case '/kitchen_order_details':
         return MaterialPageRoute(builder: (_) => KitchenOrderDetailsScreen());
+
+      //RECEPTIONIST Routes
+      case '/receptionist_running_order_screen':
+        return MaterialPageRoute(
+            builder: (_) => ReceptionistRunningOrderScreen());
 
       //ERROR Route
       default:
