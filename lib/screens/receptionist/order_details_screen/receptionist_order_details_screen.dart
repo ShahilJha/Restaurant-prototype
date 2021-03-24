@@ -12,7 +12,7 @@ import 'package:summer_project/widgets/table_no.dart';
 
 import 'local_widgets/payment_details.dart';
 
-class OrderDetailsScreen extends StatelessWidget {
+class ReceptionistOrderDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

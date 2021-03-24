@@ -4,7 +4,7 @@ import 'package:summer_project/widgets/app_container.dart';
 
 import 'local_widgets/receptionist_order_tile.dart';
 
-class OrderListScreen extends StatelessWidget {
+class ReceptionistOrderListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
