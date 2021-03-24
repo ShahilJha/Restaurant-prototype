@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:summer_project/widgets/app_app_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:summer_project/widgets/app_button.dart';
+import 'package:summer_project/widgets/app_container.dart';
 import 'package:summer_project/widgets/app_table_components.dart';
 import 'package:summer_project/widgets/customer_name.dart';
 import 'package:summer_project/widgets/order_no.dart';
@@ -18,8 +19,7 @@ class OrderDetailsScreen extends StatelessWidget {
       appBar: KAppBar(
         title: 'ORDER DETAILS',
       ),
-      body: Container(
-        margin: EdgeInsets.symmetric(horizontal: 25.w),
+      body: AppContainer(
         child: ListView(
           children: [
             TableNumber(tableNumber: 12),
