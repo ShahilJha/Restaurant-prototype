@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:summer_project/widgets/app_app_bar.dart';
 import 'package:summer_project/widgets/app_container.dart';
+
+import 'local_widgets/receptionist_order_tile.dart';
 
 class OrderListScreen extends StatelessWidget {
   @override
@@ -12,7 +13,22 @@ class OrderListScreen extends StatelessWidget {
       ),
       body: AppContainer(
         child: ListView(
-          children: [],
+          children: [
+            ReceptionistOrderTile(
+              tableNumber: 14,
+              orderNumber: 1341,
+              customerName: 'Shahil Jha',
+              customerContact: '98********',
+              onPressed: () {},
+            ),
+            ReceptionistOrderTile(
+              tableNumber: 14,
+              orderNumber: 1341,
+              customerName: 'Shahil Jha',
+              customerContact: '98********',
+              onPressed: () {},
+            ),
+          ],
         ),
       ),
     );
