@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:summer_project/screens/kitchen/running_order_screen/kitchen_running_order_screen.dart';
 import 'screens/common/login/login_screen.dart';
+import 'screens/kitchen/order_details_screen/kitchen_order_details_screen.dart';
+import 'screens/kitchen/running_order_screen/kitchen_running_order_screen.dart';
 import 'screens/receptionist/order_details_screen/receptionist_order_details_screen.dart';
 import 'screens/receptionist/order_list_screen/receptionist_order_list_screen.dart';
 
@@ -33,6 +34,10 @@ class RouteGenerator {
       case '/kitchen_running_orders':
         return MaterialPageRoute(builder: (_) => KitchenOrderListScreen());
 
+      case '/kitchen_order_details':
+        return MaterialPageRoute(builder: (_) => KitchenOrderDetailsScreen());
+
+      //ERROR Route
       default:
         //If there is no route that has been redirected to.
         return _errorRoute();
