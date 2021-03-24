@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:summer_project/widgets/attribute_display.dart';
+import 'package:summer_project/widgets/color_code_tile.dart';
 import 'package:summer_project/widgets/order_no.dart';
 import 'package:summer_project/widgets/table_no.dart';
 
@@ -45,19 +46,7 @@ class KitchenOrderTile extends StatelessWidget {
             ),
             AttributeDisplay(attribute: 'Status', string: status),
             Divider(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    color: colorCode,
-                    borderRadius: BorderRadius.all(Radius.circular(50.w)),
-                  ),
-                  height: 100.w,
-                  width: 750.w,
-                ),
-              ],
-            ),
+            ColorCodeTile(color: colorCode),
           ],
         ),
       ),
