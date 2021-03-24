@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
           dividerTheme: _getDividerThemeData(),
         ),
-        initialRoute: '/receptionist_order_detail',
+        initialRoute: '/receptionist_running_orders',
         onGenerateRoute: RouteGenerator.generateRoute,
       ),
     );
