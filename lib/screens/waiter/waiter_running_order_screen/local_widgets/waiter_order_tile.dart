@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:summer_project/widgets/attribute_display.dart';
+import 'package:summer_project/widgets/color_code_tile.dart';
 import 'package:summer_project/widgets/order_no.dart';
 import 'package:summer_project/widgets/table_no.dart';
 
@@ -43,6 +44,7 @@ class WaiterOrderTile extends StatelessWidget {
             OrderNumber(
               orderNumber: orderNumber,
             ),
+            ColorCodeTile(),
           ],
         ),
       ),

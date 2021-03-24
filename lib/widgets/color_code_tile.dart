@@ -12,7 +12,7 @@ class ColorCodeTile extends StatelessWidget {
       children: [
         Container(
           decoration: BoxDecoration(
-            color: color,
+            color: color ?? Colors.grey,
             borderRadius: BorderRadius.all(Radius.circular(50.w)),
           ),
           height: 100.w,
