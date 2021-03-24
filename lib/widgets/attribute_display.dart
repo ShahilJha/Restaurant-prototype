@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class AttributeDisplay extends StatelessWidget {
   final String string, attribute;
   AttributeDisplay({
-    @required this.string,
     @required this.attribute,
+    @required this.string,
   });
 
   @override

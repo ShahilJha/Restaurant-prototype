@@ -4,18 +4,18 @@ import 'package:summer_project/widgets/attribute_display.dart';
 import 'package:summer_project/widgets/order_no.dart';
 import 'package:summer_project/widgets/table_no.dart';
 
-class ReceptionistOrderTile extends StatelessWidget {
+class KitchenOrderTile extends StatelessWidget {
   final int tableNumber;
   final int orderNumber;
-  final String customerName;
-  final String customerContact;
+  final Color colorCode;
+  final String status;
   final Function onPressed;
-  const ReceptionistOrderTile({
+  const KitchenOrderTile({
     Key key,
     @required this.tableNumber,
     @required this.orderNumber,
-    @required this.customerName,
-    @required this.customerContact,
+    @required this.colorCode,
+    @required this.status,
     @required this.onPressed,
   }) : super(key: key);
 
@@ -43,13 +43,20 @@ class ReceptionistOrderTile extends StatelessWidget {
             OrderNumber(
               orderNumber: orderNumber,
             ),
-            AttributeDisplay(
-              attribute: 'Customer Name',
-              string: customerName,
-            ),
-            AttributeDisplay(
-              attribute: 'Phone no.',
-              string: customerContact,
+            AttributeDisplay(attribute: 'Status', string: status),
+            Divider(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: colorCode,
+                    borderRadius: BorderRadius.all(Radius.circular(50.w)),
+                  ),
+                  height: 100.w,
+                  width: 750.w,
+                ),
+              ],
             ),
           ],
         ),

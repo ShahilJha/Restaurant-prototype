@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:summer_project/widgets/app_button.dart';
 import 'package:summer_project/widgets/app_container.dart';
 import 'package:summer_project/widgets/app_table_components.dart';
-import 'package:summer_project/widgets/customer_name.dart';
+import 'package:summer_project/widgets/attribute_display.dart';
 import 'package:summer_project/widgets/order_no.dart';
 import 'package:summer_project/widgets/sub_titles.dart';
 import 'package:summer_project/widgets/table_no.dart';
