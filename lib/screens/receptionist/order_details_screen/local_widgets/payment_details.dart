@@ -55,6 +55,19 @@ class PaymentDetails extends StatelessWidget {
                     textAlign: TextAlign.end,
                     style: kValueStyle,
                   ),
+                  // Container(
+                  //   width: 10.w,
+                  //   padding: EdgeInsets.only(left: 250.w),
+                  //   child: TextField(
+                  //     keyboardType: TextInputType.number,
+                  //     textAlign: TextAlign.center,
+                  //     decoration: InputDecoration(
+                  //       hintText: 'Discount',
+                  //       hintStyle: TextStyle(fontSize: 35.w),
+                  //       border: OutlineInputBorder(),
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
             ],

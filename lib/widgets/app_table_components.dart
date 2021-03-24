@@ -57,26 +57,29 @@ class AppTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Table(
-      // border: TableBorder.symmetric(
-      //   outside: BorderSide(color: Colors.black),
-      //   inside: BorderSide(color: Colors.grey),
-      // ),
-      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-      columnWidths: columnWidths,
-      children: [
-        TableRow(
-          decoration: BoxDecoration(
-            color: Colors.grey[300],
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(50.w),
-              topRight: Radius.circular(50.w),
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 30.h),
+      child: Table(
+        // border: TableBorder.symmetric(
+        //   outside: BorderSide(color: Colors.black),
+        //   inside: BorderSide(color: Colors.grey),
+        // ),
+        defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+        columnWidths: columnWidths,
+        children: [
+          TableRow(
+            decoration: BoxDecoration(
+              color: Colors.grey[300],
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(50.w),
+                topRight: Radius.circular(50.w),
+              ),
             ),
+            children: headerChildren,
           ),
-          children: headerChildren,
-        ),
-        ...dataChildren
-      ],
+          ...dataChildren
+        ],
+      ),
     );
   }
 }
