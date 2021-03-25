@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:summer_project/screens/kitchen/running_order_screen/local_widgets/order_progress.dart';
+import 'file:///C:/Users/User/AndroidStudioProjects/summer_project/lib/screens/waiter/waiter_running_order_screen/local_widgets/order_progress.dart';
 import 'package:summer_project/widgets/app_tile_container.dart';
 import 'package:summer_project/widgets/color_code_tile.dart';
 import 'package:summer_project/widgets/order_no.dart';
