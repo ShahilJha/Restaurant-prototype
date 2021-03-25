@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:summer_project/screens/waiter/waiter_order_details_screen/waiter_order_details_screen.dart';
 import 'screens/common/login/login_screen.dart';
 import 'screens/kitchen/order_details_screen/kitchen_order_details_screen.dart';
 import 'screens/kitchen/running_order_screen/kitchen_running_order_screen.dart';
 import 'screens/receptionist/order_details_screen/receptionist_order_details_screen.dart';
 import 'screens/receptionist/order_list_screen/receptionist_order_list_screen.dart';
+import 'screens/waiter/waiter_customer_details_screen/customer_details_screen.dart';
+import 'screens/waiter/waiter_order_details_screen/waiter_order_details_screen.dart';
 import 'screens/waiter/waiter_running_order_screen/waiter_running_order_screen.dart';
 
 /*
@@ -45,6 +46,9 @@ class RouteGenerator {
 
       case '/waiter_order_details_screen':
         return MaterialPageRoute(builder: (_) => WaiterOrderDetailsScreen());
+
+      case '/waiter_customer_details_screen':
+        return MaterialPageRoute(builder: (_) => WaiterCustomerDetailsScreen());
 
       //ERROR Route
       default:

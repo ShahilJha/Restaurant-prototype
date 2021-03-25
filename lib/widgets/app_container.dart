@@ -8,7 +8,7 @@ class AppContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 25.w),
+      margin: EdgeInsets.symmetric(horizontal: 25.w, vertical: 25.w),
       child: child,
     );
   }
