@@ -5,7 +5,6 @@ import 'screens/kitchen/order_details_screen/kitchen_order_details_screen.dart';
 import 'screens/kitchen/running_order_screen/kitchen_running_order_screen.dart';
 import 'screens/receptionist/order_details_screen/receptionist_order_details_screen.dart';
 import 'screens/receptionist/order_list_screen/receptionist_order_list_screen.dart';
-import 'screens/waiter/waiter_customer_details_screen/customer_details_screen.dart';
 import 'screens/waiter/waiter_order_details_screen/waiter_order_details_screen.dart';
 import 'screens/waiter/waiter_running_order_screen/waiter_running_order_screen.dart';
 
@@ -47,10 +46,6 @@ class RouteGenerator {
 
       case '/waiter_order_details_screen':
         return MaterialPageRoute(builder: (_) => WaiterOrderDetailsScreen());
-
-      //todo: remove route and relevant screens and files
-      case '/waiter_customer_details_screen':
-        return MaterialPageRoute(builder: (_) => WaiterCustomerDetailsScreen());
 
       case '/waiter_ordering_screen':
         return MaterialPageRoute(builder: (_) => WaiterOrderingScreen());
