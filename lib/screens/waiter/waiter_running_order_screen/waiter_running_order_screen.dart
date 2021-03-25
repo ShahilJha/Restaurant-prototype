@@ -13,7 +13,12 @@ class WaiterRunningOrderScreen extends StatelessWidget {
         title: 'RUNNING ORDERS',
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: null,
+        child: Icon(Icons.add),
+        onPressed: () {
+          // Navigator.of(context).pushNamed(
+          //   '/route_name',
+          // );
+        },
       ),
       body: AppContainer(
         child: ListView(
