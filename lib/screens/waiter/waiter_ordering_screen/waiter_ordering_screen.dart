@@ -71,10 +71,9 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
     });
   }
 
+  //TODO: menu screen UI
   @override
   Widget build(BuildContext context) {
-    print('check #3');
-
     return Scaffold(
       appBar: KAppBar(
         title: 'ORDERING MENU',
