@@ -4,8 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class AppButton extends StatelessWidget {
   final String text;
   final Color color;
+  final Function onPressed;
 
-  const AppButton({Key key, @required this.text, this.color}) : super(key: key);
+  const AppButton({Key key, @required this.text, this.color, this.onPressed})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +16,7 @@ class AppButton extends StatelessWidget {
       child: RaisedButton(
         padding: EdgeInsets.symmetric(vertical: 50.w),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-        onPressed: () {},
+        onPressed: onPressed,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 50.w),
           child: Text(

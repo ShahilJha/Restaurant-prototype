@@ -13,14 +13,14 @@ import 'package:summer_project/widgets/table_no.dart';
 import 'local_widgets/waiter_status_chip.dart';
 
 class WaiterOrderDetailsScreen extends StatelessWidget {
-  Widget _buildPopupDialog(BuildContext context) {
+  Widget _showItemInformation(BuildContext context) {
     return AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.w)),
       title: const Text(
         'ITEM NAME',
         textAlign: TextAlign.center,
       ),
-      content: new Column(
+      content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
@@ -87,7 +87,7 @@ class WaiterOrderDetailsScreen extends StatelessWidget {
                         showDialog(
                           context: context,
                           builder: (BuildContext context) =>
-                              _buildPopupDialog(context),
+                              _showItemInformation(context),
                         );
                       },
                     ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:summer_project/screens/waiter/ordering_screen/waiter_ordering_screen.dart';
 import 'screens/common/login/login_screen.dart';
 import 'screens/kitchen/order_details_screen/kitchen_order_details_screen.dart';
 import 'screens/kitchen/running_order_screen/kitchen_running_order_screen.dart';
@@ -47,8 +48,12 @@ class RouteGenerator {
       case '/waiter_order_details_screen':
         return MaterialPageRoute(builder: (_) => WaiterOrderDetailsScreen());
 
+      //todo: remove route and relevant screens and files
       case '/waiter_customer_details_screen':
         return MaterialPageRoute(builder: (_) => WaiterCustomerDetailsScreen());
+
+      case '/waiter_ordering_screen':
+        return MaterialPageRoute(builder: (_) => WaiterOrderingScreen());
 
       //ERROR Route
       default:
