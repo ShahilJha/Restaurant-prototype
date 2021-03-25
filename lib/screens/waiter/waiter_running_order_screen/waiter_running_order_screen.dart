@@ -12,15 +12,18 @@ class WaiterRunningOrderScreen extends StatelessWidget {
       appBar: KAppBar(
         title: 'RUNNING ORDERS',
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: null,
+      ),
       body: AppContainer(
         child: ListView(
           children: [
             WaiterOrderTile(
-                tableNumber: null,
-                orderNumber: null,
-                customerName: null,
-                customerContact: null,
-                onPressed: null)
+              tableNumber: 14,
+              orderNumber: 2342,
+              color: Colors.grey,
+              onPressed: null,
+            )
           ],
         ),
       ),
