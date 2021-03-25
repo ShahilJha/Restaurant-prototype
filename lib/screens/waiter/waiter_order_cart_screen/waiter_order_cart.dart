@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:summer_project/screens/kitchen/order_details_screen/local_widgets/kitchen_status_chip.dart';
-import 'package:summer_project/screens/kitchen/running_order_screen/local_widgets/kitchen_order_tile.dart';
 import 'package:summer_project/widgets/app_app_bar.dart';
 import 'package:summer_project/widgets/app_button.dart';
 import 'package:summer_project/widgets/app_container.dart';
