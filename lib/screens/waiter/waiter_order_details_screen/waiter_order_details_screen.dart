@@ -45,6 +45,10 @@ class WaiterOrderDetailsScreen extends StatelessWidget {
       appBar: KAppBar(
         title: 'ORDER DETAILS',
       ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add_circle_outline_rounded),
+        onPressed: () {},
+      ),
       body: AppContainer(
         child: ListView(
           children: [
