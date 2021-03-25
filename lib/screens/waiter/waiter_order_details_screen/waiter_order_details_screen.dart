@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:summer_project/widgets/app_app_bar.dart';
 import 'package:summer_project/widgets/app_container.dart';
+import 'package:summer_project/widgets/app_quantity_selector.dart';
 import 'package:summer_project/widgets/app_table_components.dart';
+import 'package:summer_project/widgets/attribute_display.dart';
 import 'package:summer_project/widgets/order_no.dart';
 import 'package:summer_project/widgets/sub_titles.dart';
 import 'package:summer_project/widgets/table_no.dart';
@@ -21,7 +23,9 @@ class WaiterOrderDetailsScreen extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Text('ITEM NAME'),
+          AttributeDisplay(attribute: "Previous Order Quantity", string: '2'),
+          SizedBox(height: 30.w),
+          AppQuantitySelector(quantity: 2),
         ],
       ),
     );
