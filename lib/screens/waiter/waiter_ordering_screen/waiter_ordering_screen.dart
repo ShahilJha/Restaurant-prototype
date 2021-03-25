@@ -78,6 +78,10 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
       appBar: KAppBar(
         title: 'ORDERING MENU',
       ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.table_rows),
+        onPressed: () {},
+      ),
       body: ListView(
         children: [],
       ),
