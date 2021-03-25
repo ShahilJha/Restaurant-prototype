@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:summer_project/widgets/app_app_bar.dart';
+import 'package:summer_project/widgets/app_button.dart';
 import 'package:summer_project/widgets/app_container.dart';
 import 'package:summer_project/widgets/app_quantity_selector.dart';
 import 'package:summer_project/widgets/app_table_components.dart';
@@ -26,6 +27,13 @@ class WaiterOrderDetailsScreen extends StatelessWidget {
           AttributeDisplay(attribute: "Previous Order Quantity", string: '2'),
           SizedBox(height: 30.w),
           AppQuantitySelector(quantity: 2),
+          SizedBox(height: 30.w),
+          AttributeDisplay(attribute: 'Status', string: 'READY'),
+          AppButton(text: 'MARK SERVED', color: Colors.lightGreen),
+          AppButton(
+            text: 'REMOVE ITEM',
+            color: Colors.red,
+          ),
         ],
       ),
     );

@@ -15,11 +15,14 @@ class AppButton extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: 50.w),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
         onPressed: () {},
-        child: Text(
-          text,
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 60.w,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 50.w),
+          child: Text(
+            text,
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: 60.w,
+            ),
           ),
         ),
         color: color ?? Theme.of(context).primaryColor,
