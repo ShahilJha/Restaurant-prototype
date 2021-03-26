@@ -14,11 +14,14 @@ class AppActionChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ActionChip(
-      backgroundColor: backgroundColor ?? null,
-      padding: EdgeInsets.symmetric(vertical: 20.w, horizontal: 60.w),
-      label: Text(string),
-      onPressed: onPressed,
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 10.w),
+      child: ActionChip(
+        backgroundColor: backgroundColor ?? null,
+        padding: EdgeInsets.symmetric(vertical: 20.w, horizontal: 60.w),
+        label: Text(string),
+        onPressed: onPressed,
+      ),
     );
   }
 }
