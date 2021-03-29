@@ -75,7 +75,6 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
     });
   }
 
-  //TODO: menu screen UI
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,7 +83,9 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.table_rows),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).pushNamed('/waiter_order_cart_screen');
+        },
       ),
       body: AppContainer(
         child: ListView(

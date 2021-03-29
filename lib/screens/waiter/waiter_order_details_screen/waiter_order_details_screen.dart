@@ -47,7 +47,9 @@ class WaiterOrderDetailsScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add_circle_outline_rounded),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).pushNamed('/waiter_ordering_screen');
+        },
       ),
       body: AppContainer(
         child: ListView(
@@ -171,6 +173,12 @@ class WaiterOrderDetailsScreen extends StatelessWidget {
                   ],
                 ),
               ],
+            ),
+            AppButton(
+              text: 'GO BACK',
+              onPressed: () {
+                Navigator.pop(context);
+              },
             ),
           ],
         ),

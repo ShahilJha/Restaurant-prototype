@@ -57,18 +57,25 @@ class WaiterOrderCartScreen extends StatelessWidget {
                       quantity: 2,
                     ),
                     IconButton(
-                        icon: Icon(
-                          Icons.highlight_off,
-                          color: Colors.red,
-                          size: 80.w,
-                        ),
-                        onPressed: null)
+                      icon: Icon(
+                        Icons.highlight_off,
+                        color: Colors.red,
+                        size: 80.w,
+                      ),
+                      onPressed: () {},
+                    )
                   ],
                 ),
               ],
             ),
             Divider(),
-            AppButton(text: 'PLACE ORDER'),
+            AppButton(
+              text: 'PLACE ORDER',
+              onPressed: () {
+                Navigator.pop(context);
+                Navigator.of(context).pushNamed('/waiter_running_order_screen');
+              },
+            ),
           ],
         ),
       ),
