@@ -19,6 +19,8 @@ dependencies:
   flutter_secure_storage: ^3.3.5
   flutter_bloc: ^6.1.2
   equatable: ^1.2.6
+  device_preview: ^0.5.5
+
 
 dev_dependencies:
   flutter_test:
