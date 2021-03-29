@@ -6,19 +6,19 @@ import 'package:flutter_screenutil/screenutil_init.dart';
 import 'package:summer_project/route_generator.dart';
 import 'package:summer_project/theme_generator.dart';
 
-// void main() {
-//   runApp(MyApp());
-// }
-
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  runApp(
-    DevicePreview(
-      enabled: !kReleaseMode,
-      builder: (context) => MyApp(),
-    ),
-  );
+  runApp(MyApp());
 }
+
+// void main() {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   runApp(
+//     DevicePreview(
+//       enabled: !kReleaseMode,
+//       builder: (context) => MyApp(),
+//     ),
+//   );
+// }
 
 class MyApp extends StatelessWidget {
   @override

@@ -24,8 +24,22 @@ class LoginScreen extends StatelessWidget {
           AppButton(
             text: 'Log-in',
             onPressed: () {
-              Navigator.pop(context);
+              // Navigator.pop(context);
               Navigator.of(context).pushNamed('/waiter_running_order_screen');
+            },
+          ),
+          AppButton(
+            text: 'Log-in',
+            onPressed: () {
+              // Navigator.pop(context);
+              Navigator.of(context).pushNamed('/kitchen_running_orders');
+            },
+          ),
+          AppButton(
+            text: 'Log-in',
+            onPressed: () {
+              // Navigator.pop(context);
+              Navigator.of(context).pushNamed('/receptionist_running_orders');
             },
           ),
         ],
