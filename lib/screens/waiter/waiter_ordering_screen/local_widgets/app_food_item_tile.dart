@@ -34,23 +34,23 @@ class AppFoodItemTile extends StatelessWidget {
                 children: [
                   Text(
                     'Item Name:',
-                    style:
-                        TextStyle(fontSize: 40.h, fontStyle: FontStyle.italic),
+                    style: TextStyle(
+                        fontSize: 40.nsp, fontStyle: FontStyle.italic),
                   ),
                   Text(
-                    'ITEM NAME:',
-                    style: TextStyle(fontSize: 60.h),
+                    'ITEM NAME',
+                    style: TextStyle(fontSize: 60.nsp),
                   ),
                   Row(
                     children: [
                       Text(
                         'Item Price: ',
                         style: TextStyle(
-                            fontSize: 40.h, fontStyle: FontStyle.italic),
+                            fontSize: 40.nsp, fontStyle: FontStyle.italic),
                       ),
                       Text(
                         'Rs.XXXX',
-                        style: TextStyle(fontSize: 60.h),
+                        style: TextStyle(fontSize: 60.nsp),
                       ),
                     ],
                   ),

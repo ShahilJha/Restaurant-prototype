@@ -27,41 +27,43 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
           'ITEM NAME',
           textAlign: TextAlign.center,
         ),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          // mainAxisAlignment: MainAxisAlignment.center,
-          // crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              // mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text('Table no.: ', style: TextStyle(fontSize: 60.w)),
-                DropdownButton<int>(
-                  hint: Text('Pick Table'),
-                  items: <int>[1, 2, 3, 4, 5, 6].map((int value) {
-                    return new DropdownMenuItem<int>(
-                      value: value,
-                      child: new Text(value.toString()),
-                    );
-                  }).toList(),
-                  onChanged: (_) {},
-                )
-              ],
-            ),
-            Text('Customer Name: ', style: TextStyle(fontSize: 60.w)),
-            AppTextField(padding: EdgeInsets.all(0)),
-            Text('Phone Number: ', style: TextStyle(fontSize: 60.w)),
-            AppTextField(padding: EdgeInsets.all(0)),
-            Container(
-              alignment: Alignment.bottomCenter,
-              child: AppButton(
-                text: 'PROCEED',
-                onPressed: () {
-                  Navigator.pop(context);
-                },
+        content: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            // mainAxisAlignment: MainAxisAlignment.center,
+            // crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                // mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text('Table no.: ', style: TextStyle(fontSize: 60.w)),
+                  DropdownButton<int>(
+                    hint: Text('Pick Table'),
+                    items: <int>[1, 2, 3, 4, 5, 6].map((int value) {
+                      return new DropdownMenuItem<int>(
+                        value: value,
+                        child: new Text(value.toString()),
+                      );
+                    }).toList(),
+                    onChanged: (_) {},
+                  )
+                ],
               ),
-            ),
-          ],
+              Text('Customer Name: ', style: TextStyle(fontSize: 60.w)),
+              AppTextField(padding: EdgeInsets.all(0)),
+              Text('Phone Number: ', style: TextStyle(fontSize: 60.w)),
+              AppTextField(padding: EdgeInsets.all(0)),
+              Container(
+                alignment: Alignment.bottomCenter,
+                child: AppButton(
+                  text: 'PROCEED',
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -15,7 +15,7 @@ class AppButton extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 25.w, horizontal: 25.w),
       child: RaisedButton(
         padding: EdgeInsets.symmetric(vertical: 50.w),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+        // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
         onPressed: onPressed,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 50.w),
