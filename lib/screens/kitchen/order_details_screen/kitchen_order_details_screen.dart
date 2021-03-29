@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:summer_project/widgets/app_app_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:summer_project/widgets/app_button.dart';
 import 'package:summer_project/widgets/app_container.dart';
 import 'package:summer_project/widgets/app_table_components.dart';
 import 'package:summer_project/widgets/order_no.dart';
@@ -157,6 +158,12 @@ class KitchenOrderDetailsScreen extends StatelessWidget {
                   ],
                 ),
               ],
+            ),
+            AppButton(
+              text: 'GO BACK',
+              onPressed: () {
+                Navigator.pop(context);
+              },
             ),
           ],
         ),

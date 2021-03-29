@@ -18,7 +18,9 @@ class KitchenOrderListScreen extends StatelessWidget {
               orderNumber: 1231,
               colorCode: Colors.red,
               status: 'New',
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed('/kitchen_order_details');
+              },
             ),
             KitchenOrderTile(
               tableNumber: 15,

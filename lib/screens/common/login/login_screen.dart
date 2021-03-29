@@ -24,7 +24,7 @@ class LoginScreen extends StatelessWidget {
           AppButton(
             text: 'Log-in',
             onPressed: () {
-              Navigator.of(context).pushNamed('/receptionist_running_orders');
+              Navigator.of(context).pushNamed('/kitchen_running_orders');
             },
           ),
         ],
