@@ -3,9 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppTextField extends StatelessWidget {
   final EdgeInsetsGeometry padding;
+  final String hint;
   const AppTextField({
     Key key,
     this.padding,
+    this.hint,
   }) : super(key: key);
 
   @override
@@ -21,7 +23,7 @@ class AppTextField extends StatelessWidget {
           //   color: Colors.grey,
           //   size: 75.w,
           // ),
-          hintText: 'HINT TEXT',
+          hintText: hint,
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(100.w),
           ),

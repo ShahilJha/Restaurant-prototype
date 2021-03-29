@@ -19,7 +19,9 @@ class ReceptionistOrderListScreen extends StatelessWidget {
               orderNumber: 1341,
               customerName: 'Shahil Jha',
               customerContact: '98********',
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed('/receptionist_order_detail');
+              },
             ),
             ReceptionistOrderTile(
               tableNumber: 14,

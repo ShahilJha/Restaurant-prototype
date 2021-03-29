@@ -97,6 +97,9 @@ class ReceptionistOrderDetailsScreen extends StatelessWidget {
             ),
             AppButton(
               text: 'CLOSE ORDER',
+              onPressed: () {
+                Navigator.pop(context);
+              },
             ),
           ],
         ),

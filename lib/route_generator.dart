@@ -22,6 +22,8 @@ class RouteGenerator {
     //Getting arguments passed in while calling Navigator.pushNamed
     final args = settings.arguments;
     switch (settings.name) {
+
+      //COMMON Routes
       case '/':
         return MaterialPageRoute(builder: (_) => LoginScreen());
 

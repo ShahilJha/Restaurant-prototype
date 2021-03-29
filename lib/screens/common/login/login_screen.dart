@@ -18,10 +18,15 @@ class LoginScreen extends StatelessWidget {
             height: 500.w,
             width: 500.w,
           ),
-          AppTextField(),
-          AppTextField(),
+          AppTextField(hint: 'USERNAME'),
+          AppTextField(hint: 'PASSWORD'),
           OccupationChips(),
-          AppButton(text: 'Log-in'),
+          AppButton(
+            text: 'Log-in',
+            onPressed: () {
+              Navigator.of(context).pushNamed('/receptionist_running_orders');
+            },
+          ),
         ],
       ),
     );
