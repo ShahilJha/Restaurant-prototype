@@ -1,16 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:summer_project/widgets/app_quantity_selector.dart';
-import 'package:summer_project/widgets/attribute_display.dart';
 
-class AppFoodItemTile extends StatelessWidget {
+//TODO: make a Funtion(x) method to give the selected qty to the screen
+class AppFoodItemTile extends StatefulWidget {
   final String itemName;
   final int itemPrice;
-  final bool isSelected;
 
-  const AppFoodItemTile(
-      {Key key, this.itemName, this.itemPrice, this.isSelected = false})
-      : super(key: key);
+  const AppFoodItemTile({
+    Key key,
+    this.itemName,
+    this.itemPrice,
+  }) : super(key: key);
+
+  @override
+  _AppFoodItemTileState createState() => _AppFoodItemTileState();
+}
+
+class _AppFoodItemTileState extends State<AppFoodItemTile> {
+  bool isSelected = false;
+
+  void toggleIsSelected() {
+    setState(() {
+      isSelected = !isSelected;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +52,7 @@ class AppFoodItemTile extends StatelessWidget {
                         fontSize: 30.ssp, fontStyle: FontStyle.italic),
                   ),
                   Text(
-                    itemName,
+                    widget.itemName,
                     maxLines: 1,
                     overflow: TextOverflow.fade,
                     style: TextStyle(fontSize: 45.ssp),
@@ -51,7 +65,7 @@ class AppFoodItemTile extends StatelessWidget {
                             fontSize: 30.ssp, fontStyle: FontStyle.italic),
                       ),
                       Text(
-                        'Rs.$itemPrice',
+                        'Rs.${widget.itemPrice}',
                         overflow: TextOverflow.fade,
                         style: TextStyle(fontSize: 50.ssp),
                       ),
@@ -62,8 +76,8 @@ class AppFoodItemTile extends StatelessWidget {
             ),
             Spacer(),
             isSelected == false
-                ? FoodItemAddButton()
-                : FoodItemQuantitySelector(),
+                ? FoodItemAddButton(onPressed: toggleIsSelected)
+                : FoodItemQuantitySelector(onPressed: toggleIsSelected),
           ],
         ),
       ),
@@ -72,24 +86,28 @@ class AppFoodItemTile extends StatelessWidget {
 }
 
 class FoodItemAddButton extends StatelessWidget {
+  final Function onPressed;
   const FoodItemAddButton({
     Key key,
+    this.onPressed,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // width: 515.w,
-      width: 300.w,
-      alignment: Alignment.centerRight,
-      decoration: BoxDecoration(
-        color: Colors.lightGreen,
-        borderRadius: BorderRadius.all(Radius.circular(50.w)),
-      ),
-      child: Center(
-        child: Text(
-          'ADD',
-          style: TextStyle(fontSize: 75.w, fontWeight: FontWeight.w600),
+    return GestureDetector(
+      onTap: onPressed,
+      child: Container(
+        width: 300.w,
+        alignment: Alignment.centerRight,
+        decoration: BoxDecoration(
+          color: Colors.lightGreen,
+          borderRadius: BorderRadius.all(Radius.circular(50.w)),
+        ),
+        child: Center(
+          child: Text(
+            'ADD',
+            style: TextStyle(fontSize: 75.w, fontWeight: FontWeight.w600),
+          ),
         ),
       ),
     );
@@ -97,31 +115,37 @@ class FoodItemAddButton extends StatelessWidget {
 }
 
 class FoodItemQuantitySelector extends StatelessWidget {
+  final Function onPressed;
+  const FoodItemQuantitySelector({Key key, this.onPressed}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 515.w,
-      decoration: BoxDecoration(
-        // color: Colors.red,
-        borderRadius: BorderRadius.all(Radius.circular(50.w)),
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 390.w,
-            child: AppQuantitySelector(),
-          ),
-          Container(
-            width: 125.w,
-            decoration: BoxDecoration(
-              color: Colors.red,
-              borderRadius: BorderRadius.all(Radius.circular(50.w)),
+    return GestureDetector(
+      onTap: onPressed,
+      child: Container(
+        width: 515.w,
+        decoration: BoxDecoration(
+          // color: Colors.red,
+          borderRadius: BorderRadius.all(Radius.circular(50.w)),
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: 390.w,
+              child: AppQuantitySelector(),
             ),
-            child: Center(
-              child: Icon(Icons.highlight_off),
+            Container(
+              width: 125.w,
+              decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.all(Radius.circular(50.w)),
+              ),
+              child: Center(
+                child: Icon(Icons.highlight_off),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
