@@ -38,8 +38,10 @@ class AppFoodItemTile extends StatelessWidget {
                         fontSize: 30.ssp, fontStyle: FontStyle.italic),
                   ),
                   Text(
-                    'ITEM NAME',
-                    style: TextStyle(fontSize: 50.ssp),
+                    itemName,
+                    maxLines: 1,
+                    overflow: TextOverflow.fade,
+                    style: TextStyle(fontSize: 45.ssp),
                   ),
                   Row(
                     children: [
@@ -49,7 +51,8 @@ class AppFoodItemTile extends StatelessWidget {
                             fontSize: 30.ssp, fontStyle: FontStyle.italic),
                       ),
                       Text(
-                        'Rs.XXXX',
+                        'Rs.$itemPrice',
+                        overflow: TextOverflow.fade,
                         style: TextStyle(fontSize: 50.ssp),
                       ),
                     ],
@@ -57,6 +60,7 @@ class AppFoodItemTile extends StatelessWidget {
                 ],
               ),
             ),
+            Spacer(),
             isSelected == false
                 ? FoodItemAddButton()
                 : FoodItemQuantitySelector(),
@@ -75,7 +79,9 @@ class FoodItemAddButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 515.w,
+      // width: 515.w,
+      width: 300.w,
+      alignment: Alignment.centerRight,
       decoration: BoxDecoration(
         color: Colors.lightGreen,
         borderRadius: BorderRadius.all(Radius.circular(50.w)),

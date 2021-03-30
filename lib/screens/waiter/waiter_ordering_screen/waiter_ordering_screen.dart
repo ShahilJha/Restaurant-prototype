@@ -7,8 +7,8 @@ import 'package:summer_project/widgets/app_button.dart';
 import 'package:summer_project/widgets/app_container.dart';
 import 'package:summer_project/widgets/app_textfield.dart';
 import 'package:summer_project/widgets/sub_titles.dart';
-
 import 'local_widgets/app_food_item_tile.dart';
+import 'package:summer_project/menu.dart';
 
 class WaiterOrderingScreen extends StatefulWidget {
   @override
@@ -16,6 +16,18 @@ class WaiterOrderingScreen extends StatefulWidget {
 }
 
 class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
+  String selectedCategory = Menu.menuCategories.first;
+  List selectedCategoryItems;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedCategoryItems = Menu.instance.getCategoryItems(selectedCategory);
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await _customerDetailForm(context);
+    });
+  }
+
   void _customerDetailForm(BuildContext context) {
     showDialog(
       barrierDismissible: false,
@@ -70,15 +82,8 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await _customerDetailForm(context);
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
+    print('testing:$selectedCategoryItems');
     return Scaffold(
       appBar: KAppBar(
         title: 'ORDERING MENU',
@@ -97,11 +102,23 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
               height: 150.w,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: 10,
+                itemCount: Menu.categoriesLength,
                 itemBuilder: (context, index) {
+                  String category = Menu.menuCategories[index];
                   return AppActionChip(
-                    string: 'null',
-                    onPressed: () {},
+                    string: category,
+                    backgroundColor: selectedCategory == category
+                        ? Theme.of(context).primaryColor
+                        : null,
+                    textColor:
+                        selectedCategory == category ? Colors.white : null,
+                    onPressed: () {
+                      setState(() {
+                        selectedCategory = category;
+                        selectedCategoryItems =
+                            Menu.instance.getCategoryItems(selectedCategory);
+                      });
+                    },
                   );
                 },
               ),
@@ -110,17 +127,18 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
             SizedBox(height: 25.h),
             Container(
               // color: Colors.red,
-              height: 1600.h,
+              height: 1500.h,
               child: ListView.builder(
                 physics: ClampingScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: 10,
+                itemCount: Menu.instance.getCategoryLength(selectedCategory),
                 itemBuilder: (context, index) {
+                  Map item = selectedCategoryItems[index];
                   return Container(
                     padding: EdgeInsets.symmetric(vertical: 10.h),
                     child: AppFoodItemTile(
-                      itemName: 'ITEM',
-                      itemPrice: 3000,
+                      itemName: item['name'],
+                      itemPrice: item['price'],
                     ),
                   );
                 },

@@ -5,10 +5,12 @@ class AppActionChip extends StatelessWidget {
   final String string;
   final Color backgroundColor;
   final Function onPressed;
+  final Color textColor;
   const AppActionChip({
     Key key,
     @required this.string,
     this.backgroundColor,
+    this.textColor = Colors.black,
     @required this.onPressed,
   }) : super(key: key);
 
@@ -19,7 +21,10 @@ class AppActionChip extends StatelessWidget {
       child: ActionChip(
         backgroundColor: backgroundColor ?? null,
         padding: EdgeInsets.symmetric(vertical: 20.w, horizontal: 60.w),
-        label: Text(string),
+        label: Text(
+          string,
+          style: TextStyle(color: textColor),
+        ),
         onPressed: onPressed,
       ),
     );
