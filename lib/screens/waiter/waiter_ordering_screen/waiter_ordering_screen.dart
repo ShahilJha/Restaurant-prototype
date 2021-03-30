@@ -94,26 +94,37 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
           children: [
             Subtitles(string: 'CATEGORY'),
             Container(
-              // margin: EdgeInsets.symmetric(vertical: 25.w),
               height: 150.w,
-              child: ListView(
+              child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                children: [
-                  AppActionChip(string: 'null', onPressed: () {}),
-                  AppActionChip(string: 'null', onPressed: () {}),
-                  AppActionChip(string: 'null', onPressed: () {}),
-                ],
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return AppActionChip(
+                    string: 'null',
+                    onPressed: () {},
+                  );
+                },
               ),
             ),
             Subtitles(string: 'ITEMS'),
             SizedBox(height: 25.h),
-            Column(
-              children: [
-                AppFoodItemTile(
-                  itemName: 'ITEM',
-                  itemPrice: 3000,
-                ),
-              ],
+            Container(
+              // color: Colors.red,
+              height: 1600.h,
+              child: ListView.builder(
+                physics: ClampingScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return Container(
+                    padding: EdgeInsets.symmetric(vertical: 10.h),
+                    child: AppFoodItemTile(
+                      itemName: 'ITEM',
+                      itemPrice: 3000,
+                    ),
+                  );
+                },
+              ),
             ),
           ],
         ),
