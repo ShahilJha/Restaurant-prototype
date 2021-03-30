@@ -23,6 +23,7 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
   void initState() {
     super.initState();
     selectedCategoryItems = Menu.instance.getCategoryItems(selectedCategory);
+    //TODO: check if the order or is new or additonal order
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await _customerDetailForm(context);
     });
