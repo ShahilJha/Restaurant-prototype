@@ -42,7 +42,9 @@ class _AppQuantitySelectorState extends State<AppQuantitySelector> {
             icon: Icons.remove,
             onPressed: () {
               setState(() {
-                count >= 1 ? count-- : null;
+                if (count >= 1) {
+                  count--;
+                }
               });
             },
           ),
