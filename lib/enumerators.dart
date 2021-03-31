@@ -8,7 +8,7 @@ enum OrderStatus {
   NewOrder,
   AdditionalOrder,
   FinishedOrder,
-  PartialOrder,
+  PartiallyFinishedOrder,
 }
 
 enum FoodItemStatus {
