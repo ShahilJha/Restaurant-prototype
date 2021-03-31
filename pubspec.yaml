@@ -1,8 +1,6 @@
 name: summer_project
 description: A BIM 6th Semester Summer Project.
 
-# The following line prevents the package from being accidentally published to
-# pub.dev using `pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
@@ -15,11 +13,14 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.0
   flutter_screenutil: ^4.0.3+1
-  shared_preferences: ^0.5.12+4
+  shared_preferences: ^2.0.5
   flutter_secure_storage: ^3.3.5
-  flutter_bloc: ^6.1.2
+  flutter_bloc: ^7.0.0
   equatable: ^1.2.6
-  device_preview: ^0.5.5
+  device_preview: ^0.7.1
+  firebase_core: ^1.0.2
+  firebase_auth: ^1.0.1
+  cloud_firestore: ^1.0.3
 
 
 dev_dependencies:

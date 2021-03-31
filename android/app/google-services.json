@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1011946968426",
+    "project_id": "summer-project-144e0",
+    "storage_bucket": "summer-project-144e0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1011946968426:android:970152fa4c627addeb8113",
+        "android_client_info": {
+          "package_name": "np.com.shahiljha.summer_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1011946968426-69brupf3fadkssgqbeiioj2662jhq5np.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWhqghuuCcmeK9dbX2svyq3edTbo8GQ2Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1011946968426-69brupf3fadkssgqbeiioj2662jhq5np.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
