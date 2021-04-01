@@ -55,7 +55,10 @@ class _AppFoodItemTileState extends State<AppFoodItemTile> {
                     widget.itemName,
                     maxLines: 1,
                     overflow: TextOverflow.fade,
-                    style: TextStyle(fontSize: 45.ssp),
+                    style: TextStyle(fontSize: 40.ssp),
+                  ),
+                  SizedBox(
+                    height: 10.h,
                   ),
                   Row(
                     children: [

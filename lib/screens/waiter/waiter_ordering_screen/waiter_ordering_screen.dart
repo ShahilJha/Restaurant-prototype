@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:summer_project/models/category.dart';
 import 'package:summer_project/widgets/app_action_chip.dart';
 import 'package:summer_project/widgets/app_app_bar.dart';
 import 'package:summer_project/widgets/app_button.dart';
@@ -16,13 +17,17 @@ class WaiterOrderingScreen extends StatefulWidget {
 }
 
 class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
-  String selectedCategory = Menu.menuCategories.first;
-  List selectedCategoryItems;
+  Category category = categoryFromMap(Menu.instance.menu);
+  List menuData; //list of all data -> Categories
+  String selectedCategory; // current selected category
+  List<CategoryItem> selectedCategoryItems; // current selected category items
 
   @override
   void initState() {
     super.initState();
-    selectedCategoryItems = Menu.instance.getCategoryItems(selectedCategory);
+    menuData = category.categories;
+    selectedCategory = menuData.first.categoryName;
+    selectedCategoryItems = menuData.first.categoryItems;
     //TODO: check if the order or is new or additonal order
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await _customerDetailForm(context);
@@ -84,7 +89,10 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print('testing:$selectedCategoryItems');
+    print('CHECK: ');
+    print(menuData);
+    // print(selectedCategoryItems);
+    // print('testing:$selectedCategoryItems');
     return Scaffold(
       appBar: KAppBar(
         title: 'ORDERING MENU',
@@ -103,21 +111,21 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
               height: 150.w,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: Menu.categoriesLength,
+                itemCount: menuData.length,
                 itemBuilder: (context, index) {
-                  String category = Menu.menuCategories[index];
+                  CategoryElement category = menuData[index];
                   return AppActionChip(
-                    string: category,
-                    backgroundColor: selectedCategory == category
+                    string: category.categoryName,
+                    backgroundColor: selectedCategory == category.categoryName
                         ? Theme.of(context).primaryColor
                         : null,
-                    textColor:
-                        selectedCategory == category ? Colors.white : null,
+                    textColor: selectedCategory == category.categoryName
+                        ? Colors.white
+                        : null,
                     onPressed: () {
                       setState(() {
-                        selectedCategory = category;
-                        selectedCategoryItems =
-                            Menu.instance.getCategoryItems(selectedCategory);
+                        selectedCategory = category.categoryName;
+                        selectedCategoryItems = category.categoryItems;
                       });
                     },
                   );
@@ -132,14 +140,14 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
               child: ListView.builder(
                 physics: ClampingScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: Menu.instance.getCategoryLength(selectedCategory),
+                itemCount: selectedCategoryItems.length,
                 itemBuilder: (context, index) {
-                  Map item = selectedCategoryItems[index];
+                  CategoryItem item = selectedCategoryItems[index];
                   return Container(
                     padding: EdgeInsets.symmetric(vertical: 10.h),
                     child: AppFoodItemTile(
-                      itemName: item['name'],
-                      itemPrice: item['price'],
+                      itemName: item.name,
+                      itemPrice: item.price,
                     ),
                   );
                 },
