@@ -6,16 +6,13 @@ import 'package:summer_project/widgets/app_textfield.dart';
 import '../../../../menu.dart';
 
 class CustomerDetailDialog extends StatefulWidget {
-  const CustomerDetailDialog(
-      {this.onValueChange,
-      this.initialValue,
-      this.onNameChange,
-      this.onContactChange});
+  const CustomerDetailDialog({
+    this.onValueChange,
+    this.initialValue,
+  });
 
   final int initialValue;
   final void Function(int) onValueChange;
-  final void Function(String) onNameChange;
-  final void Function(String) onContactChange;
 
   @override
   State createState() => new CustomerDetailDialogState();
@@ -23,6 +20,8 @@ class CustomerDetailDialog extends StatefulWidget {
 
 class CustomerDetailDialogState extends State<CustomerDetailDialog> {
   int _selectedTable;
+  String name;
+  String contactNumber;
 
   @override
   void initState() {
@@ -70,17 +69,22 @@ class CustomerDetailDialogState extends State<CustomerDetailDialog> {
                 ),
                 Text('Customer Name: ', style: TextStyle(fontSize: 60.w)),
                 AppTextField(
-                  onChanged: widget.onNameChange,
+                  onChanged: (value) {
+                    name = value;
+                  },
                 ),
                 Text('Phone Number: ', style: TextStyle(fontSize: 60.w)),
                 AppTextField(
-                  onChanged: widget.onContactChange,
+                  onChanged: (value) {
+                    contactNumber = value;
+                  },
                 ),
                 Container(
                   alignment: Alignment.bottomCenter,
                   child: AppButton(
                     text: 'PROCEED',
                     onPressed: () {
+                      //TODO: create customer in DB and return customer ID using callback
                       Navigator.pop(context);
                     },
                   ),

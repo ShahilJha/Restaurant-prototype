@@ -60,16 +60,6 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
             tableNumber = value;
           });
         },
-        onNameChange: (name) {
-          setState(() {
-            customerName = name;
-          });
-        },
-        onContactChange: (contact) {
-          setState(() {
-            customerContact = contact;
-          });
-        },
       ),
     );
   }
