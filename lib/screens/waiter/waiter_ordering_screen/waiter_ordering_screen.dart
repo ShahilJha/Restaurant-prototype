@@ -12,6 +12,8 @@ import 'package:summer_project/widgets/sub_titles.dart';
 import 'local_widgets/app_food_item_tile.dart';
 import 'package:summer_project/menu.dart';
 
+import 'local_widgets/customer_detail_dialog.dart';
+
 class WaiterOrderingScreen extends StatefulWidget {
   final bool newOrder;
 
@@ -51,56 +53,23 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
     showDialog(
       barrierDismissible: false,
       context: context,
-      builder: (context) => AlertDialog(
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.w)),
-        title: const Text(
-          'ITEM NAME',
-          textAlign: TextAlign.center,
-        ),
-        content: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            // mainAxisAlignment: MainAxisAlignment.center,
-            // crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                // mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text('Table no.: ', style: TextStyle(fontSize: 60.w)),
-                  DropdownButton<int>(
-                    hint: Text('Pick Table'),
-                    value: tableNumber,
-                    items: TableNumberList.map((int value) {
-                      return new DropdownMenuItem<int>(
-                        value: value,
-                        child: Text(value.toString()),
-                      );
-                    }).toList(),
-                    onChanged: (value) {
-                      setState(() {
-                        tableNumber = value;
-                      });
-                    },
-                  )
-                ],
-              ),
-              Text('Customer Name: ', style: TextStyle(fontSize: 60.w)),
-              AppTextField(padding: EdgeInsets.all(0)),
-              Text('Phone Number: ', style: TextStyle(fontSize: 60.w)),
-              AppTextField(padding: EdgeInsets.all(0)),
-              Container(
-                alignment: Alignment.bottomCenter,
-                child: AppButton(
-                  text: 'PROCEED',
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                ),
-              ),
-            ],
-          ),
-        ),
+      builder: (context) => CustomerDetailDialog(
+        initialValue: tableNumber,
+        onValueChange: (value) {
+          setState(() {
+            tableNumber = value;
+          });
+        },
+        onNameChange: (name) {
+          setState(() {
+            customerName = name;
+          });
+        },
+        onContactChange: (contact) {
+          setState(() {
+            customerContact = contact;
+          });
+        },
       ),
     );
   }
