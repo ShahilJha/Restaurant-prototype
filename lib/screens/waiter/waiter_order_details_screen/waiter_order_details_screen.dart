@@ -48,7 +48,8 @@ class WaiterOrderDetailsScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add_circle_outline_rounded),
         onPressed: () {
-          Navigator.of(context).pushNamed('/waiter_ordering_screen');
+          Navigator.of(context)
+              .pushNamed('/waiter_ordering_screen', arguments: false);
         },
       ),
       body: AppContainer(

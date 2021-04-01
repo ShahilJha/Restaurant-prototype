@@ -12,6 +12,9 @@ import 'local_widgets/app_food_item_tile.dart';
 import 'package:summer_project/menu.dart';
 
 class WaiterOrderingScreen extends StatefulWidget {
+  final bool newOrder;
+
+  const WaiterOrderingScreen({Key key, this.newOrder}) : super(key: key);
   @override
   _WaiterOrderingScreenState createState() => _WaiterOrderingScreenState();
 }
@@ -28,10 +31,12 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
     menuData = category.categories;
     selectedCategory = menuData.first.categoryName;
     selectedCategoryItems = menuData.first.categoryItems;
-    //TODO: check if the order or is new or additonal order
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await _customerDetailForm(context);
-    });
+
+    if (widget.newOrder == true) {
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        await _customerDetailForm(context);
+      });
+    }
   }
 
   void _customerDetailForm(BuildContext context) {
@@ -89,10 +94,8 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print('CHECK: ');
-    print(menuData);
-    // print(selectedCategoryItems);
-    // print('testing:$selectedCategoryItems');
+    print(widget.newOrder);
+
     return Scaffold(
       appBar: KAppBar(
         title: 'ORDERING MENU',
@@ -136,7 +139,7 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
             SizedBox(height: 25.h),
             Container(
               // color: Colors.red,
-              height: 1500.h,
+              height: 1575.h,
               child: ListView.builder(
                 physics: ClampingScrollPhysics(),
                 shrinkWrap: true,

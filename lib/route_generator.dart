@@ -51,7 +51,12 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => WaiterOrderDetailsScreen());
 
       case '/waiter_ordering_screen':
-        return MaterialPageRoute(builder: (_) => WaiterOrderingScreen());
+        //args value 'true' if new order, 'false' if not
+        if (args is bool) {
+          return MaterialPageRoute(
+              builder: (_) => WaiterOrderingScreen(newOrder: args));
+        }
+        return _errorRoute();
 
       case '/waiter_order_cart_screen':
         return MaterialPageRoute(builder: (_) => WaiterOrderCartScreen());
