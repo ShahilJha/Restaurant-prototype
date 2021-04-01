@@ -4,10 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class AppTextField extends StatelessWidget {
   final EdgeInsetsGeometry padding;
   final String hint;
+  final Function onChanged;
   const AppTextField({
     Key key,
     this.padding,
     this.hint,
+    this.onChanged,
   }) : super(key: key);
 
   @override
@@ -18,11 +20,6 @@ class AppTextField extends StatelessWidget {
       child: TextField(
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
-          // prefixIcon: Icon(
-          //   Icons.assignment_ind_rounded,
-          //   color: Colors.grey,
-          //   size: 75.w,
-          // ),
           hintText: hint,
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(100.w),
@@ -32,6 +29,7 @@ class AppTextField extends StatelessWidget {
           ),
         ),
         textAlign: TextAlign.center,
+        onChanged: onChanged,
       ),
     );
   }
