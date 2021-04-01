@@ -2,12 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:summer_project/widgets/app_button.dart';
 import 'package:summer_project/widgets/app_textfield.dart';
-
 import 'local_widgets/occupation_chips.dart';
+
+import 'package:summer_project/models/category.dart';
+import 'package:summer_project/menu.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // var category = categoryFromMap(Menu.instance.menu);
+    // print(category);
+    // print(Menu.instance.MenuData);
+
     return Scaffold(
       body: SingleChildScrollView(
         child: SizedBox(
