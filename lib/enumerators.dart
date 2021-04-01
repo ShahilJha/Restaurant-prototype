@@ -1,4 +1,4 @@
-enum Position {
+enum JobPosition {
   Waiter,
   Receptionist,
   KitchenStaff,
