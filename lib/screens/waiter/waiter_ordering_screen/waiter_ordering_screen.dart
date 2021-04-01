@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:summer_project/models/category.dart';
+import 'package:summer_project/models/order.dart';
 import 'package:summer_project/widgets/app_action_chip.dart';
 import 'package:summer_project/widgets/app_app_bar.dart';
 import 'package:summer_project/widgets/app_button.dart';
@@ -25,6 +26,13 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
   String selectedCategory; // current selected category
   List<CategoryItem> selectedCategoryItems; // current selected category items
 
+  //Order object to track order
+  Order order;
+
+  String customerName;
+  String customerContact;
+  int tableNumber;
+
   @override
   void initState() {
     super.initState();
@@ -34,7 +42,7 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
 
     if (widget.newOrder == true) {
       WidgetsBinding.instance.addPostFrameCallback((_) async {
-        await _customerDetailForm(context);
+        _customerDetailForm(context);
       });
     }
   }
@@ -62,13 +70,18 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
                   Text('Table no.: ', style: TextStyle(fontSize: 60.w)),
                   DropdownButton<int>(
                     hint: Text('Pick Table'),
-                    items: <int>[1, 2, 3, 4, 5, 6].map((int value) {
+                    value: tableNumber,
+                    items: TableNumberList.map((int value) {
                       return new DropdownMenuItem<int>(
                         value: value,
-                        child: new Text(value.toString()),
+                        child: Text(value.toString()),
                       );
                     }).toList(),
-                    onChanged: (_) {},
+                    onChanged: (value) {
+                      setState(() {
+                        tableNumber = value;
+                      });
+                    },
                   )
                 ],
               ),
@@ -94,8 +107,6 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.newOrder);
-
     return Scaffold(
       appBar: KAppBar(
         title: 'ORDERING MENU',

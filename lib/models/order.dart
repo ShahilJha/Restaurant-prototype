@@ -1,17 +1,19 @@
+import 'package:summer_project/models/food_item.dart';
+
 import '../enumerators.dart';
 import 'customer.dart';
 
 class Order {
-  final int id;
-  final DateTime dateCreated;
-  final int customerID;
-  final int orderTakenByID;
+  int id;
+  DateTime dateCreated;
+  int customerID;
+  int orderTakenByID;
   OrderStatus status;
   int readyItems;
   int notReadyItems;
   int servedItems;
-  List<Order> orders;
-  List<Order> additionalOrders;
+  List<FoodItem> orders;
+  List<FoodItem> additionalOrders;
   int total;
   int discount;
   int netTotal;

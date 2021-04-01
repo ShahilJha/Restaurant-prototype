@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+const TableNumberList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
 class Menu {
   Menu._privateConstructor();
   static final Menu instance = Menu._privateConstructor();
