@@ -123,21 +123,25 @@ class FoodItemQuantitySelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onPressed,
-      child: Container(
-        width: 515.w,
-        decoration: BoxDecoration(
-          // color: Colors.red,
-          borderRadius: BorderRadius.all(Radius.circular(50.w)),
-        ),
-        child: Row(
-          children: [
-            Container(
-              width: 390.w,
-              child: AppQuantitySelector(),
+    return Container(
+      width: 515.w,
+      decoration: BoxDecoration(
+        // color: Colors.red,
+        borderRadius: BorderRadius.all(Radius.circular(50.w)),
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 390.w,
+            child: AppQuantitySelector(
+              onQuantityChange: (qty) {
+                print("QUANTITY: $qty");
+              },
             ),
-            Container(
+          ),
+          GestureDetector(
+            onTap: onPressed,
+            child: Container(
               width: 125.w,
               decoration: BoxDecoration(
                 color: Colors.red,
@@ -147,8 +151,8 @@ class FoodItemQuantitySelector extends StatelessWidget {
                 child: Icon(Icons.highlight_off),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

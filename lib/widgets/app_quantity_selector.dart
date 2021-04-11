@@ -5,6 +5,7 @@ class AppQuantitySelector extends StatefulWidget {
   final int quantity;
   final double quantityFontSize;
   final double iconHeight, iconWidth;
+  final Function onQuantityChange;
 
   const AppQuantitySelector({
     Key key,
@@ -12,6 +13,7 @@ class AppQuantitySelector extends StatefulWidget {
     this.quantityFontSize,
     this.iconHeight,
     this.iconWidth,
+    this.onQuantityChange,
   }) : super(key: key);
 
   @override
@@ -25,7 +27,6 @@ class _AppQuantitySelectorState extends State<AppQuantitySelector> {
   void initState() {
     super.initState();
     count = widget.quantity;
-    print(count);
   }
 
   @override
@@ -41,11 +42,14 @@ class _AppQuantitySelectorState extends State<AppQuantitySelector> {
             width: widget.iconWidth,
             icon: Icons.remove,
             onPressed: () {
-              setState(() {
-                if (count >= 1) {
-                  count--;
-                }
-              });
+              setState(
+                () {
+                  if (count >= 1) {
+                    count--;
+                  }
+                },
+              );
+              widget.onQuantityChange(count);
             },
           ),
           Spacer(),
@@ -59,9 +63,12 @@ class _AppQuantitySelectorState extends State<AppQuantitySelector> {
             width: widget.iconWidth,
             icon: Icons.add,
             onPressed: () {
-              setState(() {
-                count++;
-              });
+              setState(
+                () {
+                  count++;
+                },
+              );
+              widget.onQuantityChange(count);
             },
           ),
           Spacer(),

@@ -52,11 +52,19 @@ class CategoryItem {
     this.id,
     this.name,
     this.price,
+    this.quantity = 1,
+    this.isSelected = false,
   });
 
   int id;
   String name;
   int price;
+  int quantity;
+  bool isSelected;
+
+  void toggleSelected() {
+    isSelected = !isSelected;
+  }
 
   factory CategoryItem.fromMap(Map<String, dynamic> json) => CategoryItem(
         id: json["ID"],
@@ -68,5 +76,6 @@ class CategoryItem {
         "ID": id,
         "name": name,
         "price": price,
+        "quantity": quantity,
       };
 }
