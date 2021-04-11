@@ -8,6 +8,7 @@ class AppFoodItemTile extends StatelessWidget {
   final bool isSelected;
   final Function toggleIsSelect;
   final int quantity;
+  final Function onQuantityChange;
 
   const AppFoodItemTile({
     Key key,
@@ -16,6 +17,7 @@ class AppFoodItemTile extends StatelessWidget {
     this.isSelected,
     this.toggleIsSelect,
     this.quantity,
+    this.onQuantityChange,
   }) : super(key: key);
 
   @override
@@ -72,7 +74,10 @@ class AppFoodItemTile extends StatelessWidget {
             Spacer(),
             isSelected == false
                 ? FoodItemAddButton(onPressed: toggleIsSelect)
-                : FoodItemQuantitySelector(onPressed: toggleIsSelect),
+                : FoodItemQuantitySelector(
+                    onPressed: toggleIsSelect,
+                    onQuantityChange: (qty) => onQuantityChange(qty),
+                  ),
           ],
         ),
       ),
@@ -111,7 +116,10 @@ class FoodItemAddButton extends StatelessWidget {
 
 class FoodItemQuantitySelector extends StatelessWidget {
   final Function onPressed;
-  const FoodItemQuantitySelector({Key key, this.onPressed}) : super(key: key);
+  final Function onQuantityChange;
+  const FoodItemQuantitySelector(
+      {Key key, this.onPressed, this.onQuantityChange})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -126,9 +134,7 @@ class FoodItemQuantitySelector extends StatelessWidget {
           Container(
             width: 390.w,
             child: AppQuantitySelector(
-              onQuantityChange: (qty) {
-                print("QUANTITY: $qty");
-              },
+              onQuantityChange: (qty) => onQuantityChange(qty),
             ),
           ),
           GestureDetector(

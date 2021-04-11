@@ -124,6 +124,9 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
                       isSelected: item.isSelected,
                       toggleIsSelect: () =>
                           setState(() => item.toggleIsSelected()),
+                      quantity: item.quantity,
+                      onQuantityChange: (qty) =>
+                          setState(() => item.quantity = qty),
                     ),
                   );
                 },
