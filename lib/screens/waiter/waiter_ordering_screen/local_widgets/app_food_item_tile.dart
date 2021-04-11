@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:summer_project/models/category.dart';
 import 'package:summer_project/widgets/app_quantity_selector.dart';
 
 //TODO: make a Funtion(x) method to give the selected qty to the screen
 class AppFoodItemTile extends StatefulWidget {
-  final CategoryItem item;
+  final String itemName;
+  final int itemPrice;
 
   const AppFoodItemTile({
     Key key,
-    this.item,
+    this.itemName,
+    this.itemPrice,
   }) : super(key: key);
 
   @override
@@ -17,15 +18,13 @@ class AppFoodItemTile extends StatefulWidget {
 }
 
 class _AppFoodItemTileState extends State<AppFoodItemTile> {
-  CategoryItem foodItem;
+  bool isSelected = false;
 
-  @override
-  void initState() {
-    super.initState();
-    foodItem = widget.item;
+  void toggleIsSelected() {
+    setState(() {
+      isSelected = !isSelected;
+    });
   }
-
-  void toggleIsSelected() => setState(() => foodItem.toggleIsSelected());
 
   @override
   Widget build(BuildContext context) {
@@ -53,10 +52,10 @@ class _AppFoodItemTileState extends State<AppFoodItemTile> {
                         fontSize: 30.ssp, fontStyle: FontStyle.italic),
                   ),
                   Text(
-                    foodItem.name,
+                    widget.itemName,
                     maxLines: 1,
                     overflow: TextOverflow.fade,
-                    style: TextStyle(fontSize: 35.ssp),
+                    style: TextStyle(fontSize: 40.ssp),
                   ),
                   SizedBox(
                     height: 10.h,
@@ -69,9 +68,9 @@ class _AppFoodItemTileState extends State<AppFoodItemTile> {
                             fontSize: 30.ssp, fontStyle: FontStyle.italic),
                       ),
                       Text(
-                        'Rs.${foodItem.price}',
+                        'Rs.${widget.itemPrice}',
                         overflow: TextOverflow.fade,
-                        style: TextStyle(fontSize: 45.ssp),
+                        style: TextStyle(fontSize: 50.ssp),
                       ),
                     ],
                   ),
@@ -79,12 +78,9 @@ class _AppFoodItemTileState extends State<AppFoodItemTile> {
               ),
             ),
             Spacer(),
-            foodItem.isSelected == false
+            isSelected == false
                 ? FoodItemAddButton(onPressed: toggleIsSelected)
-                : FoodItemQuantitySelector(
-                    onPressed: toggleIsSelected,
-                    onQuantityChange: (qty) => foodItem.quantity = qty,
-                  ),
+                : FoodItemQuantitySelector(onPressed: toggleIsSelected),
           ],
         ),
       ),
@@ -122,11 +118,8 @@ class FoodItemAddButton extends StatelessWidget {
 }
 
 class FoodItemQuantitySelector extends StatelessWidget {
-  final Function onQuantityChange;
   final Function onPressed;
-  const FoodItemQuantitySelector(
-      {Key key, this.onPressed, this.onQuantityChange})
-      : super(key: key);
+  const FoodItemQuantitySelector({Key key, this.onPressed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -141,7 +134,9 @@ class FoodItemQuantitySelector extends StatelessWidget {
           Container(
             width: 390.w,
             child: AppQuantitySelector(
-              onQuantityChange: (qty) => onQuantityChange(qty),
+              onQuantityChange: (qty) {
+                print("QUANTITY: $qty");
+              },
             ),
           ),
           GestureDetector(

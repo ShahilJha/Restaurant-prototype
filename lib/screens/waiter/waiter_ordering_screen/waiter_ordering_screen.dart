@@ -5,7 +5,9 @@ import 'package:summer_project/models/category.dart';
 import 'package:summer_project/models/order.dart';
 import 'package:summer_project/widgets/app_action_chip.dart';
 import 'package:summer_project/widgets/app_app_bar.dart';
+import 'package:summer_project/widgets/app_button.dart';
 import 'package:summer_project/widgets/app_container.dart';
+import 'package:summer_project/widgets/app_textfield.dart';
 import 'package:summer_project/widgets/sub_titles.dart';
 import 'local_widgets/app_food_item_tile.dart';
 import 'package:summer_project/menu.dart';
@@ -94,14 +96,10 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
                         ? Colors.white
                         : null,
                     onPressed: () {
-                      setState(
-                        () {
-                          selectedCategory = category.categoryName;
-                          selectedCategoryItems = category.categoryItems;
-                        },
-                      );
-                      // print("CATEGORY: $selectedCategory");
-                      // print("CATEGORY ITEMS: $selectedCategoryItems");
+                      setState(() {
+                        selectedCategory = category.categoryName;
+                        selectedCategoryItems = category.categoryItems;
+                      });
                     },
                   );
                 },
@@ -120,7 +118,10 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
                   CategoryItem item = selectedCategoryItems[index];
                   return Container(
                     padding: EdgeInsets.symmetric(vertical: 10.h),
-                    child: AppFoodItemTile(item: item),
+                    child: AppFoodItemTile(
+                      itemName: item.name,
+                      itemPrice: item.price,
+                    ),
                   );
                 },
               ),

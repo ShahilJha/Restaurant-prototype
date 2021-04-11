@@ -66,7 +66,7 @@ class CategoryItem {
   bool isSelected;
   FoodItemStatus status;
 
-  void toggleIsSelected() {
+  void toggleSelected() {
     isSelected = !isSelected;
   }
 

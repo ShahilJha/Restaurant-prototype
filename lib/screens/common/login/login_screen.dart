@@ -61,8 +61,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     route = '/kitchen_running_orders';
                   } else if (jobPosition == JobPosition.Receptionist) {
                     route = '/receptionist_running_orders';
-                  } else {
-                    route = '/error';
                   }
 
                   Navigator.pop(context);
