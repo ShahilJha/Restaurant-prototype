@@ -2,29 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:summer_project/widgets/app_quantity_selector.dart';
 
-//TODO: make a Funtion(x) method to give the selected qty to the screen
-class AppFoodItemTile extends StatefulWidget {
+class AppFoodItemTile extends StatelessWidget {
   final String itemName;
   final int itemPrice;
+  final bool isSelected;
+  final Function toggleIsSelect;
+  final int quantity;
 
   const AppFoodItemTile({
     Key key,
     this.itemName,
     this.itemPrice,
+    this.isSelected,
+    this.toggleIsSelect,
+    this.quantity,
   }) : super(key: key);
-
-  @override
-  _AppFoodItemTileState createState() => _AppFoodItemTileState();
-}
-
-class _AppFoodItemTileState extends State<AppFoodItemTile> {
-  bool isSelected = false;
-
-  void toggleIsSelected() {
-    setState(() {
-      isSelected = !isSelected;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +44,7 @@ class _AppFoodItemTileState extends State<AppFoodItemTile> {
                         fontSize: 30.ssp, fontStyle: FontStyle.italic),
                   ),
                   Text(
-                    widget.itemName,
+                    itemName,
                     maxLines: 1,
                     overflow: TextOverflow.fade,
                     style: TextStyle(fontSize: 40.ssp),
@@ -68,7 +60,7 @@ class _AppFoodItemTileState extends State<AppFoodItemTile> {
                             fontSize: 30.ssp, fontStyle: FontStyle.italic),
                       ),
                       Text(
-                        'Rs.${widget.itemPrice}',
+                        'Rs.$itemPrice',
                         overflow: TextOverflow.fade,
                         style: TextStyle(fontSize: 50.ssp),
                       ),
@@ -79,8 +71,8 @@ class _AppFoodItemTileState extends State<AppFoodItemTile> {
             ),
             Spacer(),
             isSelected == false
-                ? FoodItemAddButton(onPressed: toggleIsSelected)
-                : FoodItemQuantitySelector(onPressed: toggleIsSelected),
+                ? FoodItemAddButton(onPressed: toggleIsSelect)
+                : FoodItemQuantitySelector(onPressed: toggleIsSelect),
           ],
         ),
       ),

@@ -121,6 +121,9 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
                     child: AppFoodItemTile(
                       itemName: item.name,
                       itemPrice: item.price,
+                      isSelected: item.isSelected,
+                      toggleIsSelect: () =>
+                          setState(() => item.toggleIsSelected()),
                     ),
                   );
                 },
