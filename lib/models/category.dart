@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import '../enumerators.dart';
+
 Category categoryFromMap(String str) => Category.fromMap(json.decode(str));
 
 String categoryToMap(Category data) => json.encode(data.toMap());
@@ -54,6 +56,7 @@ class CategoryItem {
     this.price,
     this.quantity = 1,
     this.isSelected = false,
+    this.status = FoodItemStatus.NotReady,
   });
 
   int id;
@@ -61,9 +64,24 @@ class CategoryItem {
   int price;
   int quantity;
   bool isSelected;
+  FoodItemStatus status;
 
   void toggleSelected() {
     isSelected = !isSelected;
+  }
+
+  String mapStatusToString(FoodItemStatus status) {
+    String string;
+    if (status == FoodItemStatus.Ready) {
+      string = "READY";
+    } else if (status == FoodItemStatus.NotReady) {
+      string = "NOT READY";
+    } else if (status == FoodItemStatus.Served) {
+      string = "SERVED";
+    } else if (status == FoodItemStatus.NotAvailable) {
+      string = "NOT AVAILABLE";
+    }
+    return string;
   }
 
   factory CategoryItem.fromMap(Map<String, dynamic> json) => CategoryItem(
@@ -77,5 +95,6 @@ class CategoryItem {
         "name": name,
         "price": price,
         "quantity": quantity,
+        "status": mapStatusToString(status),
       };
 }
