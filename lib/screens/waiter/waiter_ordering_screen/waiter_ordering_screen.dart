@@ -94,10 +94,14 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
                         ? Colors.white
                         : null,
                     onPressed: () {
-                      setState(() {
-                        selectedCategory = category.categoryName;
-                        selectedCategoryItems = category.categoryItems;
-                      });
+                      setState(
+                        () {
+                          selectedCategory = category.categoryName;
+                          selectedCategoryItems = category.categoryItems;
+                        },
+                      );
+                      print("CATEGORY: $selectedCategory");
+                      print("CATEGORY ITEMS: $selectedCategoryItems");
                     },
                   );
                 },
