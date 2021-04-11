@@ -100,8 +100,8 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
                           selectedCategoryItems = category.categoryItems;
                         },
                       );
-                      print("CATEGORY: $selectedCategory");
-                      print("CATEGORY ITEMS: $selectedCategoryItems");
+                      // print("CATEGORY: $selectedCategory");
+                      // print("CATEGORY ITEMS: $selectedCategoryItems");
                     },
                   );
                 },
