@@ -5,9 +5,7 @@ import 'package:summer_project/models/category.dart';
 import 'package:summer_project/models/order.dart';
 import 'package:summer_project/widgets/app_action_chip.dart';
 import 'package:summer_project/widgets/app_app_bar.dart';
-import 'package:summer_project/widgets/app_button.dart';
 import 'package:summer_project/widgets/app_container.dart';
-import 'package:summer_project/widgets/app_textfield.dart';
 import 'package:summer_project/widgets/sub_titles.dart';
 import 'local_widgets/app_food_item_tile.dart';
 import 'package:summer_project/menu.dart';
@@ -24,7 +22,7 @@ class WaiterOrderingScreen extends StatefulWidget {
 
 class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
   Category category = categoryFromMap(Menu.instance.menu);
-  List menuData; //list of all data -> Categories
+  // List menuData; //list of all data -> Categories
   String selectedCategory; // current selected category
   List<CategoryItem> selectedCategoryItems; // current selected category items
 
@@ -38,9 +36,9 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
   @override
   void initState() {
     super.initState();
-    menuData = category.categories;
-    selectedCategory = menuData.first.categoryName;
-    selectedCategoryItems = menuData.first.categoryItems;
+    // menuData = category.categories;
+    selectedCategory = category.categories.first.categoryName;
+    selectedCategoryItems = category.categories.first.categoryItems;
 
     if (widget.newOrder == true) {
       WidgetsBinding.instance.addPostFrameCallback((_) async {
@@ -84,21 +82,24 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
               height: 150.w,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: menuData.length,
+                itemCount: category.categories.length,
                 itemBuilder: (context, index) {
-                  CategoryElement category = menuData[index];
                   return AppActionChip(
-                    string: category.categoryName,
-                    backgroundColor: selectedCategory == category.categoryName
+                    string: category.categories[index].categoryName,
+                    backgroundColor: selectedCategory ==
+                            category.categories[index].categoryName
                         ? Theme.of(context).primaryColor
                         : null,
-                    textColor: selectedCategory == category.categoryName
+                    textColor: selectedCategory ==
+                            category.categories[index].categoryName
                         ? Colors.white
                         : null,
                     onPressed: () {
                       setState(() {
-                        selectedCategory = category.categoryName;
-                        selectedCategoryItems = category.categoryItems;
+                        selectedCategory =
+                            category.categories[index].categoryName;
+                        selectedCategoryItems =
+                            category.categories[index].categoryItems;
                       });
                     },
                   );
