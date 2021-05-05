@@ -85,8 +85,7 @@ class CustomerDetailDialogState extends State<CustomerDetailDialog> {
                     onPressed: () {
                       //TODO: create customer in DB and return customer ID using callback
                       Navigator.pop(context);
-                      widget.onValueChange(
-                          -_selectedTable, name, contactNumber);
+                      widget.onValueChange(_selectedTable, name, contactNumber);
                     },
                   ),
                 ),

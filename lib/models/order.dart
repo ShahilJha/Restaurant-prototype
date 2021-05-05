@@ -6,10 +6,8 @@ import 'customer.dart';
 class Order {
   int id;
   int tableNumber;
-  String customerName;
-  String customerContact;
+  Customer customer;
   DateTime dateCreated;
-  int customerID;
   int orderTakenByID;
   OrderStatus status;
   int readyItems;
@@ -24,10 +22,8 @@ class Order {
   Order({
     this.id,
     this.tableNumber,
-    this.customerName,
-    this.customerContact,
+    this.customer,
     this.dateCreated,
-    this.customerID,
     this.orderTakenByID,
     this.status = OrderStatus.NewOrder,
     this.readyItems,

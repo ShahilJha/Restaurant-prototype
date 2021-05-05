@@ -26,7 +26,7 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
   int selectedCategoryIndex;
 
   //Order object to track order
-  Order order;
+  Order order = Order();
 
   @override
   void initState() {
@@ -48,11 +48,12 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
       builder: (context) => CustomerDetailDialog(
         initialValue: null,
         onValueChange: (tableNo, name, contact) {
-          setState(() {
-            order.tableNumber = tableNo;
-            order.customerName = name;
-            order.customerContact = contact;
-          });
+          // order.tableNumber = tableNo;
+          // order.customerName = name;
+          // order.customer.name = name;
+          // order.customerContact = contact;
+
+          print('VALUE FROM FORM: $tableNo,$name,$contact');
         },
       ),
     );
@@ -108,6 +109,7 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
               height: 1575.h,
               child: ListView.builder(
                 physics: ClampingScrollPhysics(),
+                addAutomaticKeepAlives: false,
                 shrinkWrap: true,
                 itemCount: category
                     .categories[selectedCategoryIndex].categoryItems.length,
