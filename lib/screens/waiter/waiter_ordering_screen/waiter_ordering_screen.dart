@@ -103,8 +103,8 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
             ),
             Subtitles(string: 'ITEMS'),
             SizedBox(height: 25.h),
+
             Container(
-              // color: Colors.red,
               height: 1575.h,
               child: ListView.builder(
                 physics: ClampingScrollPhysics(),
@@ -141,6 +141,34 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
                 },
               ),
             ),
+
+            // Container(
+            //   // color: Colors.red,
+            //   height: 1575.h,
+            //   child: ListView(
+            //     physics: ClampingScrollPhysics(),
+            //     shrinkWrap: true,
+            //     children:
+            //         category.categories[selectedCategoryIndex].categoryItems
+            //             .map((item) => Container(
+            //                   padding: EdgeInsets.symmetric(vertical: 10.h),
+            //                   child: AppFoodItemTile(
+            //                     itemName: item.name,
+            //                     itemPrice: item.price,
+            //                     isSelected: item.isSelected,
+            //                     toggleIsSelect: () {
+            //                       setState(() => item.toggleIsSelected());
+            //                     },
+            //                     quantity: item.quantity,
+            //                     onQuantityChange: (qty) {
+            //                       setState(() => item.quantity = qty);
+            //                     },
+            //                     onAdd: () {},
+            //                   ),
+            //                 ))
+            //             .toList(),
+            //   ),
+            // ),
           ],
         ),
       ),
