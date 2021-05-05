@@ -75,6 +75,7 @@ class AppFoodItemTile extends StatelessWidget {
             isSelected == false
                 ? FoodItemAddButton(onPressed: toggleIsSelect)
                 : FoodItemQuantitySelector(
+                    quantity: quantity,
                     onPressed: toggleIsSelect,
                     onQuantityChange: (qty) => onQuantityChange(qty),
                   ),
@@ -115,10 +116,11 @@ class FoodItemAddButton extends StatelessWidget {
 }
 
 class FoodItemQuantitySelector extends StatelessWidget {
+  final int quantity;
   final Function onPressed;
   final Function onQuantityChange;
   const FoodItemQuantitySelector(
-      {Key key, this.onPressed, this.onQuantityChange})
+      {Key key, this.onPressed, this.onQuantityChange, this.quantity})
       : super(key: key);
 
   @override
@@ -134,6 +136,7 @@ class FoodItemQuantitySelector extends StatelessWidget {
           Container(
             width: 390.w,
             child: AppQuantitySelector(
+              quantity: quantity,
               onQuantityChange: (qty) => onQuantityChange(qty),
             ),
           ),

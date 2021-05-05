@@ -9,7 +9,7 @@ class AppQuantitySelector extends StatefulWidget {
 
   const AppQuantitySelector({
     Key key,
-    this.quantity = 1,
+    this.quantity,
     this.quantityFontSize,
     this.iconHeight,
     this.iconWidth,

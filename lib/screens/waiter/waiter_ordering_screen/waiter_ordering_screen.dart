@@ -20,7 +20,11 @@ class WaiterOrderingScreen extends StatefulWidget {
   _WaiterOrderingScreenState createState() => _WaiterOrderingScreenState();
 }
 
-class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
+class _WaiterOrderingScreenState extends State<WaiterOrderingScreen>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
   Category category = categoryFromMap(Menu.instance.menu);
   // List menuData; //list of all data -> Categories
   String selectedCategory; // current selected category
@@ -66,7 +70,6 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print(category.categories[selectedCategoryIndex].categoryItems);
     return Scaffold(
       appBar: KAppBar(
         title: 'ORDERING MENU',
@@ -120,11 +123,6 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
                 shrinkWrap: true,
                 itemCount: selectedCategoryItems.length,
                 itemBuilder: (context, index) {
-                  CategoryItem item = selectedCategoryItems[index];
-
-                  // category
-                  //     .categories[selectedCategoryIndex].categoryItems[index];
-
                   return Container(
                     padding: EdgeInsets.symmetric(vertical: 10.h),
                     child: AppFoodItemTile(
@@ -140,10 +138,10 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
                           .toggleIsSelected()),
                       quantity: category.categories[selectedCategoryIndex]
                           .categoryItems[index].quantity,
-                      onQuantityChange: (qty) => setState(() => category
-                          .categories[selectedCategoryIndex]
-                          .categoryItems[index]
-                          .quantity = qty),
+                      onQuantityChange: (qty) => setState(
+                        () => category.categories[selectedCategoryIndex]
+                            .categoryItems[index].quantity = qty,
+                      ),
                     ),
                   );
                 },
