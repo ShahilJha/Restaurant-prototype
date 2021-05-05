@@ -20,30 +20,18 @@ class WaiterOrderingScreen extends StatefulWidget {
   _WaiterOrderingScreenState createState() => _WaiterOrderingScreenState();
 }
 
-class _WaiterOrderingScreenState extends State<WaiterOrderingScreen>
-    with AutomaticKeepAliveClientMixin {
-  @override
-  bool get wantKeepAlive => true;
-
+class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
   Category category = categoryFromMap(Menu.instance.menu);
-  // List menuData; //list of all data -> Categories
   String selectedCategory; // current selected category
-  List<CategoryItem> selectedCategoryItems; // current selected category items
   int selectedCategoryIndex;
 
   //Order object to track order
   Order order;
 
-  String customerName;
-  String customerContact;
-  int tableNumber;
-
   @override
   void initState() {
     super.initState();
-    // menuData = category.categories;
     selectedCategory = category.categories.first.categoryName;
-    selectedCategoryItems = category.categories.first.categoryItems;
     selectedCategoryIndex = 0;
 
     if (widget.newOrder == true) {
@@ -58,10 +46,12 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen>
       barrierDismissible: false,
       context: context,
       builder: (context) => CustomerDetailDialog(
-        initialValue: tableNumber,
-        onValueChange: (value) {
+        initialValue: null,
+        onValueChange: (tableNo, name, contact) {
           setState(() {
-            tableNumber = value;
+            order.tableNumber = tableNo;
+            order.customerName = name;
+            order.customerContact = contact;
           });
         },
       ),
@@ -104,8 +94,6 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen>
                       setState(() {
                         selectedCategory =
                             category.categories[index].categoryName;
-                        selectedCategoryItems =
-                            category.categories[index].categoryItems;
                         selectedCategoryIndex = index;
                       });
                     },
@@ -121,7 +109,8 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen>
               child: ListView.builder(
                 physics: ClampingScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: selectedCategoryItems.length,
+                itemCount: category
+                    .categories[selectedCategoryIndex].categoryItems.length,
                 itemBuilder: (context, index) {
                   return Container(
                     padding: EdgeInsets.symmetric(vertical: 10.h),
@@ -132,16 +121,21 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen>
                           .categoryItems[index].price,
                       isSelected: category.categories[selectedCategoryIndex]
                           .categoryItems[index].isSelected,
-                      toggleIsSelect: () => setState(() => category
-                          .categories[selectedCategoryIndex]
-                          .categoryItems[index]
-                          .toggleIsSelected()),
+                      toggleIsSelect: () {
+                        setState(() => category
+                            .categories[selectedCategoryIndex]
+                            .categoryItems[index]
+                            .toggleIsSelected());
+                        category.categories[selectedCategoryIndex]
+                            .categoryItems[index].quantity = 1;
+                      },
                       quantity: category.categories[selectedCategoryIndex]
                           .categoryItems[index].quantity,
                       onQuantityChange: (qty) => setState(
                         () => category.categories[selectedCategoryIndex]
                             .categoryItems[index].quantity = qty,
                       ),
+                      onAdd: () {},
                     ),
                   );
                 },

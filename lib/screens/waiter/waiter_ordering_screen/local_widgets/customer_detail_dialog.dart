@@ -12,7 +12,7 @@ class CustomerDetailDialog extends StatefulWidget {
   });
 
   final int initialValue;
-  final void Function(int) onValueChange;
+  final Function onValueChange;
 
   @override
   State createState() => new CustomerDetailDialogState();
@@ -32,7 +32,7 @@ class CustomerDetailDialogState extends State<CustomerDetailDialog> {
   Widget build(BuildContext context) {
     return new SimpleDialog(
       title: Text(
-        'ITEM NAME',
+        'Customer Information',
         textAlign: TextAlign.center,
       ),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.w)),
@@ -62,7 +62,6 @@ class CustomerDetailDialogState extends State<CustomerDetailDialog> {
                         setState(() {
                           _selectedTable = value;
                         });
-                        widget.onValueChange(value);
                       },
                     )
                   ],
@@ -86,6 +85,8 @@ class CustomerDetailDialogState extends State<CustomerDetailDialog> {
                     onPressed: () {
                       //TODO: create customer in DB and return customer ID using callback
                       Navigator.pop(context);
+                      widget.onValueChange(
+                          -_selectedTable, name, contactNumber);
                     },
                   ),
                 ),
