@@ -25,6 +25,7 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
   // List menuData; //list of all data -> Categories
   String selectedCategory; // current selected category
   List<CategoryItem> selectedCategoryItems; // current selected category items
+  int selectedCategoryIndex;
 
   //Order object to track order
   Order order;
@@ -39,6 +40,7 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
     // menuData = category.categories;
     selectedCategory = category.categories.first.categoryName;
     selectedCategoryItems = category.categories.first.categoryItems;
+    selectedCategoryIndex = 0;
 
     if (widget.newOrder == true) {
       WidgetsBinding.instance.addPostFrameCallback((_) async {
@@ -64,6 +66,7 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print(category.categories[selectedCategoryIndex].categoryItems);
     return Scaffold(
       appBar: KAppBar(
         title: 'ORDERING MENU',
@@ -100,6 +103,7 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
                             category.categories[index].categoryName;
                         selectedCategoryItems =
                             category.categories[index].categoryItems;
+                        selectedCategoryIndex = index;
                       });
                     },
                   );
@@ -117,17 +121,29 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
                 itemCount: selectedCategoryItems.length,
                 itemBuilder: (context, index) {
                   CategoryItem item = selectedCategoryItems[index];
+
+                  // category
+                  //     .categories[selectedCategoryIndex].categoryItems[index];
+
                   return Container(
                     padding: EdgeInsets.symmetric(vertical: 10.h),
                     child: AppFoodItemTile(
-                      itemName: item.name,
-                      itemPrice: item.price,
-                      isSelected: item.isSelected,
-                      toggleIsSelect: () =>
-                          setState(() => item.toggleIsSelected()),
-                      quantity: item.quantity,
-                      onQuantityChange: (qty) =>
-                          setState(() => item.quantity = qty),
+                      itemName: category.categories[selectedCategoryIndex]
+                          .categoryItems[index].name,
+                      itemPrice: category.categories[selectedCategoryIndex]
+                          .categoryItems[index].price,
+                      isSelected: category.categories[selectedCategoryIndex]
+                          .categoryItems[index].isSelected,
+                      toggleIsSelect: () => setState(() => category
+                          .categories[selectedCategoryIndex]
+                          .categoryItems[index]
+                          .toggleIsSelected()),
+                      quantity: category.categories[selectedCategoryIndex]
+                          .categoryItems[index].quantity,
+                      onQuantityChange: (qty) => setState(() => category
+                          .categories[selectedCategoryIndex]
+                          .categoryItems[index]
+                          .quantity = qty),
                     ),
                   );
                 },
