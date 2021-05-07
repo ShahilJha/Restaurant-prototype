@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:summer_project/enumerators.dart';
+import 'package:summer_project/services/database_service.dart';
 import 'package:summer_project/services/user_auth.dart';
 import 'package:summer_project/widgets/app_button.dart';
 import 'local_widgets/occupation_chips.dart';
@@ -73,14 +74,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   final user = await FireBaseAuthService.instance.signInUser(
                       email: emailController.text,
                       password: passwordController.text);
-
-                  if (user != null) {
-                    Navigator.pop(context);
-                    if (route != null) {
-                      print('ROUTE : $route');
-                      Navigator.of(context).pushNamed(route);
-                    }
-                  }
+                  // if (user != null) {
+                  //   Navigator.pop(context);
+                  //   if (route != null) {
+                  //     print('ROUTE : $route');
+                  //     Navigator.of(context).pushNamed(route);
+                  //   }
+                  // }
                 },
               ),
             ],

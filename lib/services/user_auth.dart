@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:summer_project/models/app_user.dart';
 
 class FireBaseAuthService {
   FireBaseAuthService._privateConstructor();
@@ -7,6 +7,7 @@ class FireBaseAuthService {
       FireBaseAuthService._privateConstructor();
 
   static final _auth = FirebaseAuth.instance;
+  AppUser _appUser;
 
   Future createUser() async {
     try {
@@ -24,7 +25,6 @@ class FireBaseAuthService {
     try {
       user = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
-      print('LOG#!: -return of sign in--> $user');
     } catch (e) {
       print('EXCEPTION: -sign in user--> $e');
     }
@@ -32,4 +32,5 @@ class FireBaseAuthService {
   }
 
   User get user => _auth.currentUser;
+  AppUser get appUser => _appUser;
 }
