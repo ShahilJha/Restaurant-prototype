@@ -1,7 +1,7 @@
 import '../enumerators.dart';
-import 'user.dart';
+import 'app_user.dart';
 
-class KitchenStaff extends User {
+class KitchenStaff extends AppUser {
   JobPosition jobPosition;
 
   KitchenStaff({

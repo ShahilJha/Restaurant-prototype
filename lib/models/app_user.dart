@@ -1,6 +1,6 @@
 import '../enumerators.dart';
 
-class User {
+class AppUser {
   int id;
   String userName;
   String email;
@@ -10,7 +10,7 @@ class User {
   String gender;
   DateTime registrationDate;
 
-  User({
+  AppUser({
     this.id,
     this.userName,
     this.email,

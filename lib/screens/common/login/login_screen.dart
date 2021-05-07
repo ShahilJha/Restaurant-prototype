@@ -1,11 +1,10 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:summer_project/enumerators.dart';
+import 'package:summer_project/services/user_auth.dart';
 import 'package:summer_project/widgets/app_button.dart';
 import 'local_widgets/occupation_chips.dart';
-
-import 'package:summer_project/models/category.dart';
-import 'package:summer_project/menu.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -21,6 +20,10 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
+    Firebase.initializeApp().whenComplete(() {
+      print("completed");
+      setState(() {});
+    });
     emailController.addListener(() => setState(() {}));
   }
 
@@ -52,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               AppButton(
                 text: 'Log-in',
-                onPressed: () {
+                onPressed: () async {
                   String route;
 
                   if (jobPosition == JobPosition.Waiter) {
@@ -65,10 +68,18 @@ class _LoginScreenState extends State<LoginScreen> {
                     route = '/';
                   }
 
-                  Navigator.pop(context);
-                  if (route != null) {
-                    print('ROUTE : $route');
-                    Navigator.of(context).pushNamed(route);
+                  print('${JobPosition.KitchenStaff}');
+
+                  final user = await FireBaseAuthService.instance.signInUser(
+                      email: emailController.text,
+                      password: passwordController.text);
+
+                  if (user != null) {
+                    Navigator.pop(context);
+                    if (route != null) {
+                      print('ROUTE : $route');
+                      Navigator.of(context).pushNamed(route);
+                    }
                   }
                 },
               ),
