@@ -69,18 +69,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     route = '/';
                   }
 
-                  print('${JobPosition.KitchenStaff}');
-
                   final user = await FireBaseAuthService.instance.signInUser(
                       email: emailController.text,
                       password: passwordController.text);
-                  // if (user != null) {
-                  //   Navigator.pop(context);
-                  //   if (route != null) {
-                  //     print('ROUTE : $route');
-                  //     Navigator.of(context).pushNamed(route);
-                  //   }
-                  // }
+                  if (user != null) {
+                    Navigator.pop(context);
+                    if (route != null) {
+                      print('ROUTE : $route');
+                      Navigator.of(context).pushNamed(route);
+                    }
+                  }
                 },
               ),
             ],
