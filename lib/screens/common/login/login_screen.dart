@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:summer_project/enumerators.dart';
@@ -13,6 +14,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   bool isPasswordVisible = true;
@@ -43,22 +45,28 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 500.w,
                 width: 500.w,
               ),
-              _buildEmail(),
-              _buildPassword(),
-              OccupationChips(
-                position: jobPosition,
-                onPressed: (position) {
-                  setState(() {
-                    jobPosition = position;
-                  });
-                  ;
-                },
+              Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    _buildEmail(),
+                    _buildPassword(),
+                    OccupationChips(
+                      position: jobPosition,
+                      onPressed: (position) {
+                        setState(() {
+                          jobPosition = position;
+                        });
+                      },
+                    ),
+                  ],
+                ),
               ),
               AppButton(
                 text: 'Log-in',
                 onPressed: () async {
                   String route;
-
                   if (jobPosition == JobPosition.Waiter) {
                     route = '/waiter_running_order_screen';
                   } else if (jobPosition == JobPosition.KitchenStaff) {
@@ -79,6 +87,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       Navigator.of(context).pushNamed(route);
                     }
                   }
+
+                  if (_formKey.currentState.validate()) {}
                 },
               ),
             ],
@@ -91,11 +101,12 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget _buildEmail() => Container(
         padding: EdgeInsets.symmetric(horizontal: 100.w),
         margin: EdgeInsets.symmetric(vertical: 25.w),
-        child: TextField(
+        child: TextFormField(
           autofocus: true,
           controller: emailController,
           keyboardType: TextInputType.emailAddress,
           textInputAction: TextInputAction.done,
+          validator: (val) => val.isEmpty ? 'E-mail address is empty!' : null,
           textAlign: TextAlign.center,
           decoration: InputDecoration(
             hintText: 'Email',
@@ -119,10 +130,11 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget _buildPassword() => Container(
         padding: EdgeInsets.symmetric(horizontal: 100.w),
         margin: EdgeInsets.symmetric(vertical: 25.w),
-        child: TextField(
+        child: TextFormField(
           controller: passwordController,
           keyboardType: TextInputType.emailAddress,
           textInputAction: TextInputAction.done,
+          validator: (val) => val.isEmpty ? 'Password is empty!' : null,
           textAlign: TextAlign.center,
           obscureText: isPasswordVisible,
           decoration: InputDecoration(
