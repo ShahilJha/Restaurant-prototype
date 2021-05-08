@@ -1,7 +1,7 @@
 import '../enumerators.dart';
 
 class AppUser {
-  int id;
+  String id;
   String userName;
   String email;
   String password;

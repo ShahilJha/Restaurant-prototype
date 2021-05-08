@@ -9,12 +9,14 @@ class FireBaseAuthService {
   static final _auth = FirebaseAuth.instance;
   AppUser _appUser;
 
+  //<<-----------TEST----------->>
   Future createUser() async {
     try {
       print('LOG#1: -newUser--> START TO CREATE USER');
       final newUser = await _auth.createUserWithEmailAndPassword(
           email: 'shahil.jha@gmail.com', password: 'shahil');
-      print('LOG#2: -newUser--> $newUser');
+      print('LOG#2: -newUser--> authenticated  for email and password');
+      print('LOG#3: -newUser--> $newUser');
     } catch (e) {
       print('EXCEPTION: -create user--> $e');
     }

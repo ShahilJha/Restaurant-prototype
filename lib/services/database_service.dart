@@ -10,7 +10,6 @@ class DatabaseService {
 
   void putTestData() async {
     _firestore.collection('orders').add({
-      'id': 3,
       'tableNumber': 11,
       'customerContact': '9849000001',
       'dateCreated': DateTime.now(),

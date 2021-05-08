@@ -5,7 +5,7 @@ class Waiter extends AppUser {
   JobPosition jobPosition;
 
   Waiter({
-    int id,
+    String id,
     String userName,
     String email,
     String password,

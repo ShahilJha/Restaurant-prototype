@@ -1,5 +1,5 @@
 class Customer {
-  int id;
+  String id;
   String name;
   String contactNumber;
 

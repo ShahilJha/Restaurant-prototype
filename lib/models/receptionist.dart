@@ -5,7 +5,7 @@ class Receptionist extends AppUser {
   JobPosition jobPosition;
 
   Receptionist({
-    int id,
+    String id,
     String userName,
     String email,
     String password,

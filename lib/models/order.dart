@@ -4,7 +4,7 @@ import '../enumerators.dart';
 import 'customer.dart';
 
 class Order {
-  int id;
+  String id;
   int tableNumber;
   String customerContact;
   DateTime dateCreated;

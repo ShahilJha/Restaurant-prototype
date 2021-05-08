@@ -5,7 +5,7 @@ class KitchenStaff extends AppUser {
   JobPosition jobPosition;
 
   KitchenStaff({
-    int id,
+    String id,
     String userName,
     String email,
     String password,
