@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:summer_project/enumerators.dart';
 import 'package:summer_project/models/app_user.dart';
+import 'package:summer_project/services/database_service.dart';
 
 class FireBaseAuthService {
   FireBaseAuthService._privateConstructor();
@@ -17,6 +19,17 @@ class FireBaseAuthService {
           email: 'shahil.jha@gmail.com', password: 'shahil');
       print('LOG#2: -newUser--> authenticated  for email and password');
       print('LOG#3: -newUser--> $newUser');
+      // DatabaseService.instance.
+
+      DatabaseService.instance.addNewStaffMemberDetails(
+        id: newUser.user.uid,
+        registrationDate: DateTime.now(),
+        address: 'Kalanki',
+        gender: 'Male',
+        contactNumber: '9849000000',
+        userName: 'shahil jha',
+        position: JobPosition.Receptionist,
+      );
     } catch (e) {
       print('EXCEPTION: -create user--> $e');
     }
@@ -26,7 +39,7 @@ class FireBaseAuthService {
     UserCredential user;
     try {
       user = await _auth.signInWithEmailAndPassword(
-          email: email, password: password);
+          email: email.trim(), password: password);
     } catch (e) {
       print('EXCEPTION: -sign in user--> $e');
     }

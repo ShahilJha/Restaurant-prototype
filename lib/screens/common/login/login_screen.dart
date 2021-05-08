@@ -67,29 +67,34 @@ class _LoginScreenState extends State<LoginScreen> {
               AppButton(
                 text: 'Log-in',
                 onPressed: () async {
-                  String route;
-                  if (jobPosition == JobPosition.Waiter) {
-                    route = '/waiter_running_order_screen';
-                  } else if (jobPosition == JobPosition.KitchenStaff) {
-                    route = '/kitchen_running_orders';
-                  } else if (jobPosition == JobPosition.Receptionist) {
-                    route = '/receptionist_running_orders';
-                  } else {
-                    route = '/';
-                  }
+                  final user = await DatabaseService.instance
+                      .getStaffObject('MpOYBOv7VxbmkaCAPRdlQtQhTz02');
+                  print('LOG#: login user $user');
+                  print('LOG#: login user ${user.jobPosition}');
 
-                  final user = await FireBaseAuthService.instance.signInUser(
-                      email: emailController.text,
-                      password: passwordController.text);
-                  if (user != null) {
-                    Navigator.pop(context);
-                    if (route != null) {
-                      print('ROUTE : $route');
-                      Navigator.of(context).pushNamed(route);
+                  if (_formKey.currentState.validate()) {
+                    String route;
+                    if (jobPosition == JobPosition.Waiter) {
+                      route = '/waiter_running_order_screen';
+                    } else if (jobPosition == JobPosition.KitchenStaff) {
+                      route = '/kitchen_running_orders';
+                    } else if (jobPosition == JobPosition.Receptionist) {
+                      route = '/receptionist_running_orders';
+                    } else {
+                      route = '/';
+                    }
+
+                    final user = await FireBaseAuthService.instance.signInUser(
+                        email: emailController.text,
+                        password: passwordController.text);
+                    if (user != null) {
+                      Navigator.pop(context);
+                      if (route != null) {
+                        print('ROUTE : $route');
+                        Navigator.of(context).pushNamed(route);
+                      }
                     }
                   }
-
-                  if (_formKey.currentState.validate()) {}
                 },
               ),
             ],

@@ -3,7 +3,7 @@
 //     final category = categoryFromMap(jsonString);
 
 import 'dart:convert';
-
+import '../utils/enum_util.dart';
 import '../enumerators.dart';
 
 Category categoryFromMap(String str) => Category.fromMap(json.decode(str));
@@ -70,20 +70,6 @@ class CategoryItem {
     isSelected = !isSelected;
   }
 
-  String mapStatusToString(FoodItemStatus status) {
-    String string;
-    if (status == FoodItemStatus.Ready) {
-      string = "READY";
-    } else if (status == FoodItemStatus.NotReady) {
-      string = "NOT READY";
-    } else if (status == FoodItemStatus.Served) {
-      string = "SERVED";
-    } else if (status == FoodItemStatus.NotAvailable) {
-      string = "NOT AVAILABLE";
-    }
-    return string;
-  }
-
   factory CategoryItem.fromMap(Map<String, dynamic> json) => CategoryItem(
         id: json["ID"],
         name: json["name"],
@@ -95,6 +81,6 @@ class CategoryItem {
         "name": name,
         "price": price,
         "quantity": quantity,
-        "status": mapStatusToString(status),
+        "status": EnumUtil.foodItemStatusToString(status),
       };
 }
