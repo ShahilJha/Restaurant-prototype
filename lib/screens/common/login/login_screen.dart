@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:summer_project/enumerators.dart';
 import 'package:summer_project/services/database_service.dart';
 import 'package:summer_project/services/user_auth.dart';
+import 'package:summer_project/utils/validator.dart';
 import 'package:summer_project/widgets/app_button.dart';
 import 'local_widgets/occupation_chips.dart';
 
@@ -106,7 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
           controller: emailController,
           keyboardType: TextInputType.emailAddress,
           textInputAction: TextInputAction.done,
-          validator: (val) => val.isEmpty ? 'E-mail address is empty!' : null,
+          validator: Validator.validateEmail,
           textAlign: TextAlign.center,
           decoration: InputDecoration(
             hintText: 'Email',
@@ -134,7 +135,7 @@ class _LoginScreenState extends State<LoginScreen> {
           controller: passwordController,
           keyboardType: TextInputType.emailAddress,
           textInputAction: TextInputAction.done,
-          validator: (val) => val.isEmpty ? 'Password is empty!' : null,
+          validator: Validator.validatePassword,
           textAlign: TextAlign.center,
           obscureText: isPasswordVisible,
           decoration: InputDecoration(
