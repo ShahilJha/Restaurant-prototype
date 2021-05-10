@@ -68,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 text: 'Log-in',
                 onPressed: () async {
                   final user = await DatabaseService.instance
-                      .getStaffObject('MpOYBOv7VxbmkaCAPRdlQtQhTz02');
+                      .getStaffDetailsByID('MpOYBOv7VxbmkaCAPRdlQtQhTz02');
                   print('LOG#: login user $user');
                   print('LOG#: login user ${user.jobPosition}');
 
