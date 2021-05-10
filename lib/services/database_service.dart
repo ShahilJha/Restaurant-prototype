@@ -12,6 +12,7 @@ class DatabaseService {
 
   static final _firestore = FirebaseFirestore.instance;
 
+  //<<-----------TEST----------->>
   void addNewStaffMemberDetails({
     String id,
     String userName,
@@ -36,6 +37,7 @@ class DatabaseService {
     }
   }
 
+  //<<-----------TEST----------->>
   void putTestData() async {
     _firestore.collection('orders').add({
       'tableNumber': 11,

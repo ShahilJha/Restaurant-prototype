@@ -73,26 +73,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   print('LOG#: login user ${user.jobPosition}');
 
                   if (_formKey.currentState.validate()) {
-                    String route;
-                    if (jobPosition == JobPosition.Waiter) {
-                      route = '/waiter_running_order_screen';
-                    } else if (jobPosition == JobPosition.KitchenStaff) {
-                      route = '/kitchen_running_orders';
-                    } else if (jobPosition == JobPosition.Receptionist) {
-                      route = '/receptionist_running_orders';
-                    } else {
-                      route = '/';
-                    }
-
                     final user = await FireBaseAuthService.instance.signInUser(
                         email: emailController.text,
                         password: passwordController.text);
                     if (user != null) {
                       Navigator.pop(context);
-                      if (route != null) {
-                        print('ROUTE : $route');
-                        Navigator.of(context).pushNamed(route);
-                      }
+                      print('ROUTE : ${_getLoginRoute(jobPosition)}');
+                      Navigator.of(context)
+                          .pushNamed(_getLoginRoute(jobPosition));
                     }
                   }
                 },
@@ -102,6 +90,18 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+
+  String _getLoginRoute(JobPosition position) {
+    if (jobPosition == JobPosition.Waiter) {
+      return '/waiter_running_order_screen';
+    } else if (jobPosition == JobPosition.KitchenStaff) {
+      return '/kitchen_running_orders';
+    } else if (jobPosition == JobPosition.Receptionist) {
+      return '/receptionist_running_orders';
+    } else {
+      return '/';
+    }
   }
 
   Widget _buildEmail() => Container(
