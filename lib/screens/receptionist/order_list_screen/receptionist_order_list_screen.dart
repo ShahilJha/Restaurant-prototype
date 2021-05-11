@@ -32,14 +32,16 @@ class ReceptionistOrderListScreen extends StatelessWidget {
               itemCount: orderList.length,
               itemBuilder: (context, index) {
                 final orderData = orderList[index].data();
+                final orderID = orderList[index].id;
                 return ReceptionistOrderTile(
                   tableNumber: orderData['tableNumber'],
-                  orderNumber: 12,
+                  orderID: orderID,
                   // customerName: orderData[''],
                   customerName: 'shahil',
                   customerContact: orderData['customerContact'],
                   onPressed: () {
                     print('PRESSED ON ORDER TILE');
+                    print(orderID);
                   },
                 );
               },

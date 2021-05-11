@@ -8,14 +8,14 @@ import 'package:summer_project/widgets/table_no.dart';
 
 class KitchenOrderTile extends StatelessWidget {
   final int tableNumber;
-  final int orderNumber;
+  final String orderID;
   final Color colorCode;
   final String status;
   final Function onPressed;
   const KitchenOrderTile({
     Key key,
     @required this.tableNumber,
-    @required this.orderNumber,
+    @required this.orderID,
     @required this.colorCode,
     @required this.status,
     @required this.onPressed,
@@ -36,8 +36,8 @@ class KitchenOrderTile extends StatelessWidget {
               ),
             ],
           ),
-          OrderNumber(
-            orderNumber: orderNumber,
+          OrderID(
+            orderID: orderID,
           ),
           AttributeDisplay(attribute: 'Status', string: status),
           Divider(),

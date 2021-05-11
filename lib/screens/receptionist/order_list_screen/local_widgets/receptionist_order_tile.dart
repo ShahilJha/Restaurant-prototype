@@ -7,14 +7,14 @@ import 'package:summer_project/widgets/table_no.dart';
 
 class ReceptionistOrderTile extends StatelessWidget {
   final int tableNumber;
-  final int orderNumber;
+  final String orderID;
   final String customerName;
   final String customerContact;
   final Function onPressed;
   const ReceptionistOrderTile({
     Key key,
     @required this.tableNumber,
-    @required this.orderNumber,
+    @required this.orderID,
     @required this.customerName,
     @required this.customerContact,
     @required this.onPressed,
@@ -35,8 +35,8 @@ class ReceptionistOrderTile extends StatelessWidget {
               ),
             ],
           ),
-          OrderNumber(
-            orderNumber: orderNumber,
+          OrderID(
+            orderID: orderID,
           ),
           AttributeDisplay(
             attribute: 'Customer Name',

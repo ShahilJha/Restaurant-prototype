@@ -15,7 +15,7 @@ class KitchenOrderListScreen extends StatelessWidget {
           children: [
             KitchenOrderTile(
               tableNumber: 14,
-              orderNumber: 1231,
+              orderID: '1231',
               colorCode: Colors.red,
               status: 'New',
               onPressed: () {
@@ -24,7 +24,7 @@ class KitchenOrderListScreen extends StatelessWidget {
             ),
             KitchenOrderTile(
               tableNumber: 15,
-              orderNumber: 1232,
+              orderID: '1232',
               colorCode: Colors.green,
               status: 'completed',
               onPressed: () {},

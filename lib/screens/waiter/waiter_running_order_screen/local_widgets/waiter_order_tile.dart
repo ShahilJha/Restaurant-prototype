@@ -8,13 +8,13 @@ import 'package:summer_project/widgets/table_no.dart';
 
 class WaiterOrderTile extends StatelessWidget {
   final int tableNumber;
-  final int orderNumber;
+  final String orderID;
   final Color color;
   final Function onPressed;
   const WaiterOrderTile({
     Key key,
     @required this.tableNumber,
-    @required this.orderNumber,
+    @required this.orderID,
     @required this.color,
     @required this.onPressed,
   }) : super(key: key);
@@ -32,7 +32,7 @@ class WaiterOrderTile extends StatelessWidget {
               TableNumber(tableNumber: tableNumber),
             ],
           ),
-          OrderNumber(orderNumber: orderNumber),
+          OrderID(orderID: orderID),
           OrderProgress(
             ready: 1,
             notReady: 5,

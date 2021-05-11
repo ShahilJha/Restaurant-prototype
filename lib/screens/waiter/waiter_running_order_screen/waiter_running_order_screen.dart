@@ -25,7 +25,7 @@ class WaiterRunningOrderScreen extends StatelessWidget {
           children: [
             WaiterOrderTile(
               tableNumber: 14,
-              orderNumber: 2342,
+              orderID: '2342',
               color: Colors.grey,
               onPressed: () {
                 Navigator.of(context).pushNamed('/waiter_order_details_screen');

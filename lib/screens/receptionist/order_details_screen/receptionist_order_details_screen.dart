@@ -23,8 +23,8 @@ class ReceptionistOrderDetailsScreen extends StatelessWidget {
         child: ListView(
           children: [
             TableNumber(tableNumber: 12),
-            OrderNumber(
-              orderNumber: 23,
+            OrderID(
+              orderID: '23',
             ),
             AttributeDisplay(
               attribute: 'Customer Name',

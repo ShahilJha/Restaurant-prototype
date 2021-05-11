@@ -43,7 +43,7 @@ class KitchenOrderDetailsScreen extends StatelessWidget {
               child: Column(
                 children: [
                   TableNumber(tableNumber: 12),
-                  OrderNumber(orderNumber: 23),
+                  OrderID(orderID: '23'),
                 ],
               ),
               alignment: Alignment.center,
