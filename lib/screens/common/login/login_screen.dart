@@ -25,7 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void initState() {
     super.initState();
     Firebase.initializeApp().whenComplete(() {
-      print("completed");
+      print("Flutter App Initialized");
       setState(() {});
     });
     emailController.addListener(() => setState(() {}));
@@ -69,8 +69,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 onPressed: () async {
                   final user = await DatabaseService.instance
                       .getStaffDetailsByID('MpOYBOv7VxbmkaCAPRdlQtQhTz02');
-                  print('LOG#: login user $user');
-                  print('LOG#: login user ${user.jobPosition}');
 
                   if (_formKey.currentState.validate()) {
                     final user = await FireBaseAuthService.instance.signInUser(
@@ -78,7 +76,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         password: passwordController.text);
                     if (user != null) {
                       Navigator.pop(context);
-                      print('ROUTE : ${_getLoginRoute(jobPosition)}');
                       Navigator.of(context)
                           .pushNamed(_getLoginRoute(jobPosition));
                     }
