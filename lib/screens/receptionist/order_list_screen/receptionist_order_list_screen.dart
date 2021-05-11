@@ -36,8 +36,7 @@ class ReceptionistOrderListScreen extends StatelessWidget {
                 return ReceptionistOrderTile(
                   tableNumber: orderData['tableNumber'],
                   orderID: orderID,
-                  // customerName: orderData[''],
-                  customerName: 'shahil',
+                  customerName: orderData['customerName'],
                   customerContact: orderData['customerContact'],
                   onPressed: () {
                     print('PRESSED ON ORDER TILE');
