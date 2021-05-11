@@ -11,6 +11,7 @@ class Order {
   String id;
   int tableNumber;
   String customerContact;
+  String customerName;
   DateTime dateCreated;
   int orderTakenByID;
   OrderStatus status;
@@ -27,6 +28,7 @@ class Order {
     this.id,
     this.tableNumber,
     this.customerContact,
+    this.customerName,
     this.dateCreated,
     this.orderTakenByID,
     this.status = OrderStatus.NewOrder,
@@ -44,6 +46,7 @@ class Order {
         id: map['id'],
         tableNumber: map['tableNumber'],
         customerContact: map['customerContact'],
+        customerName: map['customerName'],
         dateCreated: map['dateCreated'].toDate(),
         orderTakenByID: map['orderTakenByID'],
         status: EnumUtil.stringToOrderStatus(map['status']),
@@ -63,6 +66,7 @@ class Order {
         'id': id,
         'tableNumber': tableNumber,
         'customerContact': customerContact,
+        'customerName': customerName,
         'dateCreated': Timestamp.fromDate(dateCreated),
         'orderTakenByID': orderTakenByID,
         'status': EnumUtil.orderStatusToString(status),
