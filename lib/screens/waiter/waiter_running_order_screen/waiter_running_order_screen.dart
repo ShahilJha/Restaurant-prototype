@@ -35,6 +35,5 @@ class WaiterRunningOrderScreen extends StatelessWidget {
         ),
       ),
     );
-    ;
   }
 }

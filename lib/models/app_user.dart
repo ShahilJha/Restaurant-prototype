@@ -1,5 +1,3 @@
-import '../enumerators.dart';
-
 class AppUser {
   String id;
   String userName;
