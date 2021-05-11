@@ -11,6 +11,7 @@ class DatabaseService {
   static final instance = DatabaseService._privateConstructor();
 
   static final _firestore = FirebaseFirestore.instance;
+  FirebaseFirestore get firestore => _firestore;
 
   //<<-----------TEST----------->>
   void addNewStaffMemberDetails({

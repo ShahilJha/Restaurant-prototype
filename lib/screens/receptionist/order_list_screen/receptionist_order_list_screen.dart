@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:summer_project/services/database_service.dart';
 import 'package:summer_project/widgets/app_app_bar.dart';
 import 'package:summer_project/widgets/app_container.dart';
 
@@ -12,25 +14,37 @@ class ReceptionistOrderListScreen extends StatelessWidget {
         title: 'RUNNING ORDERS',
       ),
       body: AppContainer(
-        child: ListView(
-          children: [
-            ReceptionistOrderTile(
-              tableNumber: 14,
-              orderNumber: 1341,
-              customerName: 'Shahil Jha',
-              customerContact: '98********',
-              onPressed: () {
-                Navigator.of(context).pushNamed('/receptionist_order_detail');
+        child: StreamBuilder(
+          stream: DatabaseService.instance.firestore
+              .collection('orders')
+              .orderBy('dateCreated', descending: false)
+              .snapshots(),
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (!snapshot.hasData) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            final orderList = snapshot.data.docs;
+
+            return ListView.builder(
+              itemCount: orderList.length,
+              itemBuilder: (context, index) {
+                final orderData = orderList[index].data();
+                return ReceptionistOrderTile(
+                  tableNumber: orderData['tableNumber'],
+                  orderNumber: 12,
+                  // customerName: orderData[''],
+                  customerName: 'shahil',
+                  customerContact: orderData['customerContact'],
+                  onPressed: () {
+                    print('PRESSED ON ORDER TILE');
+                  },
+                );
               },
-            ),
-            ReceptionistOrderTile(
-              tableNumber: 14,
-              orderNumber: 1341,
-              customerName: 'Shahil Jha',
-              customerContact: '98********',
-              onPressed: () {},
-            ),
-          ],
+            );
+          },
         ),
       ),
     );
