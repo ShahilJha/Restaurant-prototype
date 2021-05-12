@@ -13,7 +13,7 @@ class Order {
   String customerContact;
   String customerName;
   DateTime dateCreated;
-  int orderTakenByID;
+  String orderTakenByID;
   OrderStatus status;
   int readyItems;
   int notReadyItems;

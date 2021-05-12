@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:summer_project/models/order.dart';
 import 'package:summer_project/widgets/app_app_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:summer_project/widgets/app_button.dart';
@@ -13,8 +14,12 @@ import 'package:summer_project/widgets/table_no.dart';
 import 'local_widgets/payment_details.dart';
 
 class ReceptionistOrderDetailsScreen extends StatelessWidget {
+  final Order order;
+  const ReceptionistOrderDetailsScreen({Key key, this.order}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    print('order detail: ->${order.id}');
     return Scaffold(
       appBar: KAppBar(
         title: 'ORDER DETAILS',

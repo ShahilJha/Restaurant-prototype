@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:summer_project/models/order.dart';
 import 'screens/common/login/login_screen.dart';
 import 'screens/kitchen/order_details_screen/kitchen_order_details_screen.dart';
 import 'screens/kitchen/running_order_screen/kitchen_running_order_screen.dart';
@@ -29,14 +30,19 @@ class RouteGenerator {
 
       //RECEPTIONIST Routes
       case '/receptionist_order_detail':
-        return MaterialPageRoute(
-            builder: (_) => ReceptionistOrderDetailsScreen());
+        if (args is Order) {
+          return MaterialPageRoute(
+            builder: (_) => ReceptionistOrderDetailsScreen(
+              order: args,
+            ),
+          );
+        }
+        return _errorRoute();
 
       case '/receptionist_running_orders':
         return MaterialPageRoute(builder: (_) => ReceptionistOrderListScreen());
 
       //KITCHEN Routes
-
       case '/kitchen_running_orders':
         return MaterialPageRoute(builder: (_) => KitchenOrderListScreen());
 

@@ -21,6 +21,17 @@ class _LoginScreenState extends State<LoginScreen> {
   bool isPasswordVisible = true;
   JobPosition jobPosition;
 
+  showProcessDialog(BuildContext context) {
+    return showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -67,6 +78,8 @@ class _LoginScreenState extends State<LoginScreen> {
               AppButton(
                 text: 'Log-in',
                 onPressed: () async {
+                  //todo: make process disappear if not logging in
+                  showProcessDialog(context);
                   final user = await DatabaseService.instance
                       .getStaffDetailsByID('MpOYBOv7VxbmkaCAPRdlQtQhTz02');
 
