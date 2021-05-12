@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:summer_project/models/food_item.dart';
 import 'package:summer_project/models/order.dart';
 import 'package:summer_project/services/database_service.dart';
+import 'package:summer_project/services/user_auth.dart';
 import 'package:summer_project/utils/enum_util.dart';
 import 'package:summer_project/widgets/app_app_bar.dart';
 import 'package:summer_project/widgets/app_container.dart';

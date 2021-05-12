@@ -84,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       .getStaffDetailsByID('MpOYBOv7VxbmkaCAPRdlQtQhTz02');
 
                   if (_formKey.currentState.validate()) {
-                    final user = await FireBaseAuthService.instance.signInUser(
+                    final user = await UserAuthService.instance.signInUser(
                         email: emailController.text,
                         password: passwordController.text);
                     if (user != null) {

@@ -21,32 +21,8 @@ class ReceptionistOrderDetailsScreen extends StatelessWidget {
   final Order order;
   const ReceptionistOrderDetailsScreen({Key key, this.order}) : super(key: key);
 
-  List<TableRow> getOrderList(List<FoodItem> list) {
-    int index = 0;
-    List<TableRow> orderList = [];
-    for (var order in list) {
-      orderList.add(
-        TableRow(
-          decoration: BoxDecoration(
-            color: Colors.grey[100],
-          ),
-          children: [
-            AppDataCell(string: {++index}.toString()),
-            AppDataCell(string: order.name),
-            AppDataCell(string: order.price.toString()),
-            AppDataCell(string: order.quantity.toString()),
-            AppDataCell(string: order.total.toString()),
-          ],
-        ),
-      );
-    }
-    return orderList;
-  }
-
   @override
   Widget build(BuildContext context) {
-    print(order.additionalOrders.isEmpty);
-    // print(order.additionalOrders[0].name);
     return Scaffold(
       appBar: KAppBar(
         title: 'ORDER DETAILS',

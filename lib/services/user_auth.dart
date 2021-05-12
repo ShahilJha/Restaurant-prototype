@@ -2,13 +2,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:summer_project/enumerators.dart';
 import 'package:summer_project/services/database_service.dart';
 
-class FireBaseAuthService {
-  FireBaseAuthService._privateConstructor();
-  static final FireBaseAuthService instance =
-      FireBaseAuthService._privateConstructor();
+class UserAuthService {
+  UserAuthService._privateConstructor();
+  static final UserAuthService instance = UserAuthService._privateConstructor();
 
   static final _auth = FirebaseAuth.instance;
   dynamic _user;
+  dynamic get user => _user;
 
   //<<-----------TEST----------->>
   Future createUser() async {
@@ -40,6 +40,7 @@ class FireBaseAuthService {
           email: email.trim(), password: password);
       final appUser =
           await DatabaseService.instance.getStaffDetailsByID(user.user.uid);
+      _user = appUser;
       return appUser;
     } catch (e) {
       print('EXCEPTION: -signInUser--> $e');
