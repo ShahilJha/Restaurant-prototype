@@ -55,8 +55,8 @@ class Order {
         servedItems: map['servedItems'],
         orders:
             List<FoodItem>.from(map['orders'].map((x) => FoodItem.fromMap(x))),
-        additionalOrders:
-            List<FoodItem>.from(map['orders'].map((x) => FoodItem.fromMap(x))),
+        additionalOrders: List<FoodItem>.from(
+            map['additionalOrders'].map((x) => FoodItem.fromMap(x))),
         total: map['total'],
         discount: map['discount'],
         netTotal: map['netTotal'],

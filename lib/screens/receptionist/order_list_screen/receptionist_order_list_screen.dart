@@ -44,33 +44,12 @@ class ReceptionistOrderListScreen extends StatelessWidget {
                   onPressed: () {
                     print('PRESSED ON ORDER TILE');
                     print(orderFromMap(orderData).id);
+                    print(orderFromMap(orderData).additionalOrders);
 
                     //todo: make adjustments
                     Navigator.of(context).pushNamed(
                       '/receptionist_order_detail',
                       arguments: orderFromMap(orderData),
-
-                      // arguments: Order(
-                      //   id: orderData['id'],
-                      //   customerName: orderData['customerName'],
-                      //   customerContact: orderData['customerContact'],
-                      //   tableNumber: orderData['tableNumber'],
-                      //   dateCreated: orderData['dateCreated'].toDate(),
-                      //   total: orderData['total'],
-                      //   discount: orderData['discount'],
-                      //   netTotal: orderData['netTotal'],
-                      //   additionalOrders: List<FoodItem>.from(
-                      //       orderData['additionalOrders']
-                      //           .map((x) => FoodItem.fromMap(x))),
-                      //   orders: List<FoodItem>.from(orderData['orders']
-                      //       .map((x) => FoodItem.fromMap(x))),
-                      //   servedItems: orderData['servedItems'],
-                      //   notReadyItems: orderData['notReadyItems'],
-                      //   readyItems: orderData['readyItems'],
-                      //   status:
-                      //       EnumUtil.stringToOrderStatus(orderData['status']),
-                      //   orderTakenByID: orderData['orderTakenByID '],
-                      // ),
                     );
                   },
                 );

@@ -7,6 +7,7 @@ class FoodItem {
   final String name;
   final int price;
   int quantity;
+  int total;
   FoodItemStatus status;
 
   FoodItem({
@@ -14,6 +15,7 @@ class FoodItem {
     this.name,
     this.price,
     this.quantity = 0,
+    this.total,
     this.status = FoodItemStatus.NotReady,
   });
 
@@ -22,6 +24,7 @@ class FoodItem {
         name: map['name'],
         price: map['price'],
         quantity: map['quantity'],
+        total: map['total'],
         status: EnumUtil.stringToFoodItemStatus(map['status']),
       );
 
@@ -30,6 +33,7 @@ class FoodItem {
         'name': name,
         'price': price,
         'quantity': quantity,
+        'total': total,
         'status': EnumUtil.foodItemStatusToString(status),
       };
 }
