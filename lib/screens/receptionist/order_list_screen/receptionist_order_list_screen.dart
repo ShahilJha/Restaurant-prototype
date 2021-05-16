@@ -1,10 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:summer_project/models/food_item.dart';
 import 'package:summer_project/models/order.dart';
 import 'package:summer_project/services/database_service.dart';
-import 'package:summer_project/services/user_auth.dart';
-import 'package:summer_project/utils/enum_util.dart';
 import 'package:summer_project/widgets/app_app_bar.dart';
 import 'package:summer_project/widgets/app_container.dart';
 
@@ -36,21 +33,14 @@ class ReceptionistOrderListScreen extends StatelessWidget {
               itemCount: orderList.length,
               itemBuilder: (context, index) {
                 final orderData = orderList[index].data();
-                final orderID = orderList[index].id;
+                final order = orderFromMap(orderData);
                 return ReceptionistOrderTile(
-                  tableNumber: orderData['tableNumber'],
-                  orderID: orderID,
-                  customerName: orderData['customerName'],
-                  customerContact: orderData['customerContact'],
+                  order: order,
                   onPressed: () {
-                    print('PRESSED ON ORDER TILE');
-                    print(orderFromMap(orderData).id);
-                    print(orderFromMap(orderData).additionalOrders);
-
                     //todo: make adjustments
                     Navigator.of(context).pushNamed(
                       '/receptionist_order_detail',
-                      arguments: orderFromMap(orderData),
+                      arguments: order,
                     );
                   },
                 );
