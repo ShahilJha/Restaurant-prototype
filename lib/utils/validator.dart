@@ -4,7 +4,7 @@ class Validator {
         r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$");
     if (value.isEmpty) {
       return 'E-mail is empty!';
-    } else if (!exp.hasMatch(value)) {
+    } else if (!exp.hasMatch(value.trim())) {
       return 'Invalid e-mail format.';
     }
     return null;

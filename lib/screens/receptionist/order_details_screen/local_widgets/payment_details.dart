@@ -12,13 +12,14 @@ final kValueStyle = TextStyle(
 );
 
 class PaymentDetails extends StatelessWidget {
-  final int total, discount, netTotal;
+  final int total, netTotal;
+  final Function onDiscountChange;
 
   const PaymentDetails({
     Key key,
     this.total,
-    this.discount,
     this.netTotal,
+    this.onDiscountChange,
   }) : super(key: key);
 
   @override
@@ -46,28 +47,31 @@ class PaymentDetails extends StatelessWidget {
               ),
               TableRow(
                 children: [
-                  Text(
-                    "DISCOUNT",
-                    style: kAttributeStyle,
+                  Container(
+                    height: 150.h,
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "DISCOUNT",
+                      style: kAttributeStyle,
+                      // textAlign: TextAlignVertical.center,
+                    ),
                   ),
-                  Text(
-                    discount.toString(),
-                    textAlign: TextAlign.end,
-                    style: kValueStyle,
+                  Container(
+                    // width: 50.w,
+                    padding: EdgeInsets.only(left: 250.w),
+                    child: TextField(
+                      style: kValueStyle,
+                      keyboardType: TextInputType.number,
+                      textAlign: TextAlign.right,
+                      decoration: InputDecoration(
+                        hintText: 'Discount',
+                        hintStyle: TextStyle(fontSize: 35.w),
+                        border: OutlineInputBorder(),
+                      ),
+                      onChanged: (value) =>
+                          onDiscountChange(int.tryParse(value) ?? 0),
+                    ),
                   ),
-                  // Container(
-                  //   width: 10.w,
-                  //   padding: EdgeInsets.only(left: 250.w),
-                  //   child: TextField(
-                  //     keyboardType: TextInputType.number,
-                  //     textAlign: TextAlign.center,
-                  //     decoration: InputDecoration(
-                  //       hintText: 'Discount',
-                  //       hintStyle: TextStyle(fontSize: 35.w),
-                  //       border: OutlineInputBorder(),
-                  //     ),
-                  //   ),
-                  // ),
                 ],
               ),
             ],

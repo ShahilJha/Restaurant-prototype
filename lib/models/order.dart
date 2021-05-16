@@ -37,7 +37,7 @@ class Order {
     this.servedItems,
     this.orders,
     this.additionalOrders,
-    this.total,
+    this.total = 0,
     this.discount,
     this.netTotal,
   });
@@ -80,4 +80,35 @@ class Order {
         'discount': discount,
         'netTotal': netTotal,
       };
+
+  void getOrdersWithTotalForItems(Order order) {
+    if (order.orders.isNotEmpty) {
+      for (int i = 0; i < order.orders.length; i++) {
+        order.orders[i].total =
+            order.orders[i].price * order.orders[i].quantity;
+      }
+    }
+    if (order.additionalOrders.isNotEmpty) {
+      for (int i = 0; i < order.additionalOrders.length; i++) {
+        order.additionalOrders[i].total = order.additionalOrders[i].price *
+            order.additionalOrders[i].quantity;
+      }
+    }
+  }
+
+  void getOrderTotalAmount(Order order) {
+    int total = 0;
+    if (order.orders.isNotEmpty) {
+      for (var item in order.orders) {
+        total = total + item.total;
+      }
+    }
+    if (order.additionalOrders.isNotEmpty) {
+      for (var item in order.additionalOrders) {
+        total = total + item.total;
+      }
+    }
+    order.total = total;
+    print('TOTAL: ${order.total}');
+  }
 }
