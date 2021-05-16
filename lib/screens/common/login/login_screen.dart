@@ -80,18 +80,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 onPressed: () async {
                   //todo: make process disappear if not logging in
                   showProcessDialog(context);
-                  final user = await DatabaseService.instance
-                      .getStaffDetailsByID('MpOYBOv7VxbmkaCAPRdlQtQhTz02');
-
                   if (_formKey.currentState.validate()) {
                     final user = await UserAuthService.instance.signInUser(
                         email: emailController.text,
                         password: passwordController.text);
-                    if (user != null) {
+                    print('RESULT: ${jobPosition == user.jobPosition}');
+                    if (user != null && jobPosition == user.jobPosition) {
                       Navigator.pop(context);
                       Navigator.of(context)
-                          .pushNamed(_getLoginRoute(jobPosition));
+                          .pushNamed(_getLoginRoute(user.jobPosition));
                     }
+                    //todo: write else state with error pop-up message
                   }
                 },
               ),
