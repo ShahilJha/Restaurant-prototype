@@ -6,10 +6,7 @@ import 'package:flutter_screenutil/screenutil_init.dart';
 import 'package:summer_project/route_generator.dart';
 import 'package:summer_project/theme_generator.dart';
 
-void main() async {
-  //Initialization of the FlutterFire
-  // WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
+void main() {
   runApp(MyApp());
 }
 
@@ -23,6 +20,7 @@ void main() async {
 //   );
 // }
 
+//TODO: use Future builder with splash screen and initilize Firebase.initializeApp() from login to here
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

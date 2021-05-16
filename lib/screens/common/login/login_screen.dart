@@ -86,7 +86,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         password: passwordController.text);
                     print('RESULT: ${jobPosition == user.jobPosition}');
                     if (user != null && jobPosition == user.jobPosition) {
-                      Navigator.pop(context);
+                      Navigator.pop(context); //pops circular indicator
+                      // Navigator.pop(context); //pops login screen
                       Navigator.of(context)
                           .pushNamed(_getLoginRoute(user.jobPosition));
                     }
