@@ -3,10 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:summer_project/enumerators.dart';
-import 'package:summer_project/services/database_service.dart';
 import 'package:summer_project/services/user_auth.dart';
 import 'package:summer_project/utils/utility.dart';
-import 'package:summer_project/utils/validator.dart';
+import 'package:summer_project/utils/validation_case.dart';
 import 'package:summer_project/widgets/app_button.dart';
 import 'local_widgets/occupation_chips.dart';
 
@@ -79,9 +78,6 @@ class _LoginScreenState extends State<LoginScreen> {
               AppButton(
                 text: 'Log-in',
                 onPressed: () async {
-                  // Utility.showSnackBar(context, message: 'THIS IS A TEST!');
-
-                  //todo: make process disappear if not logging in
                   if (_formKey.currentState.validate()) {
                     Utility.showProcessingPopUp(context);
                     final user = await UserAuthService.instance.signInUser(
@@ -104,7 +100,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             .pushNamed(_getLoginRoute(user.jobPosition));
                       }
                     } else {
-                      //todo: show login error message
                       Navigator.pop(context);
                       Utility.showSnackBar(context,
                           message:
@@ -140,7 +135,7 @@ class _LoginScreenState extends State<LoginScreen> {
           controller: emailController,
           keyboardType: TextInputType.emailAddress,
           textInputAction: TextInputAction.done,
-          validator: Validator.validateEmail,
+          validator: ValidationCase.validateEmail,
           textAlign: TextAlign.center,
           decoration: InputDecoration(
             hintText: 'Email',
@@ -168,7 +163,7 @@ class _LoginScreenState extends State<LoginScreen> {
           controller: passwordController,
           keyboardType: TextInputType.emailAddress,
           textInputAction: TextInputAction.done,
-          validator: Validator.validatePassword,
+          validator: ValidationCase.validatePassword,
           textAlign: TextAlign.center,
           obscureText: isPasswordVisible,
           decoration: InputDecoration(
