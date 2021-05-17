@@ -21,17 +21,6 @@ class _LoginScreenState extends State<LoginScreen> {
   bool isPasswordVisible = true;
   JobPosition jobPosition;
 
-  showProcessDialog(BuildContext context) {
-    return showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (BuildContext context) {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        });
-  }
-
   @override
   void initState() {
     super.initState();
@@ -86,28 +75,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       jobPosition: jobPosition,
                       context: context,
                     );
-
-                    // if (user != null) {
-                    //   if (jobPosition == null) {
-                    //     Navigator.pop(context);
-                    //     Utility.showSnackBar(context,
-                    //         message: 'Please, choose a job position.');
-                    //   } else if (jobPosition != user.jobPosition) {
-                    //     Navigator.pop(context);
-                    //     Utility.showSnackBar(context,
-                    //         message: 'Incorrect Job Position Input.');
-                    //   } else if (jobPosition == user.jobPosition) {
-                    //     Navigator.pop(context); //pops circular indicator
-                    //     // Navigator.pop(context); //pops login screen
-                    //     Navigator.of(context)
-                    //         .pushNamed(_getLoginRoute(user.jobPosition));
-                    //   }
-                    // } else {
-                    //   Navigator.pop(context);
-                    //   Utility.showSnackBar(context,
-                    //       message:
-                    //           'Error in Logging-in.\nPlease Check Input Details.');
-                    // }
                   }
                 },
               ),
@@ -116,18 +83,6 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
-  }
-
-  String _getLoginRoute(JobPosition position) {
-    if (jobPosition == JobPosition.Waiter) {
-      return '/waiter_running_order_screen';
-    } else if (jobPosition == JobPosition.KitchenStaff) {
-      return '/kitchen_running_orders';
-    } else if (jobPosition == JobPosition.Receptionist) {
-      return '/receptionist_running_orders';
-    } else {
-      return '/';
-    }
   }
 
   Widget _buildEmail() => Container(
