@@ -80,31 +80,34 @@ class _LoginScreenState extends State<LoginScreen> {
                 onPressed: () async {
                   if (_formKey.currentState.validate()) {
                     Utility.showProcessingPopUp(context);
-                    final user = await UserAuthService.instance.signInUser(
-                        email: emailController.text,
-                        password: passwordController.text);
+                    await UserAuthService.instance.signInUser(
+                      email: emailController.text,
+                      password: passwordController.text,
+                      jobPosition: jobPosition,
+                      context: context,
+                    );
 
-                    if (user != null) {
-                      if (jobPosition == null) {
-                        Navigator.pop(context);
-                        Utility.showSnackBar(context,
-                            message: 'Please, choose a job position.');
-                      } else if (jobPosition != user.jobPosition) {
-                        Navigator.pop(context);
-                        Utility.showSnackBar(context,
-                            message: 'Incorrect Job Position Input.');
-                      } else if (jobPosition == user.jobPosition) {
-                        Navigator.pop(context); //pops circular indicator
-                        // Navigator.pop(context); //pops login screen
-                        Navigator.of(context)
-                            .pushNamed(_getLoginRoute(user.jobPosition));
-                      }
-                    } else {
-                      Navigator.pop(context);
-                      Utility.showSnackBar(context,
-                          message:
-                              'Error in Logging-in.\nPlease Check Input Details.');
-                    }
+                    // if (user != null) {
+                    //   if (jobPosition == null) {
+                    //     Navigator.pop(context);
+                    //     Utility.showSnackBar(context,
+                    //         message: 'Please, choose a job position.');
+                    //   } else if (jobPosition != user.jobPosition) {
+                    //     Navigator.pop(context);
+                    //     Utility.showSnackBar(context,
+                    //         message: 'Incorrect Job Position Input.');
+                    //   } else if (jobPosition == user.jobPosition) {
+                    //     Navigator.pop(context); //pops circular indicator
+                    //     // Navigator.pop(context); //pops login screen
+                    //     Navigator.of(context)
+                    //         .pushNamed(_getLoginRoute(user.jobPosition));
+                    //   }
+                    // } else {
+                    //   Navigator.pop(context);
+                    //   Utility.showSnackBar(context,
+                    //       message:
+                    //           'Error in Logging-in.\nPlease Check Input Details.');
+                    // }
                   }
                 },
               ),

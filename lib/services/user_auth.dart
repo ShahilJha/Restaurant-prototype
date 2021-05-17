@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:summer_project/enumerators.dart';
 import 'package:summer_project/services/database_service.dart';
+import 'package:summer_project/utils/utility.dart';
 
 class UserAuthService {
   UserAuthService._privateConstructor();
@@ -34,16 +36,58 @@ class UserAuthService {
     }
   }
 
-  Future<dynamic> signInUser({String email, String password}) async {
+  Future<dynamic> signInUser(
+      {String email,
+      String password,
+      JobPosition jobPosition,
+      BuildContext context}) async {
     try {
-      UserCredential user = await _auth.signInWithEmailAndPassword(
-          email: email.trim(), password: password);
+      UserCredential user = await _auth
+          .signInWithEmailAndPassword(email: email.trim(), password: password)
+          .catchError((err) {
+        Navigator.pop(context);
+        Utility.showSnackBar(context, message: err.message.toString());
+      });
       final appUser =
           await DatabaseService.instance.getStaffDetailsByID(user.user.uid);
       _user = appUser;
+
+      print('LOG CHECK: $_user');
+      if (_user != null) {
+        if (jobPosition == null) {
+          Navigator.pop(context);
+          Utility.showSnackBar(context,
+              message: 'Please, choose a job position.');
+        } else if (jobPosition != _user.jobPosition) {
+          Navigator.pop(context);
+          Utility.showSnackBar(context,
+              message: 'Incorrect Job Position Input.');
+        } else if (jobPosition == _user.jobPosition) {
+          Navigator.pop(context); //pops circular indicator
+          // Navigator.pop(context); //pops login screen
+          Navigator.of(context).pushNamed(_getLoginRoute(_user.jobPosition));
+        }
+      } else {
+        Navigator.pop(context);
+        Utility.showSnackBar(context,
+            message: 'Error in Logging-in.\nPlease Check Input Details.');
+      }
+
       return appUser;
     } catch (e) {
       print('EXCEPTION: -signInUser--> $e');
+    }
+  }
+
+  String _getLoginRoute(JobPosition jobPosition) {
+    if (jobPosition == JobPosition.Waiter) {
+      return '/waiter_running_order_screen';
+    } else if (jobPosition == JobPosition.KitchenStaff) {
+      return '/kitchen_running_orders';
+    } else if (jobPosition == JobPosition.Receptionist) {
+      return '/receptionist_running_orders';
+    } else {
+      return '/';
     }
   }
 }

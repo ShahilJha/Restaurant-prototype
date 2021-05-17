@@ -21,21 +21,24 @@ class Utility {
           alignment: Alignment.bottomCenter,
           child: Container(
             margin: EdgeInsets.only(bottom: 50.h),
-            height: 0.06.sh,
-            width: 0.7.sw,
+            height: 0.07.sh,
+            width: 0.8.sw,
             alignment: Alignment.center,
             decoration: BoxDecoration(
               color: Theme.of(context).primaryColor,
               borderRadius: BorderRadius.all(Radius.circular(20)),
               border: Border.all(color: Theme.of(context).primaryColor),
             ),
-            child: Text(
-              message,
-              textAlign: TextAlign.center,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText1
-                  .copyWith(color: Colors.white),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 10.h),
+              child: Text(
+                message,
+                textAlign: TextAlign.center,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyText1
+                    .copyWith(color: Colors.white),
+              ),
             ),
           ),
         );
