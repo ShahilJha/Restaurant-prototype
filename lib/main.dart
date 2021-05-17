@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       builder: () => MaterialApp(
         title: 'Summer Project',
         debugShowCheckedModeBanner: false,
-        theme: ThemeGenerator().generateThemeData(),
+        theme: ThemeGenerator.generateThemeData(),
         initialRoute: '/',
         onGenerateRoute: RouteGenerator.generateRoute,
       ),

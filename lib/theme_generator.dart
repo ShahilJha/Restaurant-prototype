@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ThemeGenerator {
-  ThemeData generateThemeData() {
+  static ThemeData generateThemeData() {
     return ThemeData(
       primaryColor: Color(0xFFD9443A),
       accentColor: Colors.blueGrey,
@@ -13,7 +13,7 @@ class ThemeGenerator {
     );
   }
 
-  DividerThemeData _getDividerThemeData() {
+  static DividerThemeData _getDividerThemeData() {
     return DividerThemeData().copyWith(
       space: 50.w,
       thickness: 1.5,
@@ -23,7 +23,7 @@ class ThemeGenerator {
     );
   }
 
-  ButtonThemeData _getButtonThemeData() {
+  static ButtonThemeData _getButtonThemeData() {
     return ButtonThemeData().copyWith(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
       textTheme: ButtonTextTheme.primary,
