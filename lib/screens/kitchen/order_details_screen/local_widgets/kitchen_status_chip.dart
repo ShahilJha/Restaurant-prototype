@@ -13,18 +13,34 @@ class KitchenStatusChip extends StatelessWidget {
     @required this.onPressed,
   }) : super(key: key);
 
+  Color getChipColor() {
+    switch (status) {
+      case FoodItemStatus.Ready:
+        return Colors.green;
+
+      case FoodItemStatus.NotReady:
+        return Colors.red;
+
+      case FoodItemStatus.NotAvailable:
+        return Colors.grey;
+
+      default:
+        return Colors.white70;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return ActionChip(
       label: Container(
-        width: 210.w,
+        width: 250.w,
         child: Text(
           EnumUtil.foodItemStatusToString(status),
           textAlign: TextAlign.center,
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
         ),
       ),
-      backgroundColor: Colors.green,
+      backgroundColor: getChipColor(),
       labelPadding: EdgeInsets.symmetric(horizontal: 60.w),
       onPressed: onPressed,
     );

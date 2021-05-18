@@ -138,6 +138,7 @@ class DatabaseService {
   }
 
   Future<void> updateOrder(Order order) async {
+    //TODO: change order status according to data
     _firestore.collection('orders').where('id', isEqualTo: order.id).get().then(
         (value) => _firestore
             .collection('orders')
