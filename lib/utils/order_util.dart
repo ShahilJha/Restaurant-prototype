@@ -62,7 +62,7 @@ class OrderUtil {
   }
 
   static List<TableRow> getKitchenTableRows(
-      {BuildContext context, List<FoodItem> list, Function function}) {
+      {BuildContext context, List<FoodItem> list, Function onPressed}) {
     int index = 1;
     List<TableRow> orderList = [];
     for (var order in list) {
@@ -77,7 +77,7 @@ class OrderUtil {
             AppDataCell(string: order.quantity.toString()),
             KitchenStatusChip(
               status: order.status,
-              onPressed: function,
+              onPressed: onPressed(),
             ),
           ],
         ),
