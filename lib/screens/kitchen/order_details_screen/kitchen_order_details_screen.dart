@@ -10,35 +10,44 @@ import 'package:summer_project/widgets/order_no.dart';
 import 'package:summer_project/widgets/sub_titles.dart';
 import 'package:summer_project/widgets/table_no.dart';
 
+import '../../../enumerators.dart';
 import 'local_widgets/kitchen_status_chip.dart';
 
 class KitchenOrderDetailsScreen extends StatelessWidget {
   final Order order;
   const KitchenOrderDetailsScreen({Key key, this.order}) : super(key: key);
 
-  // dynamic _buildPopupDialog(BuildContext context) {
-  //   print('METHOD CALLED');
-  //   return showDialog(
-  //     context: context,
-  //     builder: (context) => AlertDialog(
-  //       shape:
-  //           RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.w)),
-  //       title: const Text(
-  //         'Select Status',
-  //         textAlign: TextAlign.center,
-  //       ),
-  //       content: Column(
-  //         mainAxisSize: MainAxisSize.min,
-  //         crossAxisAlignment: CrossAxisAlignment.center,
-  //         children: <Widget>[
-  //           KitchenStatusChip(status: 'READY', onPressed: () {}),
-  //           KitchenStatusChip(status: 'NOT READY', onPressed: () {}),
-  //           KitchenStatusChip(status: 'SERVED', onPressed: () {}),
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
+  static dynamic _buildPopupDialog(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.w)),
+        title: const Text(
+          'Select Status',
+          textAlign: TextAlign.center,
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            KitchenStatusChip(
+              status: FoodItemStatus.Ready,
+              onPressed: () => FoodItemStatus.Ready,
+            ),
+            KitchenStatusChip(
+              status: FoodItemStatus.NotReady,
+              onPressed: () => FoodItemStatus.NotReady,
+            ),
+            KitchenStatusChip(
+              status: FoodItemStatus.NotAvailable,
+              onPressed: () => FoodItemStatus.NotAvailable,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {

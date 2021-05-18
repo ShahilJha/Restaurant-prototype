@@ -24,10 +24,7 @@ class ReceptionistOrderTable extends StatelessWidget {
         AppHeaderCell(string: 'QTY'),
         AppHeaderCell(string: 'TOTAL'),
       ],
-      dataChildren: OrderUtil.getTableRows(
-        context: context,
-        list: list,
-      ),
+      dataChildren: OrderUtil.getReceptionistTableRows(list),
     );
   }
 }
