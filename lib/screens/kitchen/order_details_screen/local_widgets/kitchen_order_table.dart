@@ -111,6 +111,7 @@ class _KitchenOrderTableState extends State<KitchenOrderTable> {
           print('$status with i=$index');
           setState(() {
             widget.list[index].status = status;
+            widget.onStatusChange(widget.list);
           });
         },
       ),

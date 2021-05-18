@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:summer_project/models/order.dart';
-import 'package:summer_project/screens/kitchen/order_details_screen/local_widgets/kitchen_order_table.dart';
+import 'package:summer_project/services/database_service.dart';
 import 'package:summer_project/widgets/app_app_bar.dart';
 import 'package:summer_project/widgets/app_button.dart';
 import 'package:summer_project/widgets/app_container.dart';
 import 'package:summer_project/widgets/order_no.dart';
 import 'package:summer_project/widgets/sub_titles.dart';
 import 'package:summer_project/widgets/table_no.dart';
+
+import 'local_widgets/kitchen_order_table.dart';
 
 class KitchenOrderDetailsScreen extends StatelessWidget {
   final Order order;
@@ -34,7 +36,9 @@ class KitchenOrderDetailsScreen extends StatelessWidget {
             Subtitles(string: 'ORDERS'),
             KitchenOrderTable(
               list: order.orders,
-              onStatusChange: (status) {},
+              onStatusChange: (changedList) {
+                order.orders = changedList;
+              },
             ),
             Divider(),
             Visibility(
@@ -42,16 +46,21 @@ class KitchenOrderDetailsScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Subtitles(string: 'ADDITIONAL ORDERS'),
-                  //TODO: UNCOMMENT
-                  // KitchenOrderTable(list: order.additionalOrders),
+                  KitchenOrderTable(
+                    list: order.additionalOrders,
+                    onStatusChange: (changedList) {
+                      order.additionalOrders = changedList;
+                    },
+                  ),
                   Divider(),
                 ],
               ),
             ),
             AppButton(
-              text: 'GO BACK',
+              text: 'NOTIFY',
               onPressed: () {
                 Navigator.pop(context);
+                DatabaseService.instance.updateOrder(order);
               },
             ),
           ],
