@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:summer_project/models/order.dart';
 import 'package:summer_project/screens/kitchen/running_order_screen/local_widgets/kitchen_order_tile.dart';
 import 'package:summer_project/services/database_service.dart';
-import 'package:summer_project/utils/utility.dart';
 import 'package:summer_project/widgets/app_app_bar.dart';
 import 'package:summer_project/widgets/app_container.dart';
 

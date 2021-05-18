@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:summer_project/enumerators.dart';
 import 'package:summer_project/models/order.dart';
 import 'package:summer_project/utils/enum_util.dart';
 import 'package:summer_project/widgets/app_tile_container.dart';
@@ -16,6 +17,25 @@ class KitchenOrderTile extends StatelessWidget {
     @required this.order,
     @required this.onPressed,
   }) : super(key: key);
+
+  Color getStatusColor() {
+    switch (order.status) {
+      case OrderStatus.NewOrder:
+        return Colors.red;
+
+      case OrderStatus.AdditionalOrder:
+        return Colors.red;
+
+      case OrderStatus.PartiallyFinishedOrder:
+        return Colors.green;
+
+      case OrderStatus.FinishedOrder:
+        return Colors.grey;
+
+      default:
+        return Colors.white;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +60,7 @@ class KitchenOrderTile extends StatelessWidget {
             string: EnumUtil.orderStatusToString(order.status),
           ),
           Divider(),
-          //TODO: change color according to status
-          ColorCodeTile(color: Colors.grey),
+          ColorCodeTile(color: getStatusColor() ?? Colors.grey),
         ],
       ),
     );
