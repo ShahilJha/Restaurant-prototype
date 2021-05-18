@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:summer_project/models/order.dart';
 import 'package:summer_project/widgets/app_app_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:summer_project/widgets/app_button.dart';
@@ -11,21 +12,29 @@ import 'package:summer_project/widgets/table_no.dart';
 import 'local_widgets/kitchen_status_chip.dart';
 
 class KitchenOrderDetailsScreen extends StatelessWidget {
-  Widget _buildPopupDialog(BuildContext context) {
-    return new AlertDialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.w)),
-      title: const Text(
-        'Select Status',
-        textAlign: TextAlign.center,
-      ),
-      content: new Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          KitchenStatusChip(status: 'READY', onPressed: () {}),
-          KitchenStatusChip(status: 'NOT READY', onPressed: () {}),
-          KitchenStatusChip(status: 'SERVED', onPressed: () {}),
-        ],
+  final Order order;
+  const KitchenOrderDetailsScreen({Key key, this.order}) : super(key: key);
+
+  dynamic _buildPopupDialog(BuildContext context) {
+    print('METHOD CALLED');
+    return showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.w)),
+        title: const Text(
+          'Select Status',
+          textAlign: TextAlign.center,
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            KitchenStatusChip(status: 'READY', onPressed: () {}),
+            KitchenStatusChip(status: 'NOT READY', onPressed: () {}),
+            KitchenStatusChip(status: 'SERVED', onPressed: () {}),
+          ],
+        ),
       ),
     );
   }
@@ -74,36 +83,8 @@ class KitchenOrderDetailsScreen extends StatelessWidget {
                     AppDataCell(string: '2'),
                     KitchenStatusChip(
                       status: 'READY',
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) =>
-                              _buildPopupDialog(context),
-                        );
-                      },
+                      onPressed: () => _buildPopupDialog(context),
                     ),
-                  ],
-                ),
-                TableRow(
-                  decoration: BoxDecoration(
-                    color: Colors.grey[100],
-                  ),
-                  children: [
-                    AppDataCell(string: '1'),
-                    AppDataCell(string: 'Food 1'),
-                    AppDataCell(string: '2'),
-                    KitchenStatusChip(status: 'NOT READY', onPressed: () {}),
-                  ],
-                ),
-                TableRow(
-                  decoration: BoxDecoration(
-                    color: Colors.grey[100],
-                  ),
-                  children: [
-                    AppDataCell(string: '1'),
-                    AppDataCell(string: 'Food 1'),
-                    AppDataCell(string: '2'),
-                    KitchenStatusChip(status: 'SERVED', onPressed: () {}),
                   ],
                 ),
               ],

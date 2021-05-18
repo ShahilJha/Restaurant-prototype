@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:summer_project/models/order.dart';
+import 'package:summer_project/utils/enum_util.dart';
 import 'package:summer_project/widgets/app_tile_container.dart';
 import 'package:summer_project/widgets/attribute_display.dart';
 import 'package:summer_project/widgets/color_code_tile.dart';
@@ -7,17 +9,11 @@ import 'package:summer_project/widgets/order_no.dart';
 import 'package:summer_project/widgets/table_no.dart';
 
 class KitchenOrderTile extends StatelessWidget {
-  final int tableNumber;
-  final String orderID;
-  final Color colorCode;
-  final String status;
+  final Order order;
   final Function onPressed;
   const KitchenOrderTile({
     Key key,
-    @required this.tableNumber,
-    @required this.orderID,
-    @required this.colorCode,
-    @required this.status,
+    @required this.order,
     @required this.onPressed,
   }) : super(key: key);
 
@@ -32,16 +28,20 @@ class KitchenOrderTile extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TableNumber(
-                tableNumber: tableNumber,
+                tableNumber: order.tableNumber,
               ),
             ],
           ),
           OrderID(
-            orderID: orderID,
+            orderID: order.id,
           ),
-          AttributeDisplay(attribute: 'Status', string: status),
+          AttributeDisplay(
+            attribute: 'Status',
+            string: EnumUtil.orderStatusToString(order.status),
+          ),
           Divider(),
-          ColorCodeTile(color: colorCode),
+          //TODO: change color according to status
+          ColorCodeTile(color: Colors.grey),
         ],
       ),
     );

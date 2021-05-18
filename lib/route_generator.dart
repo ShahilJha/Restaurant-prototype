@@ -32,9 +32,7 @@ class RouteGenerator {
       case '/receptionist_order_detail':
         if (args is Order) {
           return MaterialPageRoute(
-            builder: (_) => ReceptionistOrderDetailsScreen(
-              order: args,
-            ),
+            builder: (_) => ReceptionistOrderDetailsScreen(order: args),
           );
         }
         return _errorRoute();
@@ -47,7 +45,10 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => KitchenOrderListScreen());
 
       case '/kitchen_order_details':
-        return MaterialPageRoute(builder: (_) => KitchenOrderDetailsScreen());
+        if (args is Order) {
+          return MaterialPageRoute(builder: (_) => KitchenOrderDetailsScreen());
+        }
+        return _errorRoute();
 
       //WAITER Routes
       case '/waiter_running_order_screen':

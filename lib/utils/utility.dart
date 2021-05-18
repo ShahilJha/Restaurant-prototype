@@ -59,21 +59,22 @@ class Utility {
 
   static Future<dynamic> showProcessingPopUp(BuildContext context) async {
     return showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (BuildContext context) {
-          return Center(
-            child: Container(
-              padding: EdgeInsets.all(25),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(20)),
-              ),
-              width: 300.w,
-              height: 300.w,
-              child: CircularProgressIndicator(),
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return Center(
+          child: Container(
+            padding: EdgeInsets.all(25),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(20)),
             ),
-          );
-        });
+            width: 300.w,
+            height: 300.w,
+            child: CircularProgressIndicator(),
+          ),
+        );
+      },
+    );
   }
 }
