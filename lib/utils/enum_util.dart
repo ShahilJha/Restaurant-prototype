@@ -1,5 +1,6 @@
 import 'package:summer_project/enumerators.dart';
 
+//TODO: make the string have space
 class EnumUtil {
   static String jobPositionToString(JobPosition value) {
     String string;

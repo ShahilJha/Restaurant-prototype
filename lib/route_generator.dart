@@ -46,7 +46,8 @@ class RouteGenerator {
 
       case '/kitchen_order_details':
         if (args is Order) {
-          return MaterialPageRoute(builder: (_) => KitchenOrderDetailsScreen());
+          return MaterialPageRoute(
+              builder: (_) => KitchenOrderDetailsScreen(order: args));
         }
         return _errorRoute();
 

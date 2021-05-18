@@ -68,6 +68,7 @@ class _ReceptionistOrderDetailsScreenState
                 children: [
                   Subtitles(string: 'Additional Orders'),
                   ReceptionistOrderTable(list: widget.order.additionalOrders),
+                  Divider(),
                 ],
               ),
             ),

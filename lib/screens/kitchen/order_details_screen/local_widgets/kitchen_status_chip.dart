@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:summer_project/enumerators.dart';
+import 'package:summer_project/utils/enum_util.dart';
 
 class KitchenStatusChip extends StatelessWidget {
-  final String status;
+  final FoodItemStatus status;
   final Function onPressed;
 
   const KitchenStatusChip({
@@ -17,7 +19,7 @@ class KitchenStatusChip extends StatelessWidget {
       label: Container(
         width: 210.w,
         child: Text(
-          status,
+          EnumUtil.foodItemStatusToString(status),
           textAlign: TextAlign.center,
           style: TextStyle(fontWeight: FontWeight.bold),
         ),

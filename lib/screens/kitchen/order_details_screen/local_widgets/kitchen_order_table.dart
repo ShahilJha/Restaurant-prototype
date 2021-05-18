@@ -22,7 +22,10 @@ class KitchenOrderTable extends StatelessWidget {
         AppHeaderCell(string: 'QTY'),
         AppHeaderCell(string: 'STATUS'),
       ],
-      dataChildren: OrderUtil.getTableRows(list),
+      dataChildren: OrderUtil.getTableRows(
+        context: context,
+        list: list,
+      ),
     );
   }
 }

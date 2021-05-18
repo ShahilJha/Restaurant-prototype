@@ -5,7 +5,6 @@ import 'package:summer_project/widgets/app_table_components.dart';
 
 class ReceptionistOrderTable extends StatelessWidget {
   final List<FoodItem> list;
-
   const ReceptionistOrderTable({Key key, this.list}) : super(key: key);
 
   @override
@@ -25,7 +24,10 @@ class ReceptionistOrderTable extends StatelessWidget {
         AppHeaderCell(string: 'QTY'),
         AppHeaderCell(string: 'TOTAL'),
       ],
-      dataChildren: OrderUtil.getTableRows(list),
+      dataChildren: OrderUtil.getTableRows(
+        context: context,
+        list: list,
+      ),
     );
   }
 }
