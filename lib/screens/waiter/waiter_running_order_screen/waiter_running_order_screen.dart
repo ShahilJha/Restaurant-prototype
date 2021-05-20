@@ -44,8 +44,10 @@ class WaiterRunningOrderScreen extends StatelessWidget {
                 return WaiterOrderTile(
                   order: order,
                   onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed('/waiter_order_details_screen');
+                    Navigator.of(context).pushNamed(
+                      '/waiter_order_details_screen',
+                      arguments: order,
+                    );
                   },
                 );
               },

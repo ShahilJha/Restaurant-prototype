@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:summer_project/models/order.dart';
 import 'package:summer_project/widgets/app_app_bar.dart';
 import 'package:summer_project/widgets/app_button.dart';
 import 'package:summer_project/widgets/app_container.dart';
@@ -13,6 +14,9 @@ import 'package:summer_project/widgets/table_no.dart';
 import 'local_widgets/waiter_status_chip.dart';
 
 class WaiterOrderDetailsScreen extends StatelessWidget {
+  final Order order;
+  const WaiterOrderDetailsScreen({Key key, this.order}) : super(key: key);
+
   Widget _showItemInformation(BuildContext context) {
     return AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.w)),
@@ -58,8 +62,8 @@ class WaiterOrderDetailsScreen extends StatelessWidget {
             Align(
               child: Column(
                 children: [
-                  TableNumber(tableNumber: 12),
-                  OrderID(orderID: '23'),
+                  TableNumber(tableNumber: order.tableNumber),
+                  OrderID(orderID: order.id),
                 ],
               ),
               alignment: Alignment.center,
