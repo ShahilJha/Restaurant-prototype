@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:summer_project/enumerators.dart';
 import 'package:summer_project/services/database_service.dart';
+import 'package:summer_project/utils/enum_util.dart';
 import 'package:summer_project/utils/utility.dart';
 
 class UserAuthService {
@@ -17,7 +18,7 @@ class UserAuthService {
     try {
       print('LOG#1: -newUser--> START TO CREATE USER');
       final newUser = await _auth.createUserWithEmailAndPassword(
-          email: 'shahil.jha@gmail.com', password: 'shahil');
+          email: 'reception@gmail.com', password: 'shahil');
       print('LOG#2: -newUser--> authenticated  for email and password');
       print('LOG#3: -newUser--> $newUser');
       // DatabaseService.instance.
@@ -28,7 +29,7 @@ class UserAuthService {
         address: 'Kalanki',
         gender: 'Male',
         contactNumber: '9849000000',
-        userName: 'shahil jha',
+        userName: EnumUtil.jobPositionToString(JobPosition.Receptionist),
         position: JobPosition.Receptionist,
       );
     } catch (e) {

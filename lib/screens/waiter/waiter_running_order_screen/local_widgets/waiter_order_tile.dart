@@ -20,22 +20,12 @@ class WaiterOrderTile extends StatelessWidget {
   }) : super(key: key);
 
   Color getStatusColor() {
-    switch (order.status) {
-      case OrderStatus.NewOrder:
-        return Colors.red;
-
-      case OrderStatus.AdditionalOrder:
-        return Colors.red;
-
-      case OrderStatus.PartiallyFinishedOrder:
-        return Colors.green;
-
-      case OrderStatus.FinishedOrder:
-        return Colors.grey;
-
-      default:
-        return Colors.white24;
+    if (order.readyItems > 0) {
+      return Colors.red;
+    } else if (order.notAvailableItems > 0) {
+      return Colors.black26;
     }
+    return Colors.white38;
   }
 
   @override
@@ -66,7 +56,7 @@ class WaiterOrderTile extends StatelessWidget {
             served: order.servedItems,
             notAvailable: order.notAvailableItems,
           ),
-          ColorCodeTile(color: Colors.white24),
+          ColorCodeTile(color: Colors.white38),
         ],
       ),
     );
