@@ -8,17 +8,9 @@ import 'package:summer_project/widgets/table_no.dart';
 
 class ReceptionistOrderTile extends StatelessWidget {
   final Order order;
-  // final int tableNumber;
-  // final String orderID;
-  // final String customerName;
-  // final String customerContact;
   final Function onPressed;
   const ReceptionistOrderTile({
     Key key,
-    // @required this.tableNumber,
-    // @required this.orderID,
-    // @required this.customerName,
-    // @required this.customerContact,
     @required this.onPressed,
     @required this.order,
   }) : super(key: key);
