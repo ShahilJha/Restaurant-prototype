@@ -10,7 +10,7 @@ class EnumUtil {
         break;
 
       case JobPosition.KitchenStaff:
-        string = 'KitchenStaff';
+        string = 'Kitchen Staff';
         break;
 
       case JobPosition.Waiter:
@@ -27,7 +27,7 @@ class EnumUtil {
         position = JobPosition.Receptionist;
         break;
 
-      case 'KitchenStaff':
+      case 'Kitchen Staff':
         position = JobPosition.KitchenStaff;
         break;
 
@@ -42,19 +42,19 @@ class EnumUtil {
     String string;
     switch (value) {
       case OrderStatus.NewOrder:
-        string = 'NewOrder';
+        string = 'New Order';
         break;
 
       case OrderStatus.AdditionalOrder:
-        string = 'AdditionalOrder';
+        string = 'Additional Order';
         break;
 
       case OrderStatus.FinishedOrder:
-        string = 'FinishedOrder';
+        string = 'Finished Order';
         break;
 
       case OrderStatus.PartiallyFinishedOrder:
-        string = 'PartiallyFinishedOrder';
+        string = 'Partially Finished Order';
         break;
     }
     return string;
@@ -63,19 +63,19 @@ class EnumUtil {
   static OrderStatus stringToOrderStatus(String string) {
     OrderStatus status;
     switch (string) {
-      case 'NewOrder':
+      case 'New Order':
         status = OrderStatus.NewOrder;
         break;
 
-      case 'AdditionalOrder':
+      case 'Additional Order':
         status = OrderStatus.AdditionalOrder;
         break;
 
-      case 'FinishedOrder':
+      case 'Finished Order':
         status = OrderStatus.FinishedOrder;
         break;
 
-      case 'PartiallyFinishedOrder':
+      case 'Partially Finished Order':
         status = OrderStatus.PartiallyFinishedOrder;
         break;
     }
@@ -86,11 +86,11 @@ class EnumUtil {
     String string;
     switch (value) {
       case FoodItemStatus.NotReady:
-        string = 'NotReady';
+        string = 'Not Ready';
         break;
 
       case FoodItemStatus.NotAvailable:
-        string = 'NotAvailable';
+        string = 'Not Available';
         break;
 
       case FoodItemStatus.Served:
@@ -107,11 +107,11 @@ class EnumUtil {
   static FoodItemStatus stringToFoodItemStatus(String string) {
     FoodItemStatus status;
     switch (string) {
-      case 'NotReady':
+      case 'Not Ready':
         status = FoodItemStatus.NotReady;
         break;
 
-      case 'NotAvailable':
+      case 'Not Available':
         status = FoodItemStatus.NotAvailable;
         break;
 
