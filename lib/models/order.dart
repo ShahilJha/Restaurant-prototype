@@ -18,6 +18,7 @@ class Order {
   int readyItems;
   int notReadyItems;
   int servedItems;
+  int notAvailableItems;
   List<FoodItem> orders;
   List<FoodItem> additionalOrders;
   int total;
@@ -32,9 +33,10 @@ class Order {
     this.dateCreated,
     this.orderTakenByID,
     this.status = OrderStatus.NewOrder,
-    this.readyItems,
+    this.readyItems = 0,
     this.notReadyItems,
-    this.servedItems,
+    this.servedItems = 0,
+    this.notAvailableItems = 0,
     this.orders,
     this.additionalOrders,
     this.total = 0,
@@ -53,6 +55,7 @@ class Order {
         readyItems: map['readyItems'],
         notReadyItems: map['notReadyItems'],
         servedItems: map['servedItems'],
+        notAvailableItems: map['notAvailableItems'],
         orders:
             List<FoodItem>.from(map['orders'].map((x) => FoodItem.fromMap(x))),
         additionalOrders: List<FoodItem>.from(
@@ -73,6 +76,7 @@ class Order {
         'readyItems': readyItems,
         'notReadyItems': notReadyItems,
         'servedItems': servedItems,
+        'notAvailableItems': notAvailableItems,
         'orders': List<dynamic>.from(orders.map((x) => x.toMap())),
         'additionalOrders':
             List<dynamic>.from(additionalOrders.map((x) => x.toMap())),

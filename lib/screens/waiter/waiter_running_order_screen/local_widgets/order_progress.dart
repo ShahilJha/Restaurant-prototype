@@ -4,12 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 final kOrderProgressTextStyle = TextStyle(fontSize: 50.w);
 
 class OrderProgress extends StatelessWidget {
-  final int ready, notReady, served;
+  final int ready, notReady, served, notAvailable;
   const OrderProgress({
     Key key,
     this.ready,
     this.notReady,
     this.served,
+    this.notAvailable,
   }) : super(key: key);
 
   @override
@@ -44,6 +45,22 @@ class OrderProgress extends StatelessWidget {
               Text('SERVED', style: kOrderProgressTextStyle),
               Text(served.toString(), style: kOrderProgressTextStyle),
             ],
+          ),
+          Visibility(
+            visible: notAvailable == 0 ? false : true,
+            child: Column(
+              children: [
+                SizedBox(height: 10.w),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('NOT AVAILABLE', style: kOrderProgressTextStyle),
+                    Text(notAvailable.toString(),
+                        style: kOrderProgressTextStyle),
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       ),
