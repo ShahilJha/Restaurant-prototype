@@ -108,7 +108,6 @@ class _KitchenOrderTableState extends State<KitchenOrderTable> {
         list: widget.list,
         onPressed: () {},
         onStatusSelect: (FoodItemStatus status, int index) {
-          print('$status with i=$index');
           setState(() {
             widget.list[index].status = status;
             widget.onStatusChange(widget.list);
