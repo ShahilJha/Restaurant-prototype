@@ -8,9 +8,8 @@ import 'kitchen_status_chip.dart';
 
 class KitchenOrderTable extends StatefulWidget {
   final List<FoodItem> list;
-  final Function function, onStatusChange;
-  const KitchenOrderTable(
-      {Key key, this.list, this.function, this.onStatusChange})
+  final Function onStatusChange;
+  const KitchenOrderTable({Key key, this.list, this.onStatusChange})
       : super(key: key);
 
   @override
@@ -59,8 +58,7 @@ class _KitchenOrderTableState extends State<KitchenOrderTable> {
     );
   }
 
-  List<TableRow> _getKitchenTableRows(
-      {List<FoodItem> list, Function onPressed, onStatusSelect}) {
+  List<TableRow> _getKitchenTableRows({List<FoodItem> list, onStatusSelect}) {
     List<TableRow> orderList = [];
     for (int index = 0; index < list.length; index++) {
       orderList.add(
@@ -106,7 +104,6 @@ class _KitchenOrderTableState extends State<KitchenOrderTable> {
       ],
       dataChildren: _getKitchenTableRows(
         list: widget.list,
-        onPressed: () {},
         onStatusSelect: (FoodItemStatus status, int index) {
           setState(() {
             widget.list[index].status = status;

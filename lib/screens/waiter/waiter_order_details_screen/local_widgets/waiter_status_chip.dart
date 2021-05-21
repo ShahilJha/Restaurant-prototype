@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:summer_project/enumerators.dart';
+import 'package:summer_project/utils/enum_util.dart';
 
 class WaiterStatusChip extends StatelessWidget {
   final String status;
@@ -10,6 +12,25 @@ class WaiterStatusChip extends StatelessWidget {
     @required this.status,
     @required this.onPressed,
   }) : super(key: key);
+
+  Color getChipStatusColor() {
+    switch (EnumUtil.stringToFoodItemStatus(status)) {
+      case FoodItemStatus.Ready:
+        return Colors.red;
+
+      case FoodItemStatus.NotReady:
+        return Colors.grey;
+
+      case FoodItemStatus.Served:
+        return Colors.green;
+
+      case FoodItemStatus.NotAvailable:
+        return Colors.black26;
+
+      default:
+        return Colors.white38;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +43,7 @@ class WaiterStatusChip extends StatelessWidget {
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
-      backgroundColor: Colors.green,
+      backgroundColor: getChipStatusColor(),
       labelPadding: EdgeInsets.symmetric(horizontal: 60.w),
       onPressed: onPressed,
     );
