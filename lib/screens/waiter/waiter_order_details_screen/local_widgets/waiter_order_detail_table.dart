@@ -20,20 +20,26 @@ class WaiterOrderDetailTable extends StatefulWidget {
 }
 
 class _WaiterOrderDetailTableState extends State<WaiterOrderDetailTable> {
-  dynamic _showItemInformation(
-      {BuildContext context,
-      Function onQuantityChanged,
-      Function onMarkedServed,
-      Function onRemoveItem,
-      int prevQuantity}) {
+  dynamic _showItemInformation({
+    BuildContext context,
+    FoodItem item,
+    Function onItemChange,
+    Function onRemoveItem,
+  }) {
     return showDialog(
       context: context,
       builder: (context) => AlertDialog(
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.w)),
-        title: const Text(
-          'ITEM NAME',
-          textAlign: TextAlign.center,
+        title: Column(
+          children: [
+            Text(
+              item.name,
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 25),
+            ),
+            Divider(),
+          ],
         ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
@@ -41,18 +47,27 @@ class _WaiterOrderDetailTableState extends State<WaiterOrderDetailTable> {
           children: <Widget>[
             AttributeDisplay(
                 attribute: "Previous Order Quantity",
-                string: prevQuantity.toString()),
+                string: item.quantity.toString()),
             SizedBox(height: 30.w),
             AppQuantitySelector(
-              quantity: prevQuantity,
-              onQuantityChange: (qty) => onQuantityChanged(qty),
+              quantity: item.quantity,
+              onQuantityChange: (qty) {
+                item.quantity = qty;
+                onItemChange(item);
+              },
             ),
             SizedBox(height: 30.w),
-            AttributeDisplay(attribute: 'Status', string: 'READY'),
+            AttributeDisplay(
+                attribute: 'Status',
+                string: EnumUtil.foodItemStatusToString(item.status)),
             AppButton(
               text: 'Mark Served',
               color: Colors.green,
-              onPressed: onMarkedServed,
+              onPressed: () {
+                item.status = FoodItemStatus.Served;
+                onItemChange(item);
+                Navigator.pop(context);
+              },
             ),
             AppButton(
               text: 'Remove Item',
@@ -73,7 +88,7 @@ class _WaiterOrderDetailTableState extends State<WaiterOrderDetailTable> {
   }
 
   List<TableRow> _getWaiterOrderDetailTableRows(
-      {List<FoodItem> list, Function onPressed, onStatusSelect}) {
+      {List<FoodItem> list, Function onStatusSelect}) {
     List<TableRow> orderList = [];
     for (int index = 0; index < list.length; index++) {
       orderList.add(
@@ -89,17 +104,11 @@ class _WaiterOrderDetailTableState extends State<WaiterOrderDetailTable> {
               status: EnumUtil.foodItemStatusToString(list[index].status),
               onPressed: () => _showItemInformation(
                 context: context,
-                prevQuantity: list[index].quantity,
-                onQuantityChanged: (qty) {
+                item: list[index],
+                onItemChange: (item) {
                   setState(() {
-                    widget.list[index].quantity = qty;
+                    widget.list[index] = item;
                   });
-                },
-                onMarkedServed: () {
-                  setState(() {
-                    widget.list[index].status = FoodItemStatus.Served;
-                  });
-                  Navigator.pop(context);
                 },
                 onRemoveItem: () {
                   setState(() {
@@ -133,10 +142,8 @@ class _WaiterOrderDetailTableState extends State<WaiterOrderDetailTable> {
       ],
       dataChildren: _getWaiterOrderDetailTableRows(
         list: widget.list,
-        onStatusSelect: (FoodItemStatus status, int index) {
-          print('$status with i=$index');
+        onStatusSelect: () {
           setState(() {
-            // widget.list[index].status = status;
             widget.onItemChange(widget.list);
           });
         },
