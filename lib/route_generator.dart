@@ -65,9 +65,13 @@ class RouteGenerator {
 
       case '/waiter_ordering_screen':
         //args value 'true' if new order, 'false' if not
-        if (args is bool) {
+        if (args is Map) {
           return MaterialPageRoute(
-              builder: (_) => WaiterOrderingScreen(newOrder: args));
+            builder: (_) => WaiterOrderingScreen(
+              newOrderFlag: args['newOrderFlag'],
+              order: args['order'],
+            ),
+          );
         }
         return _errorRoute();
 

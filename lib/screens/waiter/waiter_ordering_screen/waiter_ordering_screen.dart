@@ -13,9 +13,11 @@ import 'package:summer_project/menu.dart';
 import 'local_widgets/customer_detail_dialog.dart';
 
 class WaiterOrderingScreen extends StatefulWidget {
-  final bool newOrder;
+  final bool newOrderFlag;
+  final Order order;
 
-  const WaiterOrderingScreen({Key key, this.newOrder}) : super(key: key);
+  const WaiterOrderingScreen({Key key, this.newOrderFlag, this.order})
+      : super(key: key);
   @override
   _WaiterOrderingScreenState createState() => _WaiterOrderingScreenState();
 }
@@ -26,7 +28,7 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
   int selectedCategoryIndex;
 
   //Order object to track order
-  Order order = Order();
+  // Order order = Order();
 
   @override
   void initState() {
@@ -34,7 +36,7 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
     selectedCategory = category.categories.first.categoryName;
     selectedCategoryIndex = 0;
 
-    if (widget.newOrder == true) {
+    if (widget.newOrderFlag == true) {
       WidgetsBinding.instance.addPostFrameCallback((_) async {
         _customerDetailForm(context);
       });
