@@ -76,7 +76,14 @@ class RouteGenerator {
         return _errorRoute();
 
       case '/waiter_order_cart_screen':
-        return MaterialPageRoute(builder: (_) => WaiterOrderCartScreen());
+        if (args is Order) {
+          return MaterialPageRoute(
+            builder: (_) => WaiterOrderCartScreen(
+              order: args,
+            ),
+          );
+        }
+        return _errorRoute();
 
       //ERROR Route
       default:

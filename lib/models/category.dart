@@ -54,7 +54,7 @@ class CategoryItem {
     this.id,
     this.name,
     this.price,
-    this.quantity = 1,
+    this.quantity,
     this.isSelected = false,
     this.status = FoodItemStatus.NotReady,
   });

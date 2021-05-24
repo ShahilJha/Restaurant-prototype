@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:summer_project/models/category.dart';
+import 'package:summer_project/models/food_item.dart';
 import 'package:summer_project/models/order.dart';
 import 'package:summer_project/widgets/app_action_chip.dart';
 import 'package:summer_project/widgets/app_app_bar.dart';
@@ -37,6 +38,7 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
     selectedCategoryIndex = 0;
 
     order = widget.order;
+    print(widget.order.id);
 
     if (widget.newOrderFlag == true) {
       WidgetsBinding.instance.addPostFrameCallback((_) async {
@@ -65,8 +67,6 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.order.customerName);
-
     return Scaffold(
       appBar: KAppBar(
         title: 'ORDERING MENU',
@@ -74,7 +74,10 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.table_rows),
         onPressed: () {
-          Navigator.of(context).pushNamed('/waiter_order_cart_screen');
+          Navigator.of(context).pushNamed(
+            '/waiter_order_cart_screen',
+            arguments: widget.order,
+          );
         },
       ),
       body: AppContainer(
@@ -110,7 +113,6 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
             ),
             Subtitles(string: 'ITEMS'),
             SizedBox(height: 25.h),
-
             Container(
               height: 1575.h,
               child: ListView.builder(
@@ -143,40 +145,27 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
                         () => category.categories[selectedCategoryIndex]
                             .categoryItems[index].quantity = qty,
                       ),
-                      onAdd: () {},
+                      onAdd: () {
+                        //TODO:add to the order object orders list
+                        if (widget.newOrderFlag == false) {
+                          print(category.categories[selectedCategoryIndex]
+                              .categoryItems[index]
+                              .toMap());
+                          Map map = category.categories[selectedCategoryIndex]
+                              .categoryItems[index]
+                              .toMap();
+                          print(order.orders.length);
+                          FoodItem item = FoodItem.fromMap(map);
+                          order.additionalOrders.add(item);
+                          print(order.orders.length);
+                        }
+                      },
+                      onCancel: () {},
                     ),
                   );
                 },
               ),
             ),
-
-            // Container(
-            //   // color: Colors.red,
-            //   height: 1575.h,
-            //   child: ListView(
-            //     physics: ClampingScrollPhysics(),
-            //     shrinkWrap: true,
-            //     children:
-            //         category.categories[selectedCategoryIndex].categoryItems
-            //             .map((item) => Container(
-            //                   padding: EdgeInsets.symmetric(vertical: 10.h),
-            //                   child: AppFoodItemTile(
-            //                     itemName: item.name,
-            //                     itemPrice: item.price,
-            //                     isSelected: item.isSelected,
-            //                     toggleIsSelect: () {
-            //                       setState(() => item.toggleIsSelected());
-            //                     },
-            //                     quantity: item.quantity,
-            //                     onQuantityChange: (qty) {
-            //                       setState(() => item.quantity = qty);
-            //                     },
-            //                     onAdd: () {},
-            //                   ),
-            //                 ))
-            //             .toList(),
-            //   ),
-            // ),
           ],
         ),
       ),
