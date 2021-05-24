@@ -9,11 +9,9 @@ import '../../../../menu.dart';
 class CustomerDetailDialog extends StatefulWidget {
   const CustomerDetailDialog({
     this.onValueChange,
-    this.initialValue,
     this.order,
   });
 
-  final int initialValue;
   final Function onValueChange;
   final Order order;
 
@@ -29,11 +27,12 @@ class CustomerDetailDialogState extends State<CustomerDetailDialog> {
   @override
   void initState() {
     super.initState();
-    _selectedTable = widget.initialValue;
+    // _selectedTable = widget.initialValue;
+    _selectedTable = null;
   }
 
   Widget build(BuildContext context) {
-    return new SimpleDialog(
+    return SimpleDialog(
       title: Text(
         'Customer Information',
         textAlign: TextAlign.center,
@@ -63,7 +62,8 @@ class CustomerDetailDialogState extends State<CustomerDetailDialog> {
                       }).toList(),
                       onChanged: (value) {
                         setState(() {
-                          widget.order.tableNumber = value;
+                          _selectedTable = value;
+                          widget.order.tableNumber = _selectedTable;
                         });
                         print(widget.order.tableNumber);
                       },

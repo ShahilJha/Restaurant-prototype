@@ -36,8 +36,7 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
     selectedCategory = category.categories.first.categoryName;
     selectedCategoryIndex = 0;
 
-    print(widget.order.customerName);
-    order = widget.order ?? Order();
+    order = widget.order;
 
     if (widget.newOrderFlag == true) {
       WidgetsBinding.instance.addPostFrameCallback((_) async {
@@ -51,7 +50,6 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
       barrierDismissible: false,
       context: context,
       builder: (context) => CustomerDetailDialog(
-        initialValue: 1,
         onValueChange: (order) {
           setState(() {
             this.order = order;
@@ -67,6 +65,8 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.order.customerName);
+
     return Scaffold(
       appBar: KAppBar(
         title: 'ORDERING MENU',
