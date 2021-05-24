@@ -77,7 +77,7 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
           Navigator.of(context).pushNamed(
             '/waiter_order_cart_screen',
             arguments: {
-              'newOrderFlag': false,
+              'newOrderFlag': widget.newOrderFlag,
               'order': order,
             },
           );
