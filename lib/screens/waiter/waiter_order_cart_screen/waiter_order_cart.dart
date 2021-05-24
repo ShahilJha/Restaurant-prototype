@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:summer_project/models/food_item.dart';
 import 'package:summer_project/models/order.dart';
 import 'package:summer_project/widgets/app_app_bar.dart';
 import 'package:summer_project/widgets/app_button.dart';
@@ -13,8 +14,9 @@ import 'package:summer_project/widgets/table_no.dart';
 class WaiterOrderCartScreen extends StatelessWidget {
   final Order order;
   final bool newOrderFlag;
+  final List<FoodItem> newOrdersList;
   const WaiterOrderCartScreen(
-      {Key key, @required this.order, this.newOrderFlag})
+      {Key key, @required this.order, this.newOrderFlag, this.newOrdersList})
       : super(key: key);
 
   @override

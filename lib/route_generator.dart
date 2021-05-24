@@ -81,6 +81,7 @@ class RouteGenerator {
             builder: (_) => WaiterOrderCartScreen(
               order: args['order'],
               newOrderFlag: args['newOrderFlag'],
+              newOrdersList: args['newOrdersList'],
             ),
           );
         }

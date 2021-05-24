@@ -27,6 +27,7 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
   Category category = categoryFromMap(Menu.instance.menu);
   String selectedCategory; // current selected category
   int selectedCategoryIndex;
+  List<FoodItem> newOrdersList = [];
 
   //Order object to track order
   Order order;
@@ -65,8 +66,15 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
     );
   }
 
+  void printAll() {
+    for (var item in newOrdersList) {
+      print('${item.id}: ${item.name} and ${item.quantity}');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    printAll();
     return Scaffold(
       appBar: KAppBar(
         title: 'ORDERING MENU',
@@ -79,6 +87,7 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
             arguments: {
               'newOrderFlag': widget.newOrderFlag,
               'order': order,
+              'newOrdersList': newOrdersList,
             },
           );
         },
@@ -149,21 +158,20 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
                             .categoryItems[index].quantity = qty,
                       ),
                       onAdd: () {
-                        //TODO:add to the order object orders list
-                        if (widget.newOrderFlag == false) {
-                          print(category.categories[selectedCategoryIndex]
-                              .categoryItems[index]
-                              .toMap());
-                          Map map = category.categories[selectedCategoryIndex]
-                              .categoryItems[index]
-                              .toMap();
-                          print(order.orders.length);
-                          FoodItem item = FoodItem.fromMap(map);
-                          order.additionalOrders.add(item);
-                          print(order.orders.length);
-                        }
+                        Map map = category.categories[selectedCategoryIndex]
+                            .categoryItems[index]
+                            .toMap();
+                        FoodItem item = FoodItem.fromMap(map);
+                        newOrdersList.add(item);
                       },
-                      onCancel: () {},
+                      onCancel: () {
+                        Map map = category.categories[selectedCategoryIndex]
+                            .categoryItems[index]
+                            .toMap();
+                        FoodItem item = FoodItem.fromMap(map);
+                        newOrdersList.remove(item);
+                        // newOrdersList.remove(item);
+                      },
                     ),
                   );
                 },
