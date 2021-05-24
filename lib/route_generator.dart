@@ -76,10 +76,11 @@ class RouteGenerator {
         return _errorRoute();
 
       case '/waiter_order_cart_screen':
-        if (args is Order) {
+        if (args is Map) {
           return MaterialPageRoute(
             builder: (_) => WaiterOrderCartScreen(
-              order: args,
+              order: args['order'],
+              newOrderFlag: args['newOrderFlag'],
             ),
           );
         }

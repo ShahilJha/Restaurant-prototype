@@ -12,7 +12,9 @@ import 'package:summer_project/widgets/table_no.dart';
 
 class WaiterOrderCartScreen extends StatelessWidget {
   final Order order;
-  const WaiterOrderCartScreen({Key key, @required this.order})
+  final bool newOrderFlag;
+  const WaiterOrderCartScreen(
+      {Key key, @required this.order, this.newOrderFlag})
       : super(key: key);
 
   @override
@@ -75,10 +77,17 @@ class WaiterOrderCartScreen extends StatelessWidget {
             ),
             Divider(),
             AppButton(
-              text: 'PLACE ORDER',
+              text: newOrderFlag == true ? 'Place Order' : 'Add to Order',
               onPressed: () {
-                Navigator.pop(context);
-                Navigator.of(context).pushNamed('/waiter_running_order_screen');
+                if (newOrderFlag == true) {
+                  //Todo: fix problem/BUG of taking to login screen
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                } else {
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                }
               },
             ),
           ],
