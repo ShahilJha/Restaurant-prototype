@@ -71,13 +71,13 @@ class CategoryItem {
   }
 
   factory CategoryItem.fromMap(Map<String, dynamic> json) => CategoryItem(
-        id: json["ID"],
+        id: json["id"],
         name: json["name"],
         price: json["price"],
       );
 
   Map<String, dynamic> toMap() => {
-        "ID": id,
+        "id": id,
         "name": name,
         "price": price,
         "quantity": quantity,
