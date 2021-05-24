@@ -28,13 +28,16 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
   int selectedCategoryIndex;
 
   //Order object to track order
-  // Order order = Order();
+  Order order;
 
   @override
   void initState() {
     super.initState();
     selectedCategory = category.categories.first.categoryName;
     selectedCategoryIndex = 0;
+
+    print(widget.order.customerName);
+    order = widget.order ?? Order();
 
     if (widget.newOrderFlag == true) {
       WidgetsBinding.instance.addPostFrameCallback((_) async {
@@ -48,14 +51,15 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
       barrierDismissible: false,
       context: context,
       builder: (context) => CustomerDetailDialog(
-        initialValue: null,
-        onValueChange: (tableNo, name, contact) {
-          // order.tableNumber = tableNo;
-          // order.customerName = name;
-          // order.customer.name = name;
-          // order.customerContact = contact;
+        initialValue: 1,
+        onValueChange: (order) {
+          setState(() {
+            this.order = order;
+          });
+          print(order.customerName);
 
-          print('VALUE FROM FORM: $tableNo,$name,$contact');
+          // print(
+          //     'VALUE FROM FORM: ${order.customerContact}, ${order.customerName},${order.tableNumber}');
         },
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:summer_project/models/order.dart';
 import 'package:summer_project/widgets/app_button.dart';
 import 'package:summer_project/widgets/app_textfield.dart';
 
@@ -9,10 +10,12 @@ class CustomerDetailDialog extends StatefulWidget {
   const CustomerDetailDialog({
     this.onValueChange,
     this.initialValue,
+    this.order,
   });
 
   final int initialValue;
   final Function onValueChange;
+  final Order order;
 
   @override
   State createState() => new CustomerDetailDialogState();
@@ -60,8 +63,9 @@ class CustomerDetailDialogState extends State<CustomerDetailDialog> {
                       }).toList(),
                       onChanged: (value) {
                         setState(() {
-                          _selectedTable = value;
+                          widget.order.tableNumber = value;
                         });
+                        print(widget.order.tableNumber);
                       },
                     )
                   ],
@@ -69,13 +73,15 @@ class CustomerDetailDialogState extends State<CustomerDetailDialog> {
                 Text('Customer Name: ', style: TextStyle(fontSize: 60.w)),
                 AppTextField(
                   onChanged: (value) {
-                    name = value;
+                    widget.order.customerName = value;
+                    print(widget.order.customerName);
                   },
                 ),
                 Text('Phone Number: ', style: TextStyle(fontSize: 60.w)),
                 AppTextField(
                   onChanged: (value) {
-                    contactNumber = value;
+                    widget.order.customerContact = value;
+                    print(widget.order.customerContact);
                   },
                 ),
                 Container(
@@ -84,8 +90,20 @@ class CustomerDetailDialogState extends State<CustomerDetailDialog> {
                     text: 'PROCEED',
                     onPressed: () {
                       //TODO: create customer in DB and return customer ID using callback
+                      setState(() {
+                        // try {
+                        widget.order.tableNumber = _selectedTable;
+                        widget.order.customerName = name;
+                        widget.order.customerContact = contactNumber;
+                        // } catch (e) {
+                        //   print(e);
+                        // }
+                      });
+                      print(
+                          'VALUE FROM FORM: ${widget.order.customerContact}, ${widget.order.customerName},${widget.order.tableNumber}');
+
                       Navigator.pop(context);
-                      widget.onValueChange(_selectedTable, name, contactNumber);
+                      widget.onValueChange(widget.order);
                     },
                   ),
                 ),
