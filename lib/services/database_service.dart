@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:summer_project/enumerators.dart';
 import 'package:summer_project/models/KitchenStaff.dart';
 import 'package:summer_project/models/order.dart';
 import 'package:summer_project/models/watier.dart';
 import 'package:summer_project/utils/enum_util.dart';
+import 'package:summer_project/utils/utility.dart';
 import '../models/receptionist.dart';
 
 class DatabaseService {
@@ -110,39 +112,63 @@ class DatabaseService {
     }
   }
 
-  Future<Order> getOrderByID(String id) async {
+  Future<Order> getOrderByID({String id, BuildContext context}) async {
     try {
+      Utility.showProcessingPopUp(context);
       var documentQuery = await _firestore
           .collection('orders')
           .where('id', isEqualTo: id)
           .get();
       var document = documentQuery.docs.first.data();
+      Navigator.pop(context);
+
       return orderFromMap(document);
     } catch (e) {
       print('EXCEPTION: -getOrderByID--> $e');
     }
   }
 
-  Future<void> createNewOrder(Order order) async {
+  Future<void> createNewOrder({Order order, BuildContext context}) async {
     try {
+      Utility.showProcessingPopUp(context);
       _firestore.collection('orders').add(orderToMap(order));
+      Navigator.pop(context);
     } catch (e) {
-      print('EXCEPTION: -createNewOrder--> $e');
+      Utility.showSnackBar(context, message: e.message.toString());
     }
   }
 
-  Future<void> deleteOrderByID(String id) async {
-    _firestore.collection('orders').where('id', isEqualTo: id).get().then(
-        (value) =>
-            _firestore.collection('orders').doc(value.docs.first.id).delete());
+  Future<void> deleteOrderByID({String id, BuildContext context}) async {
+    try {
+      Utility.showProcessingPopUp(context);
+      _firestore.collection('orders').where('id', isEqualTo: id).get().then(
+          (value) => _firestore
+              .collection('orders')
+              .doc(value.docs.first.id)
+              .delete());
+      Navigator.pop(context);
+    } catch (e) {
+      Navigator.pop(context);
+      Utility.showSnackBar(context, message: e.message.toString());
+    }
   }
 
-  Future<void> updateOrder(Order order) async {
+  Future<void> updateOrder({Order order, BuildContext context}) async {
     //TODO: change order status according to data
-    _firestore.collection('orders').where('id', isEqualTo: order.id).get().then(
-        (value) => _firestore
-            .collection('orders')
-            .doc(value.docs.first.id)
-            .update(orderToMap(order)));
+    try {
+      Utility.showProcessingPopUp(context);
+      _firestore
+          .collection('orders')
+          .where('id', isEqualTo: order.id)
+          .get()
+          .then((value) => _firestore
+              .collection('orders')
+              .doc(value.docs.first.id)
+              .update(orderToMap(order)));
+      Navigator.pop(context);
+    } catch (e) {
+      Navigator.pop(context);
+      Utility.showSnackBar(context, message: e.message.toString());
+    }
   }
 }

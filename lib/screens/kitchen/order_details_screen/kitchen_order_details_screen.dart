@@ -57,10 +57,13 @@ class KitchenOrderDetailsScreen extends StatelessWidget {
               ),
             ),
             AppButton(
-              text: 'NOTIFY',
+              text: 'Notify',
               onPressed: () {
                 Navigator.pop(context);
-                DatabaseService.instance.updateOrder(order);
+                DatabaseService.instance.updateOrder(
+                  order: order,
+                  context: context,
+                );
               },
             ),
           ],

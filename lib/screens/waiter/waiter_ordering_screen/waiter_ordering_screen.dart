@@ -66,15 +66,8 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
     );
   }
 
-  void printAll() {
-    for (var item in newOrdersList) {
-      print('${item.id}: ${item.name} and ${item.quantity}');
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    printAll();
     return Scaffold(
       appBar: KAppBar(
         title: 'ORDERING MENU',
@@ -155,8 +148,15 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
                       quantity: category.categories[selectedCategoryIndex]
                           .categoryItems[index].quantity,
                       onQuantityChange: (qty) => setState(
-                        () => category.categories[selectedCategoryIndex]
-                            .categoryItems[index].quantity = qty,
+                        () {
+                          category.categories[selectedCategoryIndex]
+                              .categoryItems[index].quantity = qty;
+                          int i = newOrdersList.indexWhere((element) =>
+                              element.id ==
+                              category.categories[selectedCategoryIndex]
+                                  .categoryItems[index].id);
+                          newOrdersList[i].quantity = qty;
+                        },
                       ),
                       onAdd: () {
                         Map map = category.categories[selectedCategoryIndex]
@@ -174,8 +174,11 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
                             .categoryItems[index]
                             .toMap();
                         FoodItem item = FoodItem.fromMap(map);
-                        newOrdersList.remove(item);
                         // newOrdersList.remove(item);
+                        newOrdersList.retainWhere((element) =>
+                            element.id !=
+                            category.categories[selectedCategoryIndex]
+                                .categoryItems[index].id);
                       },
                     ),
                   );

@@ -2,22 +2,43 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:summer_project/models/food_item.dart';
 import 'package:summer_project/models/order.dart';
+import 'package:summer_project/screens/waiter/waiter_order_cart_screen/local_widgets/waiter_order_cart_table.dart';
+import 'package:summer_project/services/database_service.dart';
 import 'package:summer_project/widgets/app_app_bar.dart';
 import 'package:summer_project/widgets/app_button.dart';
 import 'package:summer_project/widgets/app_container.dart';
-import 'package:summer_project/widgets/app_quantity_selector.dart';
-import 'package:summer_project/widgets/app_table_components.dart';
 import 'package:summer_project/widgets/order_no.dart';
 import 'package:summer_project/widgets/sub_titles.dart';
 import 'package:summer_project/widgets/table_no.dart';
 
-class WaiterOrderCartScreen extends StatelessWidget {
+class WaiterOrderCartScreen extends StatefulWidget {
   final Order order;
   final bool newOrderFlag;
   final List<FoodItem> newOrdersList;
   const WaiterOrderCartScreen(
       {Key key, @required this.order, this.newOrderFlag, this.newOrdersList})
       : super(key: key);
+
+  @override
+  _WaiterOrderCartScreenState createState() => _WaiterOrderCartScreenState();
+}
+
+class _WaiterOrderCartScreenState extends State<WaiterOrderCartScreen> {
+  void printAll() {
+    for (var item in widget.newOrdersList) {
+      print('${item.id}: ${item.name} and ${item.quantity}');
+    }
+  }
+
+  Order tempOrder;
+  List<FoodItem> tempOrdersList;
+
+  @override
+  void initState() {
+    super.initState();
+    tempOrder = widget.order;
+    tempOrdersList = widget.newOrdersList;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,61 +52,42 @@ class WaiterOrderCartScreen extends StatelessWidget {
             Align(
               child: Column(
                 children: [
-                  TableNumber(tableNumber: 12),
-                  OrderID(orderID: '23'),
+                  TableNumber(tableNumber: widget.order.tableNumber),
+                  OrderID(orderID: widget.order.id),
                 ],
               ),
               alignment: Alignment.center,
             ),
             Divider(),
             Subtitles(string: 'ORDERS'),
-            AppTable(
-              columnWidths: {
-                0: FractionColumnWidth(0.1),
-                1: FractionColumnWidth(0.4),
-                2: FractionColumnWidth(0.3),
-                3: FractionColumnWidth(0.2),
+            WaiterOrderCartTable(
+              list: tempOrdersList,
+              onItemChange: (changedList) {
+                widget.newOrderFlag == true
+                    ? tempOrdersList = changedList
+                    : tempOrdersList = changedList;
               },
-              headerChildren: [
-                AppHeaderCell(string: 'S.N'),
-                AppHeaderCell(string: 'NAME'),
-                AppHeaderCell(string: 'QTY'),
-                AppHeaderCell(string: 'REMOVE'),
-              ],
-              dataChildren: [
-                TableRow(
-                  decoration: BoxDecoration(
-                    color: Colors.grey[100],
-                  ),
-                  children: [
-                    AppDataCell(string: '1'),
-                    AppDataCell(string: 'Food 1'),
-                    AppQuantitySelector(
-                      iconHeight: 100.w,
-                      iconWidth: 100.w,
-                      quantity: 2,
-                    ),
-                    IconButton(
-                      icon: Icon(
-                        Icons.highlight_off,
-                        color: Colors.red,
-                        size: 80.w,
-                      ),
-                      onPressed: () {},
-                    )
-                  ],
-                ),
-              ],
             ),
             Divider(),
             AppButton(
-              text: newOrderFlag == true ? 'Place Order' : 'Add to Order',
+              text:
+                  widget.newOrderFlag == true ? 'Place Order' : 'Add to Order',
               onPressed: () {
-                if (newOrderFlag == true) {
+                if (widget.newOrderFlag == true) {
                   //Todo: fix problem/BUG of taking to login screen
-                  Navigator.pop(context);
+                  tempOrder.orders = tempOrdersList;
+                  DatabaseService.instance.createNewOrder(
+                    order: tempOrder,
+                    context: context,
+                  );
+                  // Navigator.pop(context);
                   Navigator.pop(context);
                 } else {
+                  tempOrder.additionalOrders = tempOrdersList;
+                  DatabaseService.instance.updateOrder(
+                    order: tempOrder,
+                    context: context,
+                  );
                   Navigator.pop(context);
                   Navigator.pop(context);
                   Navigator.pop(context);
