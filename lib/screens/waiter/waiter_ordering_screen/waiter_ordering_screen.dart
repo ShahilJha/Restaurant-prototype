@@ -134,6 +134,7 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
                 itemCount: category
                     .categories[selectedCategoryIndex].categoryItems.length,
                 itemBuilder: (context, index) {
+                  //make a method that checks if the item is in the newOrderList and change value accordingly
                   return Container(
                     padding: EdgeInsets.symmetric(vertical: 10.h),
                     child: AppFoodItemTile(
