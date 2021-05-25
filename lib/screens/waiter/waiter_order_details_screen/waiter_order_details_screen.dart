@@ -71,10 +71,12 @@ class WaiterOrderDetailsScreen extends StatelessWidget {
               ),
             ),
             AppButton(
-              text: 'GO BACK',
+              text: 'Update',
               onPressed: () {
-                //TODO: update the order in the DB
-                // DatabaseService.instance.updateOrder(order);
+                DatabaseService.instance.updateOrder(
+                  order: order,
+                  context: context,
+                );
                 Navigator.pop(context);
               },
             ),
