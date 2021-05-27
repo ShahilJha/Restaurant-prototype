@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:summer_project/models/order.dart';
+import 'package:summer_project/utils/enum_util.dart';
+import 'package:summer_project/utils/utility.dart';
 import 'package:summer_project/widgets/app_button.dart';
 import 'package:summer_project/widgets/app_textfield.dart';
 
@@ -23,12 +25,14 @@ class CustomerDetailDialogState extends State<CustomerDetailDialog> {
   int _selectedTable;
   String name;
   String contactNumber;
+  Order tempOrder;
 
   @override
   void initState() {
     super.initState();
     // _selectedTable = widget.initialValue;
     _selectedTable = null;
+    tempOrder = widget.order;
   }
 
   Widget build(BuildContext context) {
@@ -63,9 +67,12 @@ class CustomerDetailDialogState extends State<CustomerDetailDialog> {
                       onChanged: (value) {
                         setState(() {
                           _selectedTable = value;
-                          widget.order.tableNumber = _selectedTable;
+                          print('Table no : $_selectedTable');
+                          // print(_selectedTable is int);
+
+                          // widget.order.tableNumber = _selectedTable;
                         });
-                        print(widget.order.tableNumber);
+                        // print(widget.order.tableNumber);
                       },
                     )
                   ],
@@ -73,15 +80,18 @@ class CustomerDetailDialogState extends State<CustomerDetailDialog> {
                 Text('Customer Name: ', style: TextStyle(fontSize: 60.w)),
                 AppTextField(
                   onChanged: (value) {
-                    widget.order.customerName = value;
-                    print(widget.order.customerName);
+                    // widget.order.customerName = value;
+                    // print(widget.order.customerName);
+                    name = value;
                   },
                 ),
                 Text('Phone Number: ', style: TextStyle(fontSize: 60.w)),
                 AppTextField(
                   onChanged: (value) {
-                    widget.order.customerContact = value;
-                    print(widget.order.customerContact);
+                    // widget.order.customerContact = value;
+                    // print(widget.order.customerContact);
+                    contactNumber = value;
+                    print(contactNumber);
                   },
                 ),
                 Container(
@@ -90,20 +100,19 @@ class CustomerDetailDialogState extends State<CustomerDetailDialog> {
                     text: 'PROCEED',
                     onPressed: () {
                       //TODO: create customer in DB and return customer ID using callback
-                      setState(() {
-                        // try {
-                        widget.order.tableNumber = _selectedTable;
-                        widget.order.customerName = name;
-                        widget.order.customerContact = contactNumber;
-                        // } catch (e) {
-                        //   print(e);
-                        // }
-                      });
-                      print(
-                          'VALUE FROM FORM: ${widget.order.customerContact}, ${widget.order.customerName},${widget.order.tableNumber}');
+                      try {
+                        tempOrder.tableNumber = _selectedTable;
+                        tempOrder.customerName = name;
+                        tempOrder.customerContact = contactNumber;
+                      } catch (e) {
+                        print(e);
+                      }
+
+                      // print(
+                      //     'VALUE FROM FORM: ${widget.order.customerContact}, ${widget.order.customerName},${widget.order.tableNumber}');
 
                       Navigator.pop(context);
-                      widget.onValueChange(widget.order);
+                      widget.onValueChange(tempOrder);
                     },
                   ),
                 ),

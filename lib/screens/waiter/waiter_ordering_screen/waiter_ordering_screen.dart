@@ -39,7 +39,6 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
     selectedCategoryIndex = 0;
 
     order = widget.order;
-    print(widget.order.id);
 
     if (widget.newOrderFlag == true) {
       WidgetsBinding.instance.addPostFrameCallback((_) async {
@@ -53,14 +52,14 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
       barrierDismissible: false,
       context: context,
       builder: (context) => CustomerDetailDialog(
-        onValueChange: (order) {
+        onValueChange: (changedOrder) {
           setState(() {
-            this.order = order;
+            order = changedOrder;
           });
-          print(order.customerName);
+          // order = changedOrder;
 
-          // print(
-          //     'VALUE FROM FORM: ${order.customerContact}, ${order.customerName},${order.tableNumber}');
+          print(
+              'VALUE FROM FORM: ${order.customerContact}, ${order.customerName},${order.tableNumber}');
         },
       ),
     );
@@ -68,6 +67,8 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print(order.customerName);
+
     return Scaffold(
       appBar: KAppBar(
         title: 'ORDERING MENU',

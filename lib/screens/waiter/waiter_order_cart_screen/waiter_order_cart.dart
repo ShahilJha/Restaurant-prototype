@@ -83,7 +83,14 @@ class _WaiterOrderCartScreenState extends State<WaiterOrderCartScreen> {
                   // Navigator.pop(context);
                   Navigator.pop(context);
                 } else {
-                  tempOrder.additionalOrders = tempOrdersList;
+                  if (widget.newOrderFlag == false) {
+                    tempOrder.additionalOrders = [
+                      ...tempOrder.additionalOrders,
+                      ...tempOrdersList
+                    ];
+                  } else {
+                    tempOrder.additionalOrders = tempOrdersList;
+                  }
                   DatabaseService.instance.updateOrder(
                     order: tempOrder,
                     context: context,
