@@ -44,47 +44,8 @@ class _WaiterOrderDetailTableState extends State<WaiterOrderDetailTable> {
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            item.status != FoodItemStatus.Served
+            item.status == FoodItemStatus.Served
                 ? Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      AttributeDisplay(
-                          attribute: "Previous Order Quantity",
-                          string: item.quantity.toString()),
-                      SizedBox(height: 30.w),
-                      AppQuantitySelector(
-                        quantity: item.quantity,
-                        onQuantityChange: (qty) {
-                          //don't change the qty if the item(s) has already been served
-                          if (item.status != FoodItemStatus.Served) {
-                            item.quantity = qty;
-                            onItemChange(item);
-                          }
-                        },
-                      ),
-                      SizedBox(height: 30.w),
-                      AttributeDisplay(
-                          attribute: 'Status',
-                          string: EnumUtil.foodItemStatusToString(item.status)),
-                      //TODO: write code if the qty is raised when the prev qty hsa been served
-                      AppButton(
-                        text: 'Mark Served',
-                        color: Colors.green,
-                        onPressed: () {
-                          item.status = FoodItemStatus.Served;
-                          onItemChange(item);
-                          Navigator.pop(context);
-                        },
-                      ),
-                      AppButton(
-                        text: 'Remove Item',
-                        color: Colors.red,
-                        onPressed: onRemoveItem,
-                      ),
-                    ],
-                  )
-                : Column(
                     children: [
                       Text(
                         'This item has already been served. Please add additional order if the order is to be repeated.',
@@ -95,7 +56,91 @@ class _WaiterOrderDetailTableState extends State<WaiterOrderDetailTable> {
                         height: 50.w,
                       ),
                     ],
-                  ),
+                  )
+                : item.status == FoodItemStatus.NotAvailable
+                    ? Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            'Item Not Available!!',
+                            style: Theme.of(context).textTheme.subtitle1,
+                          ),
+                          SizedBox(height: 30.w),
+                          AppButton(
+                            text: 'Remove Item',
+                            color: Colors.red,
+                            onPressed: onRemoveItem,
+                          ),
+                        ],
+                      )
+                    : Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Visibility(
+                            visible: item.status != FoodItemStatus.Ready
+                                ? true
+                                : false,
+                            child: Column(
+                              children: [
+                                AttributeDisplay(
+                                  attribute: "Previous Order Quantity",
+                                  string: item.quantity.toString(),
+                                ),
+                                SizedBox(height: 30.w),
+                              ],
+                            ),
+                          ),
+
+                          Visibility(
+                            visible: item.status != FoodItemStatus.Ready
+                                ? true
+                                : false,
+                            child: Column(
+                              children: [
+                                AppQuantitySelector(
+                                  quantity: item.quantity,
+                                  onQuantityChange: (qty) {
+                                    //don't change the qty if the item(s) has already been served
+                                    if (item.status != FoodItemStatus.Served) {
+                                      item.quantity = qty;
+                                      onItemChange(item);
+                                    }
+                                  },
+                                ),
+                                SizedBox(height: 30.w),
+                              ],
+                            ),
+                          ),
+
+                          AttributeDisplay(
+                              attribute: 'Status',
+                              string:
+                                  EnumUtil.foodItemStatusToString(item.status)),
+                          //TODO: write code if the qty is raised when the prev qty hsa been served
+                          AppButton(
+                            text: 'Mark Served',
+                            color: Colors.green,
+                            onPressed: () {
+                              item.status = FoodItemStatus.Served;
+                              onItemChange(item);
+                              Navigator.pop(context);
+                            },
+                          ),
+
+                          Visibility(
+                            visible: item.status != FoodItemStatus.Ready
+                                ? true
+                                : false,
+                            child: AppButton(
+                              text: 'Remove Item',
+                              color: Colors.red,
+                              onPressed: onRemoveItem,
+                            ),
+                          ),
+                        ],
+                      ),
             AppButton(
               text: 'Go Back',
               color: item.status != FoodItemStatus.Served ? Colors.grey : null,

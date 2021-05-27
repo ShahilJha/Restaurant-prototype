@@ -18,11 +18,12 @@ class WaiterRunningOrderScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
+          Order order = Order();
           Navigator.of(context).pushNamed(
             '/waiter_ordering_screen',
             arguments: {
               'newOrderFlag': true,
-              'order': Order(),
+              'order': order,
             },
           );
         },
