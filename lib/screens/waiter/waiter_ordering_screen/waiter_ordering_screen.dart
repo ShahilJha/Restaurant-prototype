@@ -65,8 +65,6 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print(order.customerName);
-
     return Scaffold(
       appBar: KAppBar(
         title: 'ORDERING MENU',
@@ -161,10 +159,10 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
                         Map map = category.categories[selectedCategoryIndex]
                             .categoryItems[index]
                             .toMap();
-                        print('Map:$map');
+                        // print('Map:$map');
                         FoodItem item = FoodItem.fromMap(map);
-                        print(
-                            'item:${item.id}:${item.name} and ${item.quantity}');
+                        // print(
+                        //     'item:${item.id}:${item.name} and ${item.quantity}');
 
                         newOrdersList.add(item);
                       },

@@ -4,6 +4,7 @@ import 'package:summer_project/enumerators.dart';
 import 'package:summer_project/models/KitchenStaff.dart';
 import 'package:summer_project/models/order.dart';
 import 'package:summer_project/models/watier.dart';
+import 'package:summer_project/services/user_auth.dart';
 import 'package:summer_project/utils/enum_util.dart';
 import 'package:summer_project/utils/utility.dart';
 import '../models/receptionist.dart';
@@ -130,11 +131,19 @@ class DatabaseService {
 
   Future<void> createNewOrder({Order order, BuildContext context}) async {
     try {
-      Utility.showProcessingPopUp(context);
-      _firestore.collection('orders').add(orderToMap(order));
-      Navigator.pop(context);
-    } catch (e) {
-      Utility.showSnackBar(context, message: e.message.toString());
+      // Utility.showProcessingPopUp(context);
+      DocumentReference reference = _firestore.collection('orders').doc();
+      order.id = reference.id;
+      order.dateCreated = DateTime.now();
+      order.orderTakenByID = UserAuthService.instance.user.id;
+      order.notReadyItems = order.orders.length;
+      reference.set(orderToMap(order));
+      // Navigator.pop(context);
+
+      print('ORder Details: ${orderToMap(order)}');
+    } catch (err) {
+      print('create order error: ${err.toString()}');
+      // Utility.showSnackBar(context, message: err.message.toString());
     }
   }
 

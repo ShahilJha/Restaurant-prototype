@@ -24,12 +24,6 @@ class WaiterOrderCartScreen extends StatefulWidget {
 }
 
 class _WaiterOrderCartScreenState extends State<WaiterOrderCartScreen> {
-  void printAll() {
-    for (var item in widget.newOrdersList) {
-      print('${item.id}: ${item.name} and ${item.quantity}');
-    }
-  }
-
   Order tempOrder;
   List<FoodItem> tempOrdersList;
 
@@ -53,7 +47,10 @@ class _WaiterOrderCartScreenState extends State<WaiterOrderCartScreen> {
               child: Column(
                 children: [
                   TableNumber(tableNumber: widget.order.tableNumber),
-                  OrderID(orderID: widget.order.id),
+                  Visibility(
+                    visible: widget.newOrderFlag == true ? false : true,
+                    child: OrderID(orderID: widget.order.id),
+                  ),
                 ],
               ),
               alignment: Alignment.center,
@@ -77,20 +74,13 @@ class _WaiterOrderCartScreenState extends State<WaiterOrderCartScreen> {
                   //Todo: fix problem/BUG of taking to login screen
                   tempOrder.orders = tempOrdersList;
                   DatabaseService.instance.createNewOrder(
-                    order: tempOrder,
                     context: context,
+                    order: tempOrder,
                   );
                   // Navigator.pop(context);
                   Navigator.pop(context);
                 } else {
-                  if (widget.newOrderFlag == false) {
-                    tempOrder.additionalOrders = [
-                      ...tempOrder.additionalOrders,
-                      ...tempOrdersList
-                    ];
-                  } else {
-                    tempOrder.additionalOrders = tempOrdersList;
-                  }
+                  tempOrder.additionalOrders = tempOrdersList;
                   DatabaseService.instance.updateOrder(
                     order: tempOrder,
                     context: context,

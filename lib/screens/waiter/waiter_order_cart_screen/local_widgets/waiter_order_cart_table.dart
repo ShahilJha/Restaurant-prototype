@@ -55,7 +55,6 @@ class _WaiterOrderCartTableState extends State<WaiterOrderCartTable> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.list);
     return AppTable(
       columnWidths: {
         0: FractionColumnWidth(0.1),

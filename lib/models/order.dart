@@ -42,8 +42,8 @@ class Order {
     this.orders,
     this.additionalOrders,
     this.total = 0,
-    this.discount,
-    this.netTotal,
+    this.discount = 0,
+    this.netTotal = 0,
   });
 
   factory Order.fromMap(Map<String, dynamic> map) => Order(
