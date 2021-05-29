@@ -131,19 +131,16 @@ class DatabaseService {
 
   Future<void> createNewOrder({Order order, BuildContext context}) async {
     try {
-      // Utility.showProcessingPopUp(context);
+      Utility.showProcessingPopUp(context);
       DocumentReference reference = _firestore.collection('orders').doc();
       order.id = reference.id;
-      order.dateCreated = DateTime.now();
       order.orderTakenByID = UserAuthService.instance.user.id;
-      order.notReadyItems = order.orders.length;
+      order.dateCreated = DateTime.now();
+      order.additionalOrders = [];
       reference.set(orderToMap(order));
-      // Navigator.pop(context);
-
-      print('ORder Details: ${orderToMap(order)}');
+      Navigator.pop(context);
     } catch (err) {
-      print('create order error: ${err.toString()}');
-      // Utility.showSnackBar(context, message: err.message.toString());
+      Utility.showSnackBar(context, message: err.message.toString());
     }
   }
 

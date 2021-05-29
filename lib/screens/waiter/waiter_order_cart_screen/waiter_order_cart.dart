@@ -78,7 +78,7 @@ class _WaiterOrderCartScreenState extends State<WaiterOrderCartScreen> {
                     context: context,
                     order: tempOrder,
                   );
-                  // Navigator.pop(context);
+                  Navigator.pop(context);
                   Navigator.pop(context);
                 } else {
                   print('additional order creator');
