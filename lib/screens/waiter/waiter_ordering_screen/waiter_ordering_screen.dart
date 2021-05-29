@@ -32,6 +32,22 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
   //Order object to track order
   Order order;
 
+  void _customerDetailForm(BuildContext context) {
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (context) => CustomerDetailDialog(
+        onValueChange: (int tableNumber, String name, String contact) {
+          setState(() {});
+          print('From Form : $tableNumber : $name - $contact');
+
+          // print(
+          //     'VALUE FROM FORM: ${order.customerContact}, ${order.customerName},${order.tableNumber}');
+        },
+      ),
+    );
+  }
+
   @override
   void initState() {
     super.initState();
@@ -45,24 +61,6 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
         _customerDetailForm(context);
       });
     }
-  }
-
-  void _customerDetailForm(BuildContext context) {
-    showDialog(
-      barrierDismissible: false,
-      context: context,
-      builder: (context) => CustomerDetailDialog(
-        onValueChange: (changedOrder) {
-          setState(() {
-            order = changedOrder;
-          });
-          // order = changedOrder;
-
-          print(
-              'VALUE FROM FORM: ${order.customerContact}, ${order.customerName},${order.tableNumber}');
-        },
-      ),
-    );
   }
 
   @override

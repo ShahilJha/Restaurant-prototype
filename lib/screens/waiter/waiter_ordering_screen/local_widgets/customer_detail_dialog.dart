@@ -22,7 +22,7 @@ class CustomerDetailDialog extends StatefulWidget {
 }
 
 class CustomerDetailDialogState extends State<CustomerDetailDialog> {
-  int _selectedTable;
+  int selectedTable;
   String name;
   String contactNumber;
   Order tempOrder;
@@ -31,7 +31,7 @@ class CustomerDetailDialogState extends State<CustomerDetailDialog> {
   void initState() {
     super.initState();
     // _selectedTable = widget.initialValue;
-    _selectedTable = null;
+    selectedTable = null;
     tempOrder = widget.order;
   }
 
@@ -48,8 +48,6 @@ class CustomerDetailDialogState extends State<CustomerDetailDialog> {
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
-              // mainAxisAlignment: MainAxisAlignment.center,
-              // crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -57,7 +55,7 @@ class CustomerDetailDialogState extends State<CustomerDetailDialog> {
                     Text('Table no.: ', style: TextStyle(fontSize: 60.w)),
                     DropdownButton<int>(
                       hint: Text('Pick Table'),
-                      value: _selectedTable,
+                      value: selectedTable,
                       items: TableNumberList.map((int value) {
                         return new DropdownMenuItem<int>(
                           value: value,
@@ -65,14 +63,8 @@ class CustomerDetailDialogState extends State<CustomerDetailDialog> {
                         );
                       }).toList(),
                       onChanged: (value) {
-                        setState(() {
-                          _selectedTable = value;
-                          print('Table no : $_selectedTable');
-                          // print(_selectedTable is int);
-
-                          // widget.order.tableNumber = _selectedTable;
-                        });
-                        // print(widget.order.tableNumber);
+                        selectedTable = value;
+                        print('Table no : $selectedTable');
                       },
                     )
                   ],
@@ -80,16 +72,12 @@ class CustomerDetailDialogState extends State<CustomerDetailDialog> {
                 Text('Customer Name: ', style: TextStyle(fontSize: 60.w)),
                 AppTextField(
                   onChanged: (value) {
-                    // widget.order.customerName = value;
-                    // print(widget.order.customerName);
                     name = value;
                   },
                 ),
                 Text('Phone Number: ', style: TextStyle(fontSize: 60.w)),
                 AppTextField(
                   onChanged: (value) {
-                    // widget.order.customerContact = value;
-                    // print(widget.order.customerContact);
                     contactNumber = value;
                     print(contactNumber);
                   },
@@ -99,20 +87,18 @@ class CustomerDetailDialogState extends State<CustomerDetailDialog> {
                   child: AppButton(
                     text: 'PROCEED',
                     onPressed: () {
-                      //TODO: create customer in DB and return customer ID using callback
-                      try {
-                        tempOrder.tableNumber = _selectedTable;
-                        tempOrder.customerName = name;
-                        tempOrder.customerContact = contactNumber;
-                      } catch (e) {
-                        print(e);
-                      }
-
                       // print(
-                      //     'VALUE FROM FORM: ${widget.order.customerContact}, ${widget.order.customerName},${widget.order.tableNumber}');
+                      //     'VALUE FROM FORM: ${tempOrder.customerContact}, ${tempOrder.customerName},${tempOrder.tableNumber}');
+                      print(
+                          'VALUE FROM FORM: $contactNumber, $name,$selectedTable');
+
+                      // tempOrder.customerContact = contactNumber;
+                      // tempOrder.customerName = name;
+                      // tempOrder.tableNumber = selectedTable;
 
                       Navigator.pop(context);
-                      widget.onValueChange(tempOrder);
+                      // widget.onValueChange(tempOrder);
+                      widget.onValueChange(selectedTable, name, contactNumber);
                     },
                   ),
                 ),
