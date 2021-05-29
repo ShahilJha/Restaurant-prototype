@@ -38,10 +38,11 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
       context: context,
       builder: (context) => CustomerDetailDialog(
         onValueChange: (int tableNumber, String name, String contact) {
-          print('From Form : $tableNumber : $name - $contact');
-
-          // print(
-          //     'VALUE FROM FORM: ${order.customerContact}, ${order.customerName},${order.tableNumber}');
+          setState(() {
+            order.tableNumber = tableNumber;
+            order.customerName = name;
+            order.customerContact = contact;
+          });
         },
       ),
     );
