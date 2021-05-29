@@ -72,6 +72,7 @@ class _WaiterOrderCartScreenState extends State<WaiterOrderCartScreen> {
               onPressed: () {
                 if (widget.newOrderFlag == true) {
                   //Todo: fix problem/BUG of taking to login screen
+                  print('new order creator');
                   tempOrder.orders = tempOrdersList;
                   DatabaseService.instance.createNewOrder(
                     context: context,
@@ -80,7 +81,11 @@ class _WaiterOrderCartScreenState extends State<WaiterOrderCartScreen> {
                   // Navigator.pop(context);
                   Navigator.pop(context);
                 } else {
-                  tempOrder.additionalOrders = tempOrdersList;
+                  print('additional order creator');
+                  tempOrder.additionalOrders = [
+                    ...tempOrder.additionalOrders,
+                    ...tempOrdersList
+                  ];
                   DatabaseService.instance.updateOrder(
                     order: tempOrder,
                     context: context,
