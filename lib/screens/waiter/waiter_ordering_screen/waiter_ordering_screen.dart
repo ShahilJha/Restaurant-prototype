@@ -38,7 +38,6 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
       context: context,
       builder: (context) => CustomerDetailDialog(
         onValueChange: (int tableNumber, String name, String contact) {
-          setState(() {});
           print('From Form : $tableNumber : $name - $contact');
 
           // print(
