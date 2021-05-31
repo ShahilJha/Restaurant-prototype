@@ -19,6 +19,7 @@ class WaiterOrderTile extends StatelessWidget {
     @required this.onPressed,
   }) : super(key: key);
 
+  //TODO: color not changing with status
   Color getStatusColor() {
     if (order.notAvailableItems > 0) {
       return Colors.black26;

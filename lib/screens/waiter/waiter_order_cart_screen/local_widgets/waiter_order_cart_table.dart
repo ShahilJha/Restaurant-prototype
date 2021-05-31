@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:summer_project/models/food_item.dart';
-import 'package:summer_project/utils/enum_util.dart';
-import 'package:summer_project/widgets/app_button.dart';
 import 'package:summer_project/widgets/app_quantity_selector.dart';
 import 'package:summer_project/widgets/app_table_components.dart';
-import 'package:summer_project/widgets/attribute_display.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../enumerators.dart';
 
 class WaiterOrderCartTable extends StatefulWidget {
   final List<FoodItem> list;
@@ -44,6 +40,8 @@ class _WaiterOrderCartTableState extends State<WaiterOrderCartTable> {
               ),
               onPressed: () {
                 print('There was an attempt to remove');
+                list.remove(list[index]);
+                onStatusSelect(list);
               },
             ),
           ],
@@ -70,9 +68,9 @@ class _WaiterOrderCartTableState extends State<WaiterOrderCartTable> {
       ],
       dataChildren: _getWaiterOrderCartTableRows(
         list: widget.list,
-        onStatusSelect: () {
+        onStatusSelect: (changedList) {
           setState(() {
-            widget.onItemChange(widget.list);
+            widget.onItemChange(changedList);
           });
         },
       ),

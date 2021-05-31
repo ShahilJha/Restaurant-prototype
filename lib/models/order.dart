@@ -139,29 +139,34 @@ class Order {
   }
 
   void updateItemStatusCount() {
+    //TOdo: check if the total
+    this.readyItems = 0;
+    this.notReadyItems = 0;
+    this.servedItems = 0;
+    this.notAvailableItems = 0;
     if (orders.isNotEmpty) {
       for (var item in orders) {
         if (item.status == FoodItemStatus.Ready) {
-          this.readyItems++;
+          this.readyItems += item.quantity;
         } else if (item.status == FoodItemStatus.NotReady) {
-          this.notReadyItems++;
+          this.notReadyItems += item.quantity;
         } else if (item.status == FoodItemStatus.Served) {
-          this.servedItems++;
+          this.servedItems += item.quantity;
         } else if (item.status == FoodItemStatus.NotAvailable) {
-          this.notAvailableItems++;
+          this.notAvailableItems += item.quantity;
         }
       }
     }
     if (additionalOrders.isNotEmpty) {
       for (var item in additionalOrders) {
         if (item.status == FoodItemStatus.Ready) {
-          this.readyItems++;
+          this.readyItems += item.quantity;
         } else if (item.status == FoodItemStatus.NotReady) {
-          this.notReadyItems++;
+          this.notReadyItems += item.quantity;
         } else if (item.status == FoodItemStatus.Served) {
-          this.servedItems++;
+          this.servedItems += item.quantity;
         } else if (item.status == FoodItemStatus.NotAvailable) {
-          this.notAvailableItems++;
+          this.notAvailableItems += item.quantity;
         }
       }
     }

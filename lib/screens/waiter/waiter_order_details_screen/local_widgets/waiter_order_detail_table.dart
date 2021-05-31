@@ -92,7 +92,6 @@ class _WaiterOrderDetailTableState extends State<WaiterOrderDetailTable> {
                               ],
                             ),
                           ),
-
                           Visibility(
                             visible: item.status != FoodItemStatus.Ready
                                 ? true
@@ -113,7 +112,6 @@ class _WaiterOrderDetailTableState extends State<WaiterOrderDetailTable> {
                               ],
                             ),
                           ),
-
                           AttributeDisplay(
                               attribute: 'Status',
                               string:
@@ -127,7 +125,6 @@ class _WaiterOrderDetailTableState extends State<WaiterOrderDetailTable> {
                               Navigator.pop(context);
                             },
                           ),
-
                           Visibility(
                             visible: item.status != FoodItemStatus.Ready
                                 ? true
@@ -208,7 +205,7 @@ class _WaiterOrderDetailTableState extends State<WaiterOrderDetailTable> {
       ],
       dataChildren: _getWaiterOrderDetailTableRows(
         list: widget.list,
-        onStatusSelect: () {
+        onStatusSelect: (data) {
           setState(() {
             widget.onItemChange(widget.list);
           });

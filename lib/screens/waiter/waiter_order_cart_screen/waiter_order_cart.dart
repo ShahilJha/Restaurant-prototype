@@ -60,9 +60,9 @@ class _WaiterOrderCartScreenState extends State<WaiterOrderCartScreen> {
             WaiterOrderCartTable(
               list: tempOrdersList,
               onItemChange: (changedList) {
-                widget.newOrderFlag == true
-                    ? tempOrdersList = changedList
-                    : tempOrdersList = changedList;
+                setState(() {
+                  tempOrdersList = changedList;
+                });
               },
             ),
             Divider(),
@@ -71,7 +71,6 @@ class _WaiterOrderCartScreenState extends State<WaiterOrderCartScreen> {
                   widget.newOrderFlag == true ? 'Place Order' : 'Add to Order',
               onPressed: () {
                 if (widget.newOrderFlag == true) {
-                  //Todo: fix problem/BUG of taking to login screen
                   print('new order creator');
                   tempOrder.orders = tempOrdersList;
                   DatabaseService.instance.createNewOrder(
