@@ -42,6 +42,46 @@ class UserAuthService {
     }
   }
 
+  //TODO: <<-----------TEST----------->>
+  final List<Map<String, dynamic>> dummyUserList = [
+    {
+      'email': 'sabin@gmail.com',
+      'gender': 'male',
+      'name': 'saw ben',
+      'position': JobPosition.Waiter,
+    },
+    {
+      'email': 'ananda@gmail.com',
+      'gender': 'male',
+      'name': 'ananda',
+      'position': JobPosition.KitchenStaff,
+    },
+    {
+      'email': 'prashant@gmail.com',
+      'gender': 'male',
+      'name': 'prashant',
+      'position': JobPosition.KitchenStaff,
+    },
+    {
+      'email': 'sangin@gmail.com',
+      'gender': 'male',
+      'name': 'sagnin',
+      'position': JobPosition.Receptionist,
+    },
+  ];
+
+  //TODO: <<-----------TEST----------->>
+  void makeDummyUser() async {
+    for (var user in dummyUserList) {
+      await createUser(
+        email: user['email'],
+        gender: user['gender'],
+        name: user['name'],
+        position: user['position'],
+      );
+    }
+  }
+
   Future<dynamic> signInUser(
       {String email,
       String password,
