@@ -137,6 +137,7 @@ class DatabaseService {
       order.orderTakenByID = UserAuthService.instance.user.id;
       order.dateCreated = DateTime.now();
       order.additionalOrders = [];
+      order.updateInternalData();
       reference.set(orderToMap(order));
       Navigator.pop(context);
     } catch (err) {
@@ -163,6 +164,7 @@ class DatabaseService {
     //TODO: change order status according to data
     try {
       Utility.showProcessingPopUp(context);
+      order.updateInternalData();
       _firestore
           .collection('orders')
           .where('id', isEqualTo: order.id)
