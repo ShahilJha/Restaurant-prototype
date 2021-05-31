@@ -54,7 +54,7 @@ class UserAuthService {
           await DatabaseService.instance.getStaffDetailsByID(user.user.uid);
       _user = appUser;
 
-      print('LOG CHECK: $_user');
+      // print('LOG CHECK: $_user');
       if (_user != null) {
         if (jobPosition == null) {
           Navigator.pop(context);
@@ -66,7 +66,7 @@ class UserAuthService {
               message: 'Incorrect Job Position Input.');
         } else if (jobPosition == _user.jobPosition) {
           Navigator.pop(context); //pops circular indicator
-          // Navigator.pop(context); //pops login screen
+          Navigator.pop(context); //pops login screen
           Navigator.of(context).pushNamed(_getLoginRoute(_user.jobPosition));
         }
       } else {

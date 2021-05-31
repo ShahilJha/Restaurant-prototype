@@ -92,8 +92,8 @@ class DatabaseService {
       order.updateInternalData();
       reference.set(orderToMap(order));
       Navigator.pop(context);
-    } catch (err) {
-      Utility.showSnackBar(context, message: err.message.toString());
+    } catch (e) {
+      print('EXCEPTION: -createNewOrder--> $e');
     }
   }
 
@@ -105,10 +105,10 @@ class DatabaseService {
               .collection('orders')
               .doc(value.docs.first.id)
               .delete());
-      Navigator.pop(context);
     } catch (e) {
+      print('EXCEPTION: -deleteOrderByID--> $e');
+    } finally {
       Navigator.pop(context);
-      Utility.showSnackBar(context, message: e.message.toString());
     }
   }
 
@@ -124,10 +124,10 @@ class DatabaseService {
               .collection('orders')
               .doc(value.docs.first.id)
               .update(orderToMap(order)));
-      Navigator.pop(context);
     } catch (e) {
+      print('EXCEPTION: -updateOrder--> $e');
+    } finally {
       Navigator.pop(context);
-      Utility.showSnackBar(context, message: e.message.toString());
     }
   }
 }
