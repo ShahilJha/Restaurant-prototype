@@ -14,11 +14,16 @@ class UserAuthService {
   dynamic get user => _user;
 
   //TODO: <<-----------TEST----------->>
-  Future createUser() async {
+  Future createUser({
+    String email,
+    String gender,
+    String name,
+    JobPosition position,
+  }) async {
     try {
       print('LOG#1: -newUser--> START TO CREATE USER');
       final newUser = await _auth.createUserWithEmailAndPassword(
-          email: 'reception@gmail.com', password: 'shahil');
+          email: email, password: '123456');
       print('LOG#2: -newUser--> authenticated  for email and password');
       print('LOG#3: -newUser--> $newUser');
       // DatabaseService.instance.
@@ -26,11 +31,11 @@ class UserAuthService {
       DatabaseService.instance.addNewStaffMemberDetails(
         id: newUser.user.uid,
         registrationDate: DateTime.now(),
-        address: 'Kalanki',
-        gender: 'Male',
+        address: 'Nepal',
+        gender: gender,
         contactNumber: '9849000000',
-        userName: EnumUtil.jobPositionToString(JobPosition.Receptionist),
-        position: JobPosition.Receptionist,
+        userName: name,
+        position: position,
       );
     } catch (e) {
       print('EXCEPTION: -create user--> $e');
