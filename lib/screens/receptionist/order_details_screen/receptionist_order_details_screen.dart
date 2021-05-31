@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:summer_project/models/food_item.dart';
 import 'package:summer_project/models/order.dart';
+import 'package:summer_project/services/database_service.dart';
 import 'package:summer_project/utils/enum_util.dart';
 import 'package:summer_project/widgets/app_app_bar.dart';
 import 'package:summer_project/widgets/app_button.dart';
@@ -77,16 +78,21 @@ class _ReceptionistOrderDetailsScreenState
               netTotal: netTotal != null ? netTotal : widget.order.total,
               onDiscountChange: (discount) {
                 widget.order.discount = discount;
-                print('${widget.order.discount} == $discount');
                 setState(() {
                   netTotal = widget.order.total - discount;
                 });
+                widget.order.netTotal = netTotal;
               },
             ),
             AppButton(
               text: 'CLOSE ORDER',
               onPressed: () {
-                //todo: assign the total, discount and net total to the 'order' object
+                //todo: change to update with OrderStatus.FinishedOrder after convert to customDB
+                //deleting the order after finishing work
+                DatabaseService.instance.deleteOrderByID(
+                  context: context,
+                  id: widget.order.id,
+                );
                 Navigator.pop(context);
               },
             ),

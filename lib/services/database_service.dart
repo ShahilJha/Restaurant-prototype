@@ -16,7 +16,7 @@ class DatabaseService {
   static final _firestore = FirebaseFirestore.instance;
   FirebaseFirestore get firestore => _firestore;
 
-  //<<-----------TEST----------->>
+  //TODO: <<-----------TEST----------->>
   void addNewStaffMemberDetails({
     String id,
     String userName,
@@ -39,54 +39,6 @@ class DatabaseService {
     } catch (e) {
       print('EXCEPTION: -addNewStaffMemberDetails--> $e');
     }
-  }
-
-  //<<-----------TEST----------->>
-  void putTestData() async {
-    _firestore.collection('orders').add({
-      'tableNumber': 11,
-      'customerContact': '9849000001',
-      'dateCreated': DateTime.now(),
-      'orderTakenByID': 20,
-      'status': EnumUtil.orderStatusToString(OrderStatus.NewOrder),
-      'readyItems': 0,
-      'notReadyItems': 4,
-      'servedItems': 0,
-      'orders': [
-        {
-          'id': 2,
-          'name': 'Cream of Chicken',
-          'price': 225,
-          'quantity': 2,
-          'status': EnumUtil.foodItemStatusToString(FoodItemStatus.NotReady),
-        },
-        {
-          'id': 12,
-          'name': 'Classic Breakfast',
-          'price': 330,
-          'quantity': 1,
-          'status': EnumUtil.foodItemStatusToString(FoodItemStatus.NotReady),
-        },
-        {
-          'id': 48,
-          'name': 'Margarita',
-          'price': 380,
-          'quantity': 1,
-          'status': EnumUtil.foodItemStatusToString(FoodItemStatus.NotReady),
-        },
-        {
-          'id': 61,
-          'name': 'Napolitana',
-          'price': 370,
-          'quantity': 1,
-          'status': EnumUtil.foodItemStatusToString(FoodItemStatus.NotReady),
-        },
-      ],
-      'additionalOrders': [],
-      'total': 110,
-      'discount': 10,
-      'netTotal': 100,
-    });
   }
 
   Future<dynamic> getStaffDetailsByID(String id) async {
@@ -161,7 +113,6 @@ class DatabaseService {
   }
 
   Future<void> updateOrder({Order order, BuildContext context}) async {
-    //TODO: change order status according to data
     try {
       Utility.showProcessingPopUp(context);
       order.updateInternalData();
