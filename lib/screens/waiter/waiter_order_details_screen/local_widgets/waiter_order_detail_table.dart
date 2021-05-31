@@ -118,7 +118,6 @@ class _WaiterOrderDetailTableState extends State<WaiterOrderDetailTable> {
                               attribute: 'Status',
                               string:
                                   EnumUtil.foodItemStatusToString(item.status)),
-                          //TODO: write code if the qty is raised when the prev qty hsa been served
                           AppButton(
                             text: 'Mark Served',
                             color: Colors.green,

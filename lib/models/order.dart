@@ -35,7 +35,7 @@ class Order {
     this.orderTakenByID,
     this.status = OrderStatus.NewOrder,
     this.readyItems = 0,
-    this.notReadyItems,
+    this.notReadyItems = 0,
     this.servedItems = 0,
     this.notAvailableItems = 0,
     this.totalOrderCount,
@@ -89,34 +89,67 @@ class Order {
         'netTotal': netTotal,
       };
 
-  void getOrdersWithTotalForItems(Order order) {
-    if (order.orders.isNotEmpty) {
-      for (int i = 0; i < order.orders.length; i++) {
-        order.orders[i].total =
-            order.orders[i].price * order.orders[i].quantity;
+  void getOrdersWithTotalForItems() {
+    if (orders.isNotEmpty) {
+      for (int i = 0; i < orders.length; i++) {
+        orders[i].total = orders[i].price * orders[i].quantity;
       }
     }
-    if (order.additionalOrders.isNotEmpty) {
-      for (int i = 0; i < order.additionalOrders.length; i++) {
-        order.additionalOrders[i].total = order.additionalOrders[i].price *
-            order.additionalOrders[i].quantity;
+    if (additionalOrders.isNotEmpty) {
+      for (int i = 0; i < additionalOrders.length; i++) {
+        additionalOrders[i].total =
+            additionalOrders[i].price * additionalOrders[i].quantity;
       }
     }
   }
 
-  void getOrderTotalAmount(Order order) {
+  void getOrderTotalAmount() {
     int total = 0;
-    if (order.orders.isNotEmpty) {
-      for (var item in order.orders) {
+    if (orders.isNotEmpty) {
+      for (var item in orders) {
         total = total + item.total;
       }
     }
-    if (order.additionalOrders.isNotEmpty) {
-      for (var item in order.additionalOrders) {
+    if (additionalOrders.isNotEmpty) {
+      for (var item in additionalOrders) {
         total = total + item.total;
       }
     }
-    order.total = total;
-    print('TOTAL: ${order.total}');
+    this.total = total;
+  }
+
+  void updateInternalData() {
+    if (orders.isNotEmpty) {
+      for (var item in orders) {
+        if (item.status == FoodItemStatus.Ready) {
+          this.readyItems++;
+        } else if (item.status == FoodItemStatus.NotReady) {
+          this.notReadyItems++;
+        } else if (item.status == FoodItemStatus.Served) {
+          this.servedItems++;
+        } else if (item.status == FoodItemStatus.NotAvailable) {
+          this.notAvailableItems++;
+        }
+      }
+    }
+    if (additionalOrders.isNotEmpty) {
+      for (var item in additionalOrders) {
+        if (item.status == FoodItemStatus.Ready) {
+          this.readyItems++;
+        } else if (item.status == FoodItemStatus.NotReady) {
+          this.notReadyItems++;
+        } else if (item.status == FoodItemStatus.Served) {
+          this.servedItems++;
+        } else if (item.status == FoodItemStatus.NotAvailable) {
+          this.notAvailableItems++;
+        }
+      }
+    }
+  }
+
+  void updateOrderStatus() {
+    if (orders.length == notReadyItems && additionalOrders.length == 0) {
+      status = OrderStatus.NewOrder;
+    }
   }
 }

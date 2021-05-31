@@ -30,8 +30,8 @@ class _ReceptionistOrderDetailsScreenState
   @override
   void initState() {
     super.initState();
-    widget.order.getOrdersWithTotalForItems(this.widget.order);
-    widget.order.getOrderTotalAmount(this.widget.order);
+    widget.order.getOrdersWithTotalForItems();
+    widget.order.getOrderTotalAmount();
   }
 
   @override
