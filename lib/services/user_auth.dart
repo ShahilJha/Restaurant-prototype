@@ -44,7 +44,8 @@ class UserAuthService {
       BuildContext context}) async {
     try {
       UserCredential user = await _auth
-          .signInWithEmailAndPassword(email: email.trim(), password: password)
+          .signInWithEmailAndPassword(
+              email: email.trim().toLowerCase(), password: password)
           .catchError((err) {
         Navigator.pop(context);
         Utility.showSnackBar(context, message: err.message.toString());

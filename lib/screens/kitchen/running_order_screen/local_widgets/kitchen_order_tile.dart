@@ -32,6 +32,9 @@ class KitchenOrderTile extends StatelessWidget {
       case OrderStatus.FinishedOrder:
         return Colors.grey;
 
+      case OrderStatus.ItemNotAvailable:
+        return Colors.black26;
+
       default:
         return Colors.white;
     }

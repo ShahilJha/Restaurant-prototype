@@ -20,6 +20,8 @@ class Order {
   int servedItems;
   int notAvailableItems;
   int totalOrderCount;
+  int totalAdditionalOrderCount;
+  int totalItemsCount;
   List<FoodItem> orders;
   List<FoodItem> additionalOrders;
   int total;
@@ -39,6 +41,8 @@ class Order {
     this.servedItems = 0,
     this.notAvailableItems = 0,
     this.totalOrderCount,
+    this.totalAdditionalOrderCount,
+    this.totalItemsCount,
     this.orders,
     this.additionalOrders,
     this.total = 0,
@@ -59,6 +63,8 @@ class Order {
         servedItems: map['servedItems'],
         notAvailableItems: map['notAvailableItems'],
         totalOrderCount: map['totalOrderCount'],
+        totalAdditionalOrderCount: map['totalAdditionalOrderCount'],
+        totalItemsCount: map['totalItemsCount'],
         orders:
             List<FoodItem>.from(map['orders'].map((x) => FoodItem.fromMap(x))),
         additionalOrders: List<FoodItem>.from(
@@ -81,6 +87,8 @@ class Order {
         'servedItems': servedItems,
         'notAvailableItems': notAvailableItems,
         'totalOrderCount': totalOrderCount,
+        'totalAdditionalOrderCount': totalAdditionalOrderCount,
+        'totalItemsCount': totalItemsCount,
         'orders': List<dynamic>.from(orders.map((x) => x.toMap())),
         'additionalOrders':
             List<dynamic>.from(additionalOrders.map((x) => x.toMap())),
@@ -119,6 +127,18 @@ class Order {
   }
 
   void updateInternalData() {
+    getOrderItemsCount();
+    updateItemStatusCount();
+    updateOrderStatus();
+  }
+
+  void getOrderItemsCount() {
+    totalOrderCount = orders.length;
+    totalAdditionalOrderCount = additionalOrders.length;
+    totalItemsCount = totalOrderCount + totalAdditionalOrderCount;
+  }
+
+  void updateItemStatusCount() {
     if (orders.isNotEmpty) {
       for (var item in orders) {
         if (item.status == FoodItemStatus.Ready) {
@@ -148,8 +168,24 @@ class Order {
   }
 
   void updateOrderStatus() {
-    if (orders.length == notReadyItems && additionalOrders.length == 0) {
+    if (notAvailableItems > 0) {
+      status = OrderStatus.ItemNotAvailable;
+    } else if (totalOrderCount > 0 &&
+        totalOrderCount == notReadyItems &&
+        totalAdditionalOrderCount == 0) {
       status = OrderStatus.NewOrder;
+    } else if (servedItems > 0 &&
+        notReadyItems != 0 &&
+        totalItemsCount != servedItems) {
+      status = OrderStatus.PartiallyFinishedOrder;
+    } else if (totalItemsCount == servedItems &&
+        notAvailableItems == 0 &&
+        readyItems == 0 &&
+        notReadyItems == 0) {
+      status = OrderStatus.FinishedOrder;
+    } else if (totalAdditionalOrderCount > 0 &&
+        totalOrderCount != totalItemsCount) {
+      status = OrderStatus.AdditionalOrder;
     }
   }
 }
