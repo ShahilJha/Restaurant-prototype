@@ -54,7 +54,7 @@ class EnumUtil {
         break;
 
       case OrderStatus.PartiallyFinishedOrder:
-        string = 'Partially Finished';
+        string = 'Partially Finished Order';
         break;
 
       case OrderStatus.ItemNotAvailable:
@@ -79,7 +79,7 @@ class EnumUtil {
         status = OrderStatus.FinishedOrder;
         break;
 
-      case 'Partially Finished':
+      case 'Partially Finished Order':
         status = OrderStatus.PartiallyFinishedOrder;
         break;
 

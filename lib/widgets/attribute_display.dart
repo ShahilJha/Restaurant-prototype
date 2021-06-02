@@ -23,7 +23,7 @@ class AttributeDisplay extends StatelessWidget {
           Text(
             string ?? '***',
             style: TextStyle(
-              fontSize: 50.ssp,
+              fontSize: 40.ssp,
             ),
           ),
         ],
