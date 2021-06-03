@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:summer_project/models/food_item.dart';
+import 'package:summer_project/utils/utility.dart';
 import 'package:summer_project/widgets/app_table_components.dart';
 
 import '../../../../enumerators.dart';
@@ -73,11 +74,16 @@ class _KitchenOrderTableState extends State<KitchenOrderTable> {
             KitchenStatusChip(
               status: list[index].status,
               onPressed: () {
-                _buildPopupDialog(
-                  context: context,
-                  onStatusSelect: (FoodItemStatus status) =>
-                      onStatusSelect(status, index),
-                );
+                list[index].status != FoodItemStatus.Served
+                    ? _buildPopupDialog(
+                        context: context,
+                        onStatusSelect: (FoodItemStatus status) =>
+                            onStatusSelect(status, index),
+                      )
+                    : Utility.showSnackBar(
+                        context,
+                        message: 'Item Already Served.',
+                      );
               },
             ),
           ],
