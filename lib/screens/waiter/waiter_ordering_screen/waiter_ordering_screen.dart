@@ -117,70 +117,74 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
             SizedBox(height: 25.h),
             Container(
               height: 1575.h,
-              child: ListView.builder(
-                physics: ClampingScrollPhysics(),
-                addAutomaticKeepAlives: false,
-                shrinkWrap: true,
-                itemCount: category
-                    .categories[selectedCategoryIndex].categoryItems.length,
-                itemBuilder: (context, index) {
-                  //make a method that checks if the item is in the newOrderList and change value accordingly
-                  return Container(
-                    padding: EdgeInsets.symmetric(vertical: 10.h),
-                    child: AppFoodItemTile(
-                      itemName: category.categories[selectedCategoryIndex]
-                          .categoryItems[index].name,
-                      itemPrice: category.categories[selectedCategoryIndex]
-                          .categoryItems[index].price,
-                      isSelected: category.categories[selectedCategoryIndex]
-                          .categoryItems[index].isSelected,
-                      toggleIsSelect: () {
-                        setState(() => category
-                            .categories[selectedCategoryIndex]
-                            .categoryItems[index]
-                            .toggleIsSelected());
-                        category.categories[selectedCategoryIndex]
-                            .categoryItems[index].quantity = 1;
-                      },
-                      quantity: category.categories[selectedCategoryIndex]
-                          .categoryItems[index].quantity,
-                      onQuantityChange: (qty) => setState(
-                        () {
-                          category.categories[selectedCategoryIndex]
-                              .categoryItems[index].quantity = qty;
-                          int i = newOrdersList.indexWhere((element) =>
-                              element.id ==
-                              category.categories[selectedCategoryIndex]
-                                  .categoryItems[index].id);
-                          newOrdersList[i].quantity = qty;
-                        },
-                      ),
-                      onAdd: () {
-                        Map map = category.categories[selectedCategoryIndex]
-                            .categoryItems[index]
-                            .toMap();
-                        FoodItem item = FoodItem.fromMap(map);
-                        newOrdersList.add(item);
-                      },
-                      onCancel: () {
-                        Map map = category.categories[selectedCategoryIndex]
-                            .categoryItems[index]
-                            .toMap();
-                        FoodItem item = FoodItem.fromMap(map);
-                        // newOrdersList.remove(item);
-                        newOrdersList.retainWhere((element) =>
-                            element.id !=
-                            category.categories[selectedCategoryIndex]
-                                .categoryItems[index].id);
-                      },
-                    ),
-                  );
-                },
-              ),
+              child: _getCategoryItems(selectedCategoryIndex),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  ListView _getCategoryItems(int selectedCategoryIndex) {
+    return ListView.builder(
+      physics: ClampingScrollPhysics(),
+      addAutomaticKeepAlives: false,
+      shrinkWrap: true,
+      itemCount:
+          category.categories[selectedCategoryIndex].categoryItems.length,
+      itemBuilder: (context, index) {
+        //make a method that checks if the item is in the newOrderList and change value accordingly
+        return Container(
+          padding: EdgeInsets.symmetric(vertical: 10.h),
+          child: AppFoodItemTile(
+            key: UniqueKey(),
+            itemName: category
+                .categories[selectedCategoryIndex].categoryItems[index].name,
+            itemPrice: category
+                .categories[selectedCategoryIndex].categoryItems[index].price,
+            isSelected: category.categories[selectedCategoryIndex]
+                .categoryItems[index].isSelected,
+            toggleIsSelect: () {
+              setState(() => category
+                  .categories[selectedCategoryIndex].categoryItems[index]
+                  .toggleIsSelected());
+              category.categories[selectedCategoryIndex].categoryItems[index]
+                  .quantity = 1;
+            },
+            quantity: category.categories[selectedCategoryIndex]
+                .categoryItems[index].quantity,
+            onQuantityChange: (qty) => setState(
+              () {
+                category.categories[selectedCategoryIndex].categoryItems[index]
+                    .quantity = qty;
+                int i = newOrdersList.indexWhere((element) =>
+                    element.id ==
+                    category.categories[selectedCategoryIndex]
+                        .categoryItems[index].id);
+                newOrdersList[i].quantity = qty;
+              },
+            ),
+            onAdd: () {
+              Map map = category
+                  .categories[selectedCategoryIndex].categoryItems[index]
+                  .toMap();
+              FoodItem item = FoodItem.fromMap(map);
+              newOrdersList.add(item);
+            },
+            onCancel: () {
+              Map map = category
+                  .categories[selectedCategoryIndex].categoryItems[index]
+                  .toMap();
+              FoodItem item = FoodItem.fromMap(map);
+              // newOrdersList.remove(item);
+              newOrdersList.retainWhere((element) =>
+                  element.id !=
+                  category.categories[selectedCategoryIndex]
+                      .categoryItems[index].id);
+            },
+          ),
+        );
+      },
     );
   }
 }
