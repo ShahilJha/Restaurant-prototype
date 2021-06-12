@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:summer_project/models/order.dart';
 import 'package:summer_project/services/database_service.dart';
+import 'package:summer_project/utils/utility.dart';
 import 'package:summer_project/widgets/app_app_bar.dart';
 import 'package:summer_project/widgets/app_container.dart';
 
@@ -14,6 +15,7 @@ class WaiterRunningOrderScreen extends StatelessWidget {
     return Scaffold(
       appBar: KAppBar(
         title: 'RUNNING ORDERS',
+        actions: [Utility.logOutFromApp(context)],
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),

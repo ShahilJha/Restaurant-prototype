@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:summer_project/models/order.dart';
 import 'package:summer_project/services/database_service.dart';
+import 'package:summer_project/utils/utility.dart';
 import 'package:summer_project/widgets/app_app_bar.dart';
 import 'package:summer_project/widgets/app_container.dart';
 
@@ -13,6 +14,7 @@ class ReceptionistOrderListScreen extends StatelessWidget {
     return Scaffold(
       appBar: KAppBar(
         title: 'RUNNING ORDERS',
+        actions: [Utility.logOutFromApp(context)],
       ),
       body: AppContainer(
         child: StreamBuilder(
