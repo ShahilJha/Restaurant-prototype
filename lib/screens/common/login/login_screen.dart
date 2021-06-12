@@ -101,6 +101,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     Utility.showProcessingPopUp(context);
                     if (_rememberMe == true) {
                       _pref.setString('email', emailController.text);
+                    } else {
+                      _pref.setString('email', '');
                     }
                     await UserAuthService.instance.signInUser(
                       email: emailController.text,
