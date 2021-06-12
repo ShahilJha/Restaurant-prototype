@@ -6,12 +6,14 @@ class AppActionChip extends StatelessWidget {
   final Color backgroundColor;
   final Function onPressed;
   final Color textColor;
+  final EdgeInsetsGeometry padding;
   const AppActionChip({
     Key key,
     @required this.string,
     this.backgroundColor,
     this.textColor = Colors.black,
     @required this.onPressed,
+    this.padding,
   }) : super(key: key);
 
   @override
@@ -20,7 +22,8 @@ class AppActionChip extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 10.w),
       child: ActionChip(
         backgroundColor: backgroundColor ?? null,
-        padding: EdgeInsets.symmetric(vertical: 20.w, horizontal: 60.w),
+        padding:
+            padding ?? EdgeInsets.symmetric(vertical: 20.w, horizontal: 60.w),
         label: Text(
           string,
           style: TextStyle(color: textColor),

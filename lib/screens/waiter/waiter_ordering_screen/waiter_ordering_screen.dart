@@ -86,6 +86,7 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
         child: ListView(
           children: [
             Subtitles(string: 'CATEGORY'),
+            SizedBox(height: 25.h),
             Container(
               height: 150.w,
               child: ListView.builder(
@@ -102,6 +103,8 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
                             category.categories[index].categoryName
                         ? Colors.white
                         : null,
+                    padding:
+                        EdgeInsets.symmetric(vertical: 50.w, horizontal: 100.w),
                     onPressed: () {
                       setState(() {
                         selectedCategory =
@@ -113,6 +116,7 @@ class _WaiterOrderingScreenState extends State<WaiterOrderingScreen> {
                 },
               ),
             ),
+            SizedBox(height: 25.h),
             Subtitles(string: 'ITEMS'),
             SizedBox(height: 25.h),
             Container(
