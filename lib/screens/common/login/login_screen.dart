@@ -19,6 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   bool isPasswordVisible = true;
+  bool _rememberMe = false;
   JobPosition jobPosition;
 
   @override
@@ -60,6 +61,21 @@ class _LoginScreenState extends State<LoginScreen> {
                           jobPosition = position;
                         });
                       },
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Checkbox(
+                          value: _rememberMe,
+                          onChanged: (bool value) {
+                            setState(() => _rememberMe = !_rememberMe);
+                            //TODO: shared preference logic here
+                          },
+                        ),
+                        Text(
+                          "Remember Me?",
+                        ),
+                      ],
                     ),
                   ],
                 ),
