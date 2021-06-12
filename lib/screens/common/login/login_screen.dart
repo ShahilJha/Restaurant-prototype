@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:summer_project/enumerators.dart';
 import 'package:summer_project/services/user_auth.dart';
 import 'package:summer_project/utils/utility.dart';
@@ -21,6 +22,18 @@ class _LoginScreenState extends State<LoginScreen> {
   bool isPasswordVisible = true;
   bool _rememberMe = false;
   JobPosition jobPosition;
+  SharedPreferences _pref;
+
+  Future<void> checkRememberMe() async {
+    _pref = await SharedPreferences.getInstance();
+    String emailAddress = _pref.getString('email');
+    if (emailAddress != null) {
+      setState(() {
+        emailController.text = emailAddress;
+        _rememberMe = true;
+      });
+    }
+  }
 
   @override
   void initState() {
@@ -29,6 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
       print("Flutter App Initialized");
       setState(() {});
     });
+    checkRememberMe();
     emailController.addListener(() => setState(() {}));
   }
 
@@ -85,6 +99,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 onPressed: () async {
                   if (_formKey.currentState.validate()) {
                     Utility.showProcessingPopUp(context);
+                    if (_rememberMe == true) {
+                      _pref.setString('email', emailController.text);
+                    }
                     await UserAuthService.instance.signInUser(
                       email: emailController.text,
                       password: passwordController.text,
