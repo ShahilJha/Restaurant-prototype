@@ -82,6 +82,10 @@ class UserAuthService {
     }
   }
 
+  Future<void> logOutUser() async {
+    await _auth.signOut();
+  }
+
   Future<dynamic> signInUser(
       {String email,
       String password,

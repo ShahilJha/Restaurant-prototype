@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../services/user_auth.dart';
 
 class Utility {
   static Future<dynamic> showSnackBar(BuildContext context,
@@ -82,10 +83,9 @@ class Utility {
     return IconButton(
       icon: Icon(Icons.exit_to_app),
       onPressed: () {
-        print('there was an attempt to get out!!!');
+        UserAuthService.instance.logOutUser();
         Navigator.pop(context);
         Navigator.of(context).pushNamed('/');
-        print('that son of a gun got out!!!');
       },
     );
   }
