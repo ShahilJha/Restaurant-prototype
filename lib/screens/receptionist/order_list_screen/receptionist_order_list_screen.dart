@@ -39,7 +39,6 @@ class ReceptionistOrderListScreen extends StatelessWidget {
                 return ReceptionistOrderTile(
                   order: order,
                   onPressed: () {
-                    //todo: make adjustments
                     Navigator.of(context).pushNamed(
                       '/receptionist_order_detail',
                       arguments: order,

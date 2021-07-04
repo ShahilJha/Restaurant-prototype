@@ -1,5 +1,3 @@
-import 'package:device_preview/device_preview.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_screenutil/screenutil_init.dart';
@@ -20,7 +18,6 @@ void main() {
 //   );
 // }
 
-//TODO: use Future builder with splash screen and initilize Firebase.initializeApp() from login to here
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

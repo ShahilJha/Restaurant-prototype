@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:summer_project/models/order.dart';
 import 'package:summer_project/utils/enum_util.dart';
 import 'package:summer_project/widgets/attribute_display.dart';
-import '../../../../enumerators.dart';
 import 'file:///C:/Users/User/AndroidStudioProjects/summer_project/lib/screens/waiter/waiter_running_order_screen/local_widgets/order_progress.dart';
 import 'package:summer_project/widgets/app_tile_container.dart';
 import 'package:summer_project/widgets/color_code_tile.dart';

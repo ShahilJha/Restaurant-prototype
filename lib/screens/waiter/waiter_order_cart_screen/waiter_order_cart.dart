@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:summer_project/models/food_item.dart';
 import 'package:summer_project/models/order.dart';
 import 'package:summer_project/screens/waiter/waiter_order_cart_screen/local_widgets/waiter_order_cart_table.dart';

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:summer_project/models/order.dart';
 import 'package:summer_project/widgets/app_tile_container.dart';
 import 'package:summer_project/widgets/attribute_display.dart';

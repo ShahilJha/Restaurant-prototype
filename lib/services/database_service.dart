@@ -66,19 +66,19 @@ class DatabaseService {
   }
 
   Future<Order> getOrderByID({String id, BuildContext context}) async {
+    var document;
     try {
       Utility.showProcessingPopUp(context);
       var documentQuery = await _firestore
           .collection('orders')
           .where('id', isEqualTo: id)
           .get();
-      var document = documentQuery.docs.first.data();
+      document = documentQuery.docs.first.data();
       Navigator.pop(context);
-
-      return orderFromMap(document);
     } catch (e) {
       print('EXCEPTION: -getOrderByID--> $e');
     }
+    return orderFromMap(document);
   }
 
   Future<void> createNewOrder({Order order, BuildContext context}) async {

@@ -22,7 +22,6 @@ class AppQuantitySelector extends StatefulWidget {
 
 class _AppQuantitySelectorState extends State<AppQuantitySelector> {
   int count;
-//TODO: make use of function(x) voidCallBack to relay count data
   @override
   void initState() {
     super.initState();

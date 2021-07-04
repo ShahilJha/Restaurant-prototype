@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:summer_project/enumerators.dart';
 import 'package:summer_project/services/database_service.dart';
-import 'package:summer_project/utils/enum_util.dart';
 import 'package:summer_project/utils/utility.dart';
 
 class UserAuthService {

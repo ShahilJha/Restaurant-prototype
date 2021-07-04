@@ -139,7 +139,6 @@ class Order {
   }
 
   void updateItemStatusCount() {
-    //TOdo: check if the total
     this.readyItems = 0;
     this.notReadyItems = 0;
     this.servedItems = 0;

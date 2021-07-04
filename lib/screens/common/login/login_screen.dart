@@ -1,4 +1,3 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -38,10 +37,6 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
-    // Firebase.initializeApp().whenComplete(() {
-    //   print("Flutter App Initialized");
-    //   setState(() {});
-    // });
     checkRememberMe();
     emailController.addListener(() => setState(() {}));
   }

@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:summer_project/models/food_item.dart';
 import 'package:summer_project/models/order.dart';
 import 'package:summer_project/services/database_service.dart';
 import 'package:summer_project/utils/enum_util.dart';
@@ -87,7 +86,6 @@ class _ReceptionistOrderDetailsScreenState
             AppButton(
               text: 'CLOSE ORDER',
               onPressed: () {
-                //todo: change to update with OrderStatus.FinishedOrder after convert to customDB
                 //deleting the order after finishing work
                 DatabaseService.instance.deleteOrderByID(
                   context: context,

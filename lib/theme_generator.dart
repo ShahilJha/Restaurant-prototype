@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:summer_project/constants.dart';
 
 class ThemeGenerator {
   static const kPrimaryColor = Color(0xFFD9443A);

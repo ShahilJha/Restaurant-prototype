@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:summer_project/enumerators.dart';
 import 'package:summer_project/models/order.dart';
 import 'package:summer_project/utils/enum_util.dart';
