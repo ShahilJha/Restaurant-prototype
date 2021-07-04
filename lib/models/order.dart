@@ -173,9 +173,7 @@ class Order {
   }
 
   void updateOrderStatus() {
-    if (notAvailableItems > 0) {
-      status = OrderStatus.ItemNotAvailable;
-    } else if (totalOrderCount > 0 &&
+    if (totalOrderCount > 0 &&
         totalOrderCount == notReadyItems &&
         totalAdditionalOrderCount == 0) {
       status = OrderStatus.NewOrder;
@@ -183,14 +181,15 @@ class Order {
         notReadyItems != 0 &&
         totalItemsCount != servedItems) {
       status = OrderStatus.PartiallyFinishedOrder;
-    } else if (totalItemsCount == servedItems &&
-        notAvailableItems == 0 &&
+    } else if (notAvailableItems == 0 &&
         readyItems == 0 &&
         notReadyItems == 0) {
       status = OrderStatus.FinishedOrder;
     } else if (totalAdditionalOrderCount > 0 &&
         totalOrderCount != totalItemsCount) {
       status = OrderStatus.AdditionalOrder;
+    } else if (notAvailableItems > 0) {
+      status = OrderStatus.ItemNotAvailable;
     }
   }
 }
