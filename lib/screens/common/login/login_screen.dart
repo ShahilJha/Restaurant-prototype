@@ -38,10 +38,10 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
-    Firebase.initializeApp().whenComplete(() {
-      print("Flutter App Initialized");
-      setState(() {});
-    });
+    // Firebase.initializeApp().whenComplete(() {
+    //   print("Flutter App Initialized");
+    //   setState(() {});
+    // });
     checkRememberMe();
     emailController.addListener(() => setState(() {}));
   }
@@ -83,7 +83,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           value: _rememberMe,
                           onChanged: (bool value) {
                             setState(() => _rememberMe = !_rememberMe);
-                            //TODO: shared preference logic here
                           },
                         ),
                         Text(

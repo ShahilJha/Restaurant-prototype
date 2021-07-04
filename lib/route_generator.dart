@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:summer_project/models/order.dart';
+import 'package:summer_project/screens/common/splash/splash_screen.dart';
 import 'screens/common/login/login_screen.dart';
 import 'screens/kitchen/order_details_screen/kitchen_order_details_screen.dart';
 import 'screens/kitchen/running_order_screen/kitchen_running_order_screen.dart';
@@ -26,6 +27,9 @@ class RouteGenerator {
 
       //COMMON Routes
       case '/':
+        return MaterialPageRoute(builder: (_) => SplashScreen());
+
+      case '/login':
         return MaterialPageRoute(builder: (_) => LoginScreen());
 
       //RECEPTIONIST Routes

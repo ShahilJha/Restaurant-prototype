@@ -85,7 +85,7 @@ class Utility {
       onPressed: () {
         UserAuthService.instance.logOutUser();
         Navigator.pop(context);
-        Navigator.of(context).pushNamed('/');
+        Navigator.of(context).pushNamed('/login');
       },
     );
   }
